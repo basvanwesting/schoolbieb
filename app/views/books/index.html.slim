@@ -3,7 +3,9 @@ h1 Listing books
 table
   thead
     tr
-      th Name
+      th ID
+      th Title
+      th Subtitle
       th Author
       th Reading level
       th Avi level
@@ -12,7 +14,9 @@ table
   tbody
     - @books.each do |book|
       tr
-        td = book.name
+        td = book.id.to_s.rjust(4,'0')
+        td = book.title
+        td = book.subtitle
         td = book.author.full_name
         td = book.reading_level
         td = book.avi_level

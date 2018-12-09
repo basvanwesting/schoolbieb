@@ -4,6 +4,7 @@ table
   thead
     tr
       th First name
+      th Middle name
       th Last name
       th.actions
 
@@ -11,6 +12,7 @@ table
     - @authors.each do |author|
       tr
         td = author.first_name
+        td = author.middle_name
         td = author.last_name
         td.actions
           = link_to 'Show', author, class: 'button tiny'

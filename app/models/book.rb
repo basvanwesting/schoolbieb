@@ -1,5 +1,14 @@
 class Book < ApplicationRecord
   belongs_to :author
 
-  validates :name, presence: true
+  validates :title, presence: true
+
+  def sticker
+    <<-DOC.strip_heredoc
+      laksjdlak
+      lkajsdlk
+      lakdjlakjdlajsdlasj
+      klsjd laskdjlka
+    DOC
+  end
 end
