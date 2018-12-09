@@ -11,7 +11,7 @@ p
   = @book.avi_level
 p
   strong Author:
-  = @book.author
+  = @book.author.full_name
 
 => link_to 'Edit', edit_book_path(@book), class: 'button warning'
 =< link_to 'Back', books_path, class: 'button'

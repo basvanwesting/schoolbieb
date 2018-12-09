@@ -1,15 +1,9 @@
-= form_for @author do |f|
-  - if @author.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@author.errors.count, "error")} prohibited this author from being saved:"
-      ul
-        - @author.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @author do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .actions = f.submit class: 'button'
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+
+  .form-actions = f.button :submit, class: 'button'

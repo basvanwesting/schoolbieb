@@ -13,12 +13,12 @@ table
     - @books.each do |book|
       tr
         td = book.name
-        td = book.author
+        td = book.author.full_name
         td = book.reading_level
         td = book.avi_level
         td.actions
-          = link_to 'Show', book, class: 'button alert tiny'
-          = link_to 'Edit', edit_book_path(book), class: 'button warning alert tiny'
+          = link_to 'Show', book, class: 'button tiny'
+          = link_to 'Edit', edit_book_path(book), class: 'button warning warning tiny'
           = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
