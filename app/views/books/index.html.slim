@@ -4,24 +4,23 @@ table
   thead
     tr
       th Name
+      th Author
       th Reading level
       th Avi level
-      th Author
-      th
-      th
-      th
+      th.actions
 
   tbody
     - @books.each do |book|
       tr
         td = book.name
+        td = book.author
         td = book.reading_level
         td = book.avi_level
-        td = book.author
-        td = link_to 'Show', book
-        td = link_to 'Edit', edit_book_path(book)
-        td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+        td.actions
+          = link_to 'Show', book, class: 'button alert tiny'
+          = link_to 'Edit', edit_book_path(book), class: 'button warning alert tiny'
+          = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
 
-= link_to 'New Book', new_book_path
+= link_to 'New Book', new_book_path, class: 'button'

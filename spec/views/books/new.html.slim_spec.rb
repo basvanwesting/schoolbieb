@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "books/new", type: :view do
+  let(:author) { FactoryBot.create(:author) }
   before(:each) do
     assign(:book, Book.new(
       :name => "MyString",
       :reading_level => "MyString",
       :avi_level => "MyString",
-      :author => nil
+      :author => author,
     ))
   end
 

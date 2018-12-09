@@ -5,19 +5,18 @@ table
     tr
       th First name
       th Last name
-      th
-      th
-      th
+      th.actions
 
   tbody
     - @authors.each do |author|
       tr
         td = author.first_name
         td = author.last_name
-        td = link_to 'Show', author
-        td = link_to 'Edit', edit_author_path(author)
-        td = link_to 'Destroy', author, data: { confirm: 'Are you sure?' }, method: :delete
+        td.actions
+          = link_to 'Show', author, class: 'button tiny'
+          = link_to 'Edit', edit_author_path(author), class: 'button warning tiny'
+          = link_to 'Destroy', author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
 
-= link_to 'New Author', new_author_path
+= link_to 'New Author', new_author_path, class: 'button'
