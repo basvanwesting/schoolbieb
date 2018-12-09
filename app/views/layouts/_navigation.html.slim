@@ -1,0 +1,14 @@
+.top-bar
+  .top-bar-left
+    ul.menu data-dropdown-menu=true
+      li.menu-text SchoolBieb
+      - if user_signed_in?
+        li = link_to "Authors", authors_path
+        li = link_to "Books", books_path
+  .top-bar-right
+    ul.menu
+      - if user_signed_in?
+       /li= link_to 'Change password', edit_user_password_path
+       li= link_to 'Sign out', destroy_user_session_path, method: :delete
+      - else
+       li= link_to 'Sign In', new_user_session_path
