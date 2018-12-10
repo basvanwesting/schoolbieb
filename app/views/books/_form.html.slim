@@ -3,8 +3,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'smart-select' }
-    = f.input :title
+    = f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2' }
+    = f.input :title, collection: Book.distinct.pluck(:title).sort,  include_blank: true, input_html: { class: 'js-select2', data: { tags: true } }
     = f.input :subtitle
     = f.input :reading_level
     = f.input :avi_level
@@ -12,6 +12,3 @@
   .form-actions
     = f.button :submit, class: 'button'
     = link_to 'New Author', new_author_path, class: 'button'
-
-javascript:
-  $('select.smart-select').select2()

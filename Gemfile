@@ -45,6 +45,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'simple_form'
 gem "select2-rails"
+gem 'select2-foundation'
 gem 'jquery-rails'
 
 group :development, :test do
