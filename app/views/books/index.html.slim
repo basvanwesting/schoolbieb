@@ -19,8 +19,9 @@ h1 Listing Books
         th = f.text_field :title_cont,            placeholder: 'contains'
         th = f.text_field :subtitle_cont,         placeholder: 'contains'
         th = f.text_field :author_last_name_cont, placeholder: 'last name contains'
-        th = f.text_field :reading_level_cont,    placeholder: 'contains'
-        th = f.text_field :avi_level_cont,        placeholder: 'contains'
+        th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
+        th = f.select :avi_level_eq, Book::AviLevels::All, { include_blank: ' - '}
+
         th.actions
           = f.submit class: 'button'
           = link_to 'Reset', books_path, class: 'button secondary'

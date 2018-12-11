@@ -4,7 +4,7 @@ table.hover.unstriped.condensed.text-left
   tbody
     tr
       th Author
-      td = @book.author.full_name
+      td = link_to @book.author.full_name, @book.author
     tr
       th ID
       td = @book.id.to_s.rjust(4,'0')

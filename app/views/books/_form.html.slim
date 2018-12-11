@@ -6,8 +6,8 @@
     = f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2' }
     = f.input :title, collection: Book.distinct.pluck(:title).sort,  include_blank: true, input_html: { class: 'js-select2', data: { tags: true } }
     = f.input :subtitle
-    = f.input :reading_level
-    = f.input :avi_level
+    = f.input :reading_level, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
+    = f.input :avi_level, collection: Book::AviLevels::All, input_html: { class: 'js-select2' }
 
   .form-actions
     = f.button :submit, class: 'button'
