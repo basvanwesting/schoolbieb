@@ -12,8 +12,8 @@ table.hover.unstriped.condensed.text-left
       th Title
       td = @book.title
     tr
-      th Subtitle
-      td = @book.subtitle
+      th Series
+      td = @book.series
     tr
       th Reading level
       td = @book.reading_level
@@ -28,5 +28,5 @@ p
 = link_to 'Edit', edit_book_path(@book), class: 'button warning'
 = link_to 'New Book', new_book_path, class: 'button'
 = link_to 'New Book for Author', new_book_path(book: { author_id: @book.author_id }), class: 'button'
-= link_to 'New Subtitle', new_book_path(book: { author_id: @book.author_id, title: @book.title }), class: 'button'
+= link_to 'New Series', new_book_path(book: { author_id: @book.author_id, title: @book.title }), class: 'button'
 = link_to 'Back', :back, class: 'button'

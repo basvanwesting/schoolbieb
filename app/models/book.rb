@@ -29,7 +29,7 @@ class Book < ApplicationRecord
       ID: #{id.to_s.rjust(4, '0')}
       #{author.full_name}
       #{title}
-      #{subtitle}
+      #{series}
       #{reading_level} / #{avi_level}
     DOC
   end

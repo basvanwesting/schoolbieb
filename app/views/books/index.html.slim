@@ -6,9 +6,9 @@ h1 Listing Books
   table
     thead
       tr
-        th = sort_link(@q, :id,       'ID')
-        th = sort_link(@q, :title,    'Title')
-        th = sort_link(@q, :subtitle, 'Subtitle')
+        th = sort_link(@q, :id,     'ID')
+        th = sort_link(@q, :title,  'Title')
+        th = sort_link(@q, :series, 'Series')
         th = link_to 'Author', '#'
         th = sort_link(@q, :reading_level, 'Reading level')
         th = sort_link(@q, :avi_level,     'Avi level')
@@ -17,10 +17,10 @@ h1 Listing Books
       tr
         th = f.text_field :id_eq,                 placeholder: 'equals'
         th = f.text_field :title_cont,            placeholder: 'contains'
-        th = f.text_field :subtitle_cont,         placeholder: 'contains'
+        th = f.text_field :series_cont,           placeholder: 'contains'
         th = f.text_field :author_last_name_cont, placeholder: 'last name contains'
         th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
-        th = f.select :avi_level_eq, Book::AviLevels::All, { include_blank: ' - '}
+        th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
 
         th.actions
           = f.submit class: 'button'
@@ -31,7 +31,7 @@ h1 Listing Books
         tr
           td = book.id.to_s.rjust(4,'0')
           td = book.title
-          td = book.subtitle
+          td = book.series
           td = book.author.full_name
           td = book.reading_level
           td = book.avi_level
