@@ -1,408 +1,1415 @@
-Jeroen Aalbers
-Sibe van Aangium
-Leuntje Aarnoutse
-Richard Abbenhuis
-Chris van Abkoude
-Simon Abramsz
-Tjeerd Adema
-Mariëtte Aerts
-Joukje Akveld
-Hieronymus van Alphen
-André Nuyens
-Hans Andreus
-Pieter Jacob Andriessen
-Suze Andriessen
-Lizzy Ansingh
-René Appel
-Henri Arnoldus
-Clara Asscher-Pinkhof
-Marijn Backer
-Sanne de Bakker
-Henk Barnard
-Thea Beckman
-Ina van der Beek
-Johan Been
-Carel Beke
-Ad de Beer
-Eveline Bergwerf
-Tine van Berken
-Frederik August Betlem
-Greet Beukenkamp
-Anna Hubert van Beusekom
-Paul Biegel
-Ienne Biemans
-Anita Bijsterbosch
-Ingrid Bilardie
-Liesbeth van Binsbergen
-Janwillem Blijdorp
-J.J.C. Böckling
-Helena de Boer
-André Boesberg
-John Henri uit den Bogaard
-Elle van den Bogaart
-Godfried Bomans
-Annemarie Bon
-Klaas Bond
-H.G. de Bont
-Burny Bos
-Tamara Bos
-Iris Boter
-Guido Bottinga
-Mies Bouhuys
-Christel van Bourgondië
-Lenze L. Bouwers
-Yvonne Brill
-Rien Broere
-Janie Lever-Brouwer
-Willeke Brouwer
-Cor Bruijn
-Ruud Bruijn
-Dick Bruna
-Trix van Brussel
-Suzanne Buis
-Jack Bulterman
-Adri Burghout
-Caja Cazemier
-Nicolaas Antonie van Charante
-Nicolle Christiaanse
-Marion van de Coolwijk
-Petra Cremers
-Arend van Dam
-Wim Daniëls
-Midas Dekkers
-Wandert Jacobus Dekkers
-Joep van Deudekom
-Miep Diekmann
-Johan Diepstraten
-Paul van Dijk
-Lida Dijkstra
-Lieneke Dijkzeul
-Fred Diks
-Caroline van Dommelen
-Christine Doorman
-Miek Dorrestein
-Evelien van Dort
-Jozua Douglas
-Tonke Dragt
-Marcel van Driel
-Imme Dros
-Beene Dubbelboer
-Thea Dubelaar
-Frans van Duijn
-Bibi Dumon Tak
-Bies van Ede
-Noud van den Eerenbeemt
-Jan Eilander
-Mena Elisabeth Cremer Eindhoven
-Johanna Madeleine Elout
-Theo Engelen
-Gertie Evenhuis
-Henriëtte van Eyk
-Karel Eykman
-Johanna Christiania Frederika Elisabeth Fabius
-Johan Fabricius
-Victoria Farkas
-Fenna Feenstra Kuiper
-Ruurd Feenstra
-Tiny Fisscher
-Maaike Fluitsma
-Johan Frinsel sr.
-Annie van Gansewinkel
-Simon van der Geest
-Klaas van der Geest
-Wilma Geldof
-Gerard van Gemert
-Eduard Gerdes
-Peter van Gestel
-Mireille Geus
-Greeth Gilhuis-Smitskamp
-Ad van Gils
-Reinoudina de Goeje
-Jan Goeverneur
-Marian van Gog
-Christina van Gogh
-Dave Goldstein
-Gabriël Gorris
-Bobje Goudsmit
-Thijs Goverde
-Anke de Graaf
-Cok Grashoff
-Els de Groen
-Leny van Grootel
-Halil Gür
-Jaap ter Haar
-Corrie Hafkamp
-Hans Hagen
-Monique Hagen
-Henk Hardeman
-Elma van Haren
-Bas Haring
-Adriaan van Hartingsveldt
-Evert Hartman
-Aby Hartog
-Sjon Hauser
-Sanne van Havelte
-Mylène de la Haye
-Loes Hazelaar
-Veronica Hazelhoff
-Nor Heerkens
-Martha Heesen
-Willy van der Heide
-Marian van der Heiden
-Albert Helman
-Pimm van Hest
-Anneriek van Heugten
-Haye van der Heyden
-Annemie Heymans
-Margriet Heymans
-Hetty Heyting
-Nienke van Hichtum
-Aly Hilberts
-Anton Hildebrand
-Marian Hoefnagel
-Marjolijn Hof
-Marjon Hoffman
-Wim Hofman
-Coby Hol
-Vivian den Hollander
-To Hölscher
-Mieke van Hooft
-Theo Hoogstraaten
-Wim Hora Adema
-Jolanda Horsten
-Willem van den Hout
-Gonneke Huizing
-Leonhard Huizinga
-W.G. van de Hulst jr.
-W.G. van de Hulst sr.
-John van Ierland
-Hermien IJzerman
-Siny van Iterson
-Maresa Jacobse
-Bouke Jagt
-Liesbeth van der Jagt
-Yvonne Jagtenberg
-Yvon Jaspers
-Ceseli Josephus Jitta
-Trude de Jong
-U.G. de Jong
-Tanja de Jonge
-Harm de Jonge
-Piet Jongeling
-Pieter Kaas
-Roland Kalkman
-Isaäc Keesing jr.
-Michiel van Kempen
-Mariolande Kennedy
-Marga Kerklaan
-Henk van Kerkwijk
-Cornelis Johannes Kieviet
-Vrouwke Klapwijk
-Christine Kliphuis
-Cees Wilkeshuis
-Arjan Wilschut
-Anneke Wiltink
-Dieuwke Winsemius
-Marianne Witte
-Robert Wolfe
-Jan de Zanger
-Daan Zonderland
-Peter de Zwaan
-Floortje Zwigtman
-Wouter Klootwijk
-Henk Koesveld
-Ruben Koman
-Leonie Kooiker
-Toon Kortooms
-Susanne Koster
-Hanna Kraan
-Simone Kramer
-Rindert Kromhout
-Yvonne Kroonenberg
-Johanna Kruit
-Suzanne Kruseman
-Guus Kuijer
-Hans Kuiper
-Nannie Kuiper
-Sjoerd Kuyper
-Hans Kuyper
-Dick Laan
-Hermine Landvreugd
-Kathinka Lannoy
-Harriet Laurey
-Ria Lazoe
-Nans van Leeuwen
-Guurtje Leguijt
-Pieter Feller
-Kees Leibbrandt
-Katharina Leopold
-Martine Letterie
-Noni Lichtveld
-Ted van Lieshout
-Benny Lindelauf
-Jac Linders
-Leo Lionni
-Lisa Loman
-Inez van Loon
-Paul van Loon
-Arie van der Lugt
-Monica Maas
-Saskia Maaskant
-Margriet Breet
-Cissy van Marxveldt
-Georges Mazure
-Hans Meeuws
-Nico Meijer
-Jessica Mendels
-Dirkje Menkens-van der Spiegel
-Tosca Menten
-Hans Ludo van Mierlo
-Marijke van Mil
-Rom Molemaker
-Elisabeth Mollema
-Mirjam Mous
-Tiny Mulder
-Jochem Myjer
-Reggie Naus
-Aat van Nie
-René van Nie
-Marieke Nijkamp
-Okkie Noordhuis-Noordhof
-Tjerk Noordraven
-Selma Noort
-Klaas Norel
-Jan Nowee
-Paul Nowee
-Mirjam Oldenhave
-Theo Olthuis
-Francine Oomen
-Johannes Willem Ooms
-Wieke van Oordt
-Corien Oranje
-Bertha Elisabeth van Delden
-Franciscus van Ostaden
-Hans Otjes
-Pauline Oud
-Pieter van Oudheusden
-Sanne Parlevliet
-Els Pelgrom
-Ynskje Penning
-Hans Petermeijer
-Arja Peters
-Willy Pétillon
-Piet Visser
-Ed Pieters
-J.F. van der Poel
-Joyce Pool
-Christina Elizabeth Pothast-Gimberg
-Anna van Praag
-Ben de Raaf
-Marijke van Raephorst
-Harriët van Reek
-Wouter van Reek
-Johanna Reiss
-Daan Remmerts de Vries
-Fiona Rempt
-Gerard van het Reve sr.
-Robin Raven
-Geert-Jan Roebers
-Leonard Roggeveen
-Bart Römer
-Lydia Rood
-Niels Rood
-Hotze de Roos
-Eus Roovers
-Rob Ruggenberg
-Gideon Samson
-Leni Saris
-Cornelis van Schaick
-Hindericus Scheepstra
-Simone Schell
-Jan Schenkman
-Jill Schirnhofer
-Hans Schmidt
-Annie M.G. Schmidt
-Daniëlle Schothorst
-Janneke Schotveld
-Alet Schouten
-Ignace Schretlen
-J.B. Schuil
-Job Schuring
-Jan Paul Schutten
-Nel Schuttevaêr-Velthuys
-Cindy Seinen
-Manon Sikkel
-Sylvia Sillevis
-Carry Slee
-Ben Slingenberg
-Annejoke Smids
-Peter Smit
-Irmgard Smits
-Lea Smulders
-Reinier Sonneveld
-Kees Spiering
-Piero Stanco
-Maren Stoffels
-Wijnand Stomp
-Theo-Henk Streng
-Anna Sutorius
-Anne Takens
-Natasza Tardio
-Buddy Tegenbosch
-Toon Tellegen
-Jan Terlouw
-Felix Thijssen
-A.B. van Tienhoven
-Ellen Tijsinger
-David Tomkins
-Willem van Toorn
-Marcel Vaarmeijer
-Jos de Valk
-Jan Paul Valkema Blouw
-Ed van Eeden
-Sylvia van Ommen
-Babette van Veen
-Herman van Veen
-Anne Vegter
-René van der Velde
-Tjibbe Veldkamp
-Max Velthuijs
-Adriaan Venema
-Wil Vening
-Dolf Verroen
-Rita Verschuur
-Jeska Verstegen
-Peter Vervloed
-Leendert Jan Vis
-Hajo Visscher
-Jant Visser-Bakker
-Ria Visser
-David Vlietstra
-Else Vlug
-Simone van der Vlugt
-Sanne Vogel
-Jacq Vogelaar
-Ies Vorst
-Ida Vos
-Tonny Vos-Dahmen von Buchholz
-Helen Vreeswijk
-Jacques Vriens
-Jose Vriens
-Anke de Vries
-Anne de Vries
-Gijsbert de Vries
-Mel Wallis de Vries
-Gijs Wanders
-Margot Warnsinck
-Dirk Weber
-Willemijn de Weerd
-Jant van der Weg-Laverman
-Mieke van der Weij
-Hieke van der Werff
-Hans Werkman
-Hans Werner
-Micha Wertheim
-Bette Westera
-Janwillem van de Wetering
-Bert Wiersema
-Henriëtte Wijthoff
+Aalbers, Jeroen
+Aalbers, Victoria
+Aalbers,Jeroen
+Aalst, John van
+Aar, Hetty van
+Abedi, isabel
+Ackroyd, Dan
+Ackroyd, Peter
+Adams, Simon
+Adams,Simon
+Adshead, Paul
+Aerts, Carine
+Agosta, Loredana
+Ahlberg, Allan
+Ak, Sevin
+Akass, Susan
+Akkari, Boubakker
+Albers, Jeroen
+Alexie, Sherman
+Allen, Tony
+Allison, Jennifer
+Almog, Ruth
+Altez, Marta
+Amendt, Linda
+Amery, Heather
+Amhali,Najib
+Amos, Janine
+Andersen, Hans Chr.
+Andersen, Kenneth
+Andreae, Giles
+Angleberger, Tom
+Applegate, K.A.
+Applegate,Katherine
+Ardagh, Philip
+Ark, Frank van
+Arnoldus, Henri
+Arts, Simone
+Aschenbrenner, Gerald
+Asikinack, Bill
+Asseldonk, Lonneke van
+Assen, Klaas van
+Baar, Kees de
+Backers, Richard
+Bacon, Frances
+Baddiel, David
+Badelt, Monica
+Baeten, Lieve
+Bahree, Patricia
+Baines, John
+Bakker, Erica
+Bakker, Jeanne
+Bakker, Reina
+Bakker, Sanne
+Bakker, Sanne de
+Balen, Noël
+Balkwill, Richard
+Bancroft, Anne
+Banks, Lynne Reid
+Banks, Martin
+Barbey, Dorine
+Barman, Adrienne
+Barnes, Emma
+Barnes, Trevor
+Barnitzke, Heike
+Barrie, JM
+Bartels, Berdie
+Bartels,Berdie
+Barton, Hest
+Baseler, Marja
+Bastiaans, Impje
+Batels, Berdie
+Battut, Eric
+Bavel, Rob van
+Beasant, Pam
+Beauregard, Diana Costa de
+Beck, Martine
+Becker, Bonny
+Becker, Paul
+Beckman, Thea
+Beckman, thea
+Beek, Sandra op de
+Beekman, Ben
+Beer, Fedor de
+Beer, Hans de
+Beer,Fedor de
+Behr, Steve
+Beinstein, Phoebe
+Beken, Dirk vander
+Beks, Maarten
+Bel, Marc de
+Belli, Gioconda
+Bennet, Gay
+Bennet, Paul
+Bennett, Gay
+Bennett, Leonie
+Bennett, Paul
+Benton, Michael
+Berg, Leen van den
+Bergin, Mark
+Bernard, Bruce
+Bernard, François
+Berner, Rotraut Susanne
+Berner, Susanne
+Bertin, Eddy C
+Beskow, Elsa
+Bie, Ceciel de
+Biegel, Paul
+Biegel,Paul ea.
+Biesty, Stephen
+Bijl, Martine
+Bijlsma, Ingeborg
+Bingham, Caroline
+Black, Holly
+Blade, Adam
+Blakert, Elisabeth
+Blathwayt, Benedict
+Blesius, Susanne
+Bloem, Marion
+Blokker, Anne
+Bloom, Becky
+Blyton,  Enid
+Blyton, Enid
+Boase, Wendy
+Bodelsen, Anders
+Bodt, Saskia de
+Boeke, Jet
+Boeke, Jet
+Boer, Claudia de
+Boer, Marja de
+Boertjens, Ulrike
+Bogaart, Anita van den
+Boie, Kirsten
+Boie, Kristen
+Bolt, Arienne
+Bom, Annemarie
+Bon, Annemarie
+Bond, Michael
+Boonen, Stefan
+Borgermans, Miriam
+Borghuis, Sunna
+Bos, Burny
+Bos, Chris
+Bos, Elly
+Bos, Tamara
+Bos-Visser, Elly
+Boshouwers, Suzan
+Bosman, Brigitte
+Bosse, Sarah
+Boullart, Gert
+Bour, Laura
+Bourgoing, Pascale de
+Bourgondië, Christel van
+Bouwhuis, Marijke
+Boys, Beastly
+Bradford, Chris
+Bramwell, Martyn
+Brandenberg, Aliki
+Brashares, Ann
+Bratney, Sam Mc
+Breij, Claudia de
+Briggs, Raymond
+Bright, M
+Brink, Annemarie van den
+Brochier, Bernard
+Brocker, Susan
+Brocklehurst, Ruth
+Brooke, Lauren
+Brookes, Olivia
+Brooks, Chelsea
+Brooks, Philip
+Brouwer, Willeke
+Brouwers, Peter
+Brown, Alan
+Bruggenkate, Reina ten
+Bruggenkate, Reina van
+Bruijn, Jorien de
+Bruna, Dick
+Bryson, Bill
+Budd, Jackie
+Buenen, Joany
+Buierts, Marjet
+Buis, Suzanne
+Buller, Laura
+Burger, GA
+Burgess, Melvin
+Burke, Patrick
+Burkunk, Wim
+Burnham, Molly B.
+Burnie, David
+Burningham, John
+Burton, Robert
+Bush, Pauline
+Bushnell, Gail
+Bussell, Darcey
+Busser, Marianne
+Busser, Marianne
+Busser, marianne
+Butchart, Pamela
+Butt, Jackie
+Butterfield, Moira
+Butterworth, Nick
+Buul, Tine van
+Cabrera, Jane
+Calabresi, Linda
+Camp, Gaston van
+Campbell, Joanna
+Campbell, Rod
+Carle, Eric
+Carrada, Giovanni
+Carrol, Lewis
+Carrot, Joe
+Casalis, Anna
+Caselli, Giovanni
+Cate, Marijke ten
+Causse, Christine
+Cauteren, Katharina
+Cazemier, Caja
+Cazemier,Caja
+Challoner, Jack
+Champion, Neil
+Chancellor, Deborah
+Chanut, E
+Chanut, Emmanuel
+Chapman, Gillian
+Charing, Douglas
+Child, Lauren
+Chrisp, Peter
+Christiaanse, Nicolle
+Claassen, Antoon
+Claassen, Rob
+Clappers, Cecile
+Clarke, Barry
+Clarke, Gus
+Clay, Kathryn
+Cleemput, Gerda
+Clifford,Clive
+Clutton- Brock, Juliet
+Coffrant, Christophe
+Colfer, Chris
+Collins, Suzanne
+Collins, Tim
+Collins,T
+Comte, Hubert
+Connoly, Sean
+Connor,Leslie
+Cooke, John
+Coolwijk, Marion van de
+Coolwijk,Marion van de
+Coote, Roger
+Coppens, Bernard
+Coppin, Brigitte
+Corbishley, Mike
+Corbishly, Mike J.
+Corbridge, Fiona
+Corder, Zizou
+Cosgove, Brian
+Cossanteli, Veronica
+Cotterell, Arthur
+Cousins, Lucy
+Cousteau, Jacques
+Coville, Bruce
+Cowell, Cressida
+Craig, Claire
+Cramer, Stasia
+Crampton, William
+Crawford, Jean Burke
+Creech, Sharon
+Cribb, Joe
+Crosher, Judith
+Dahl, Roald
+Dahl,Roald
+Dale, van
+Dam ,Arend van
+Dam, Alex van
+Dam, Alfred van
+Dam, Arend van
+Dam,Arend van
+Damme, Paul van
+Daniels, Guy
+Daniels, Lucy
+Darian-Smith, Kate
+Davidson, Avelyn
+Davies,Benji
+Day, Alexandra
+Day, Malcolm
+Deary, Terry
+Deary,Terry
+Debaene, An
+Deboo, Ana
+Deckers, Daphne
+Declercq, Gilbert
+Dekker, Femke
+Dekker,Femke
+Dekkers, Femke
+Dekkers, Midas
+Delaney, Joseph
+Delft, Gerard
+Demantons,Charlotte
+Dematons, Charlotte
+Descamps, Luc
+Deudekom, Joep van
+Deweerdt, Kristel
+Diekmann, Miep
+Dieltiens, Kristien
+Dijkhof, T
+Dijkstra, Lida
+Dijkzaal, Lieneke
+Dijkzeul, Lieneke
+Diks ,Fred
+Diks, Fred
+Diks,Fred
+Dillner, Luisa
+Dillow, John
+Disney, Walt
+Ditzhuyzen, Reinildis van
+Dixon, Dougal
+Dixon, Philip
+Donaldson, Julia
+Donkelaar, Maria van
+Donkelaar,Maria
+Donkervoort, Sandra
+Donnelly, Elfie
+Dort, Evelien van
+Dossenbach, Hans D.
+Dougherty, John
+Douglas, Jozua
+Doyle, Malachy
+Dragt, Annemarie
+Dragt, Tonke
+Drappier,Franky
+Dreesen, Jaak
+Drew, Helen
+Driel, Marcel van
+Driel,Marcel van
+Driessen, Iny
+Dros, Imme
+Du Caju,Thomas
+Dubelaar, Thea
+Duda, Christian
+Dudman, John
+Dudok de Wit, Michael
+Duijne, Isabel van
+Duizer, Piet
+Dumon Tak, Bibi
+Durán, Rosa Navarro
+Dusek, Jiri
+Dyer, Alan
+Ede, Bies van
+Ede, van Bies
+Edens, Margot
+Edwards, Chris
+Eeden, Maria van
+Eeden, Ed van
+Eeden, Maria van
+Eiselin, Judith
+Elias, Bettie
+Elias, Mirjam
+Ellerbeck, Caroline
+Engelen, Theo
+Enne, Koens
+Era, Samantha
+Ernst, Bruno
+Evans, Lynette
+Evans, Mark
+Evans, mark
+Evans,Lisa
+Everest, D.D.
+Everett, Felicity
+Fallow, Allan
+Farjeon, Eleanor
+Farkas, Victoria
+Farkas,Victoria
+Farndon, John
+Farre, Marie
+Favilli,Elena
+Feller, Pieter
+Fens, Kees
+Ferguson, Sarah
+Feron, Jose
+Fialkowski, Camila
+Fichou, Bertrand
+Finkers, Herman
+Fischer, Alexandra
+Fitzsimons, Cecilia
+Flameling, Inez
+Flanagan, John
+Flint, David
+Flot, Jeannette
+Fogden, Emma
+Fombelle, Timothee de
+Fontanel, Beatrice
+Fontein, Elsbeth
+Forni, Pierre
+Fortuin, Henny
+Fox, Helen
+Frank, Anne
+Frattini, Stephane
+Fredriks, Ineke
+Freeman, Mylo
+Friesen, Ute
+Frohlich, Francisca
+Frost, Adam
+Funke, Cornelia
+Gaf, Jackie
+Gaff, Jackie
+Galeron, Henri
+Ganeri, Anita
+Gansewinkel, Annie van
+Garde Peach, L de
+Gardiner, Lindsey
+Garlick, Nick
+Garwood, Val
+Geel,Lysette van
+Geest, Simon van der
+Gehm, Franziska
+Gemert, Gerard van
+Genechten, Guido van
+Gerard, Hilde E.
+Gerritsen, Paula
+Gestel, Peter van
+Geurink, Hajo
+Geus, Mireille
+Gianotten, Erna
+Gibbons, Alan
+Gifford, Clive
+Gils, Ad van
+Glover, David
+Glover, Sandra
+Goede, Irene
+Gog, Marian van
+Goldie, Sonia
+Goldsack, Gaby
+Goldsmith, Mike
+Goor, Van
+Goosens, Jesse
+Goossens,Jesse
+Gordon, Roderick
+Gort, Geertje
+Goscinny, R
+Goslinga, Marike
+Got, Yves
+Goverde, Thijs
+Graaff, Karin de
+Graham, Ian
+Gramham, Nick
+Grant, Donad
+Grant, Donald
+Grant, Neil
+Grashoff, Cok
+Grashoff, Cor
+Gravett, Emily
+Greco, Lillo
+Green, Lucinda
+Greenaway, Jerry
+Greenberg, Dan
+Gregg, Stacy
+Griffiths, Andy
+Griffiths,Andy
+Grimm, Gebr.
+Grimshaw, Caroline
+Grobler, Piet
+Groenewoud, Henk
+Gromlicg, Alexandra
+Groot, Karin de
+Grootel, Leny van
+Groothof, Frank
+Groothuizen, Angela
+Grootjes, Jos
+Grossman, Patricia
+Guillain, Charlotte
+Guillian, Charlotte
+Gunzi, Christiane
+Haar, Jaap ter
+Haayema, Mark
+Habersack, Charlotte
+Haendler, Cornelia
+Hafkamp, Corrie
+Hagen, Hans
+Hagen, Monique
+Hagen, hans
+Halfmouw,Saskia
+Hall,Alvin
+Handford, Martin
+Hardeman, Henk
+Hardesty, Von
+Harker, Jillian
+Harmer, Wendy
+Harris, Caroline
+Harris, Geraldine
+Harris, Nathaniel
+Harris, Nicholas
+Harrison, Michelle
+Hart, Caryl
+Hart, George
+Hart, Tony
+Hartman, Evert
+Hartog, Aby
+Harvey, Derek
+Haslam, Andrew
+Hately, David
+Haughton, Chris
+Hauptmann, Gaby
+Hawking, Lucy & Stephen
+Hayes, Sarah
+Hazelaar,Loes
+Hearne, Tina
+Heath, Jack
+Heath,Jack
+Heede, Sylvia van den
+Heede, Sylvia Vanden
+Heede, Sylvia van den
+Heerze,Jan
+Heesen, Martha
+Heeswijk, Nicole van
+Heine, Helme
+Heinsman, Hedda
+Heisen, Theo
+Hellings, Colette
+Hensel, Wolfgang
+Her Chia, Fen
+Hercules, Eric
+Hersey, Bob
+Herzen, Frank
+Heslewood, Juliet
+Hest, Amy
+Hest, Jos van
+Heugten , Anneriek van
+Heugten, Anneriek van
+Heumann, Monika
+Heur, Valerie
+Heuvel, Dirk van den
+Heuvel, Eric
+Heymans, Annemarie
+Heymas, Margriet
+Heyne, Ulrike
+Hiaasen, Carl
+Hicyilmaz, Gaye
+Hilberts-Stolte, Aly
+Hodgson Burnett, Frances
+Hoebrechts, Els
+Hoekstra, Froukje
+Hof, Marjolijn
+Hoffman, Hein
+Hoffman, Marjon
+Hofman, Wim
+Hofmans, Jorgen
+Hofstra, Renny
+Hokke, Henk
+Holabird, Katharine
+Holander, Vivian den
+Holeinine, Peter
+Holkema, Van
+Hollander, Vivan  den
+Hollander, Vivian  den
+Hollander, Vivan den
+Hollander, Vivian den
+Hollander, den Vivian
+Holmes, Stephen
+Holtzwarth, Werner
+Holzwarth, Werner
+Honey, Elizabeth
+Hooff, Marieke van
+Hooft, Mieke van
+Hoogenboom, Peter
+Hoogland-Pitstra, Riemkje
+Hoogstad, Alice
+Hoogstraten, Theo
+Hook, Jason
+Hornsveld, Ingeborg
+Horowitz, Anthony
+Horst, Marc ter
+Horst, Mark ter
+Horsten, Jolanda
+Horsten, Jolande
+Hout, Mies van
+Houten, Carice van
+Houwelingen, Frans van
+Hovens, Huub
+Howarth, Sarah
+Hubbeling, Karin
+Huber, Diet
+Hugo, Piere
+Huiberts, Marjet
+Huizing, Gonneke
+Huizing,Gonneke
+Humble, Richard
+Hunter, Erin
+Hunter,Erin
+Hurk, Nicolle van den
+Hurk, Nicolle van den
+Hutchinson, Mark
+Hutter, Gardi
+Hynes, Margret
+Hynes,Margaret
+Inglefield, Eric
+Inkpen, Mick
+Irvine, Sarah
+Israel, Sandra
+Ito, Toshikazu
+Iven, Willem
+Ivory, Lesley Anne
+Jackson, Tom
+Jagt, Liesbeth van der
+Jagten, Yvonne
+James, Greg
+James, Ian
+James, Simon
+Jansen, Ellen
+Jaquet, Gertie
+Jekel, Karine
+Jennings, Paul
+Jensen,Stine
+Jeunesse, Gallimard
+Johnsen, Ashild Kanstad
+Johnson, Maureen
+Johnstone, Michael
+Joly, Dominique
+Jones, John Ellis
+Jong, Roel de
+Jong, Trude de
+Jongbloed, Marte
+Jonge, Harm  de
+Jonge, Tanja  de
+Jonge, Hans de
+Jonge, John de
+Jonge, Joke de
+Jonge, Tanja de
+Jongh, Maarten de
+Jongman, Mariken
+Joyce, Melanie
+Julian - Ottie, Vanessa
+Kaaberbol, Lene
+Kaathoven, Netty van
+Kaathoven, Netty van
+Kalwij, Adriana
+Kalwij, Valentine
+Kappeler, Markus
+Karvovskaia, Zidrou
+Kat, Lian de
+Kelly, John
+Kentley, Eric
+Kerkwijk, Henk van
+Kerrod, Robin
+Kers, Martin
+Kersbergen, Wouter
+Kespert, Deborah
+Kid, Cube
+Kiefte, Kees de
+Kieviet, C. Joh
+Kindersley, Dorling
+King, Eva
+King, Zach
+Kinney , Jeff
+Kinney, Jeff
+Kinney,Jeff
+Kipling, Rudyard
+Kirchberg, Ursula
+Klapwijk, Vrouwke
+Klinkhamer, Suzanne
+Klinting, Lars
+Kliphuis, Christine
+Klootwijk, Wouter
+Klut, Marie-Pierre
+Knight, Linsay
+Kockere, Geert de
+Koedam, Floor
+Koenen, Sander
+Koenig, Viviane
+Koens, Enne
+Koide, Tan
+Koike, Keiichi
+Kolk, Anton van der
+Kollenburg, Carla van
+Kolu, Siri
+Komrij, Gerrit
+Koning, Lizette de
+Kooiker, Leonie
+Koopmans, Loek
+Kordon, Klaus
+Kouwenberg, Bert
+Kovacs, Deborah
+Kowitt, H
+Kowitt, H.N.
+Kowitt,H
+Kraan, Hanna
+Kragt,Jan
+Kramer, Gert-Jan
+Kramer, Simone
+Kranedonk, Anke
+Kranendonk, Anke
+Krause, Joachim
+Krenzer, Rolf
+Krever, Jetty
+Kromhour, Rindert
+Kromhout, Rindert
+Kroonenberg, Yvonne
+Kuijer, Guus
+Kuiper, Nannie
+Kuipers, Ben
+Kuntze, Peter
+Kuratomi, Chizuko
+Kurt, Kemal
+Kuyper, Hans
+Kuyper, Sjoerd
+Kuyper,Hans
+Laabs, Gerald
+Laan, Dick
+Lachner, Dorothea
+Lacock, Janice
+Laerhoven, Bob van
+Lagerlof, Selma
+Lagermann, Claudia
+Lagrou, Patrick
+Lammers, Esmé
+Lammers, Pim
+Lamprell, Klay
+Landa, Norbert
+Landvreugd,Hermine
+Langeler, Freddie
+Langley, Andrew
+Langley, Myrtle
+Laurencin, Genevieve
+Lavelle, Sheila
+Lawrence, Caroline
+Le Bloas-Julienne, Renée
+Ledu, Stephanie
+Leene, Merel
+Leene, merel
+Leenhouts, Mark
+Leeuw, Mattias de
+Leeuw, Robbert
+Leeuwen, Gemma van
+Leeuwen, Joke van
+Legg, Gerald
+Legiest, Nicole
+Leibbrandt, Kees
+Leigh, Susannah
+Lennaert, Roos
+Lentewei, Liesje
+Leslie, Amanda
+Letterie, Martine
+Levy, David
+Leysens, Janiu
+Leyton, Lawrence
+Lichtveld, Noni
+Lier, Bas van
+Lieshout , Elle van
+Lieshout, Elle van
+Lieshout, Esther van
+Lieshout, Ted van
+Lindelauf, Benny
+Linden, Elly van der
+Linders, Jac
+Lindgre, Astrid
+Lindgren, Astrid
+Lindsay, William
+Ling, Li-Fang
+Ling, Li-fang
+Ling, Mary
+Linneweever, Christine
+Lionni, Leo
+Littlewood, Kathryn
+Llewellyn, Claire
+Loffel, Joachim
+Lofgren, Ulf
+Lombaert, Claire de
+Long, John
+Loon ,Paul van
+Loon, Paul van
+Loon, Paul van
+Loon, paul van
+Loon,Paul
+Loon,Paul van
+Lootens, Ann
+Lootjes, Ann
+Lord, Trevor
+Louise, Marie
+Louisy, Patrick
+Lowe, Dave
+Lowe,Dave
+Lucas, Andre
+Lucht, Irmgard
+Ludlow, Patricia
+Lye, Keith
+Maarsen, van Jacqueline
+Mabbit,Will
+MacDonald, Amy
+MacDonald, Fiona
+MacQuitty, Miranda
+Macaulay, David
+Macauley, David
+Macquitty, Miranda
+Maes, Dominique
+Mai, Manfred
+Malam, John
+Maljers, Margreet
+Malot, Hector
+Manchand, Pierre
+Manen, Paula van
+Manen,Paula van
+Mankell,Henning
+Mantovani, Maria
+Marain, Elisabeth
+Marc, Chagall
+Maret, Pascale
+Margeson,Susan
+Martell, Hazel Mary
+Martin, Bill
+Martin, Jaques
+Martin, Vique
+Martin,John
+Marzi, Christoph
+Masannek, Joachim
+Mason, Paul
+Matsier, Nicolaas
+Mauris, Élisabeth
+Maynard, Christopher
+Mc Guire, Lizzie
+McCarthy, Colin
+McDaniel, Melissa
+McFadzean, Lesley
+McIntyre, Kate
+McKain, Kelly
+McMIllan, Beverly
+McMillan, Beverly
+McPhee, Margaret
+McQuity, Miranda
+Meadows, Daisy
+Meert, Roger
+Meiani, Antonella
+Meier, Richard
+Meij, Kim-Lian van der
+Meijer, Fik
+Meinderts, Koos
+Meinderts,Koos
+Melling, David
+Melvern, Linda
+Mennel, Wolfgang
+Menten, Tosca
+Menten, Tosca van
+Menten,Tosca
+Meres, Jonathan
+Mersbergen, Zeger van
+Mettler, René
+Meyer, Dorothee
+Michael, David
+Michgelsen, Pauline
+Michgelsen,Pauline
+Milbourne, Anna
+Miles, Lisa
+Miljard, Anne
+Miller, Virginia
+Millerd, Anne
+Mills, Andrea
+Milne, A.A.
+Miltenburg, Sanne
+Mink, Janis
+Minkema, Jan- Simon
+Minkema, Jan-Simon
+Minkman, Lorna
+Minne, Brigitte
+Minte-Konig, Bianka
+Mitchell, David
+Mitton, Jacqueline
+Mmei Ling, Chen
+Mockler, Anthony
+Moekaars, Stijn
+Mogil, Michael
+Mol, Sine van
+Molen, Janny van der
+Molenaar, Charlotte
+Molenaar, Hennie
+Mollema, Elisabeth
+Monaghan, Tom
+Moore, Suzi
+Moran, Paul
+Morgan, Ben
+Morgan, Sally
+Morley, Jacqueline
+Morpurgo, Michael
+Morris, Neil
+Morrison, Lan
+Moser, Edwin
+Moses, Brian
+Moss, Emma
+Moss, Helen
+Mound, Laurence
+Mous , Mirjam
+Mous, Mirjam
+Mowl, Joshua
+Muchamore, Robert
+Mugford, Simon
+Mulder, Marja
+Mull, Brandon
+Mull,Brandon
+Muller, Gerda
+Mulligan, Andy
+Murphy, Glenn
+Murphy, Jill
+Murrell, Deborah
+Myjer,  Jochem
+Myjer, Jochem
+Nanao, Jun
+Nascimbeni, Barbara
+Nassar, Daniel
+Natter, Bert
+Naus, Reggie
+Naus,Reggie
+Needham, Kate
+Neeleman, Inge
+Nesbo, Jo
+Nicolaysen, Marit
+Nicolle, David
+Nielandt, Dirk
+Niessen, Susan
+Nijenhuis, Johan
+Nijkerk, Ingrid
+Nixon, Joan L
+Noordhaven, Tjerk
+Noordraven, Tjerk
+Noort, Selma
+Nordqvist, Sven
+Norman, David
+Novak, Matt
+O'Connell, David
+O'dea, Jean
+Oakley, Mark
+Oborne, Martine
+Ohmura, Tomoko
+Oldehave, Mirjam
+Oldenhave, Mirjam
+Oliver, Martin
+Oliver, Ray
+Olivier, Reina
+Oliviers, Walter
+Oome, Francine
+Oomen, Francine
+Oomen, Francine
+Oordt, Wieke van
+Oordt, Wieke
+Oordt, Wieke van
+Opmeer, Kees
+Oranje, Corien
+Orlandi, Enzo
+Orshoven, Ivo van
+Os, Erik van
+Os, van Erik
+Osborne, Ian
+Otfinoski, Steven
+Oudheusden, Pieter van
+Overwater, Georgien
+Ovreas, Hakon
+Oxenbury, Helen
+Oxlade, Chris
+Paccalet, Yves
+Page, Suzanne
+Pamelen , Frank van
+Pamelen, Frank van
+Pamelen,Frank van
+Panzacchi, Cornedia
+Pardi, Francesca
+Park, Blanckendaell
+Parker, Jane
+Parker, Steve
+Pastis,Stephan
+Patterson,James
+Paul, Korky
+Paver, Michelle
+Pearson, Anne
+Pedler, Caroline
+Peek, Debbie
+Peirce, Lincoln
+Peirce,Lincoln
+Pelgrom, Els
+Pellant, Chris
+Pellekaan, Karen van Holst
+Pelot, Pierre
+Penning, Ynskje
+Petermeijer, Hans
+Peters, Arja
+Petersen, Paul
+Peterson, Hans
+Petit, Genevieve
+Petty ,Kate
+Petty, Kate
+Petty,Kate
+Peyrols, Sylvaine
+Pfister, Marcus
+Pichon, Liz
+Pichon,Liz
+Pierre, Michel
+Pieters, Inge
+Pijbes, Wim
+Pilkey,Dav
+Pinchon, Joëlle
+Pirotta, Saviour
+Piumini, Roberto
+Place, François
+Plaisted, Caroline
+Platt, Richard
+Pleyers, J.
+Polderman, Anneke
+Pool, Joyce
+Poskitt, Kjartan
+Post, Hans
+Postma, Jan
+Powell, Ben
+Powell, Jillian
+Praag, Anna van
+Praagman, Milja
+Prater, John
+Pressler, Mirjam
+Preussler, Otfried
+Prins, Ruben
+Provoost, Anne
+Pullens, Evelien
+Pyers, Greg
+Raaff, Eva
+Raboff, Ernest
+Redmond, Ian
+Reek, Wouter van
+Rees, Libby
+Reeve, Philip
+Reiche, Dietlof
+Reijnders, Joke
+Remington,Laurel
+Vries, Daan Remmerts de
+Rempt, Fiona
+Riel, Gerben van
+Righton, Nathalie
+Rinck, Maranka
+Riordan,Rick
+Riphagen, Loes
+Rius, Maria
+Robben, Jaap
+Rodda, Emily
+Roebers, Geert-Jan
+Roelens, Patriek
+Roep, Nanda
+Roep, Thom
+Rogers, Paul
+Roggeveen, Marieke
+Rol, Ruud van der
+Roland, Claudine
+Roldan, Gustavo
+Romei, Francesca
+Rood, Lydia
+Rood, Niels
+Rood, Tijl
+Rood,Niels
+Rooijers, Els
+Roos, Sanne
+Rooseboom,Sanne
+Root, Phillis
+Rose, Susanna van
+Rosen, Michael
+Ross, Tomas
+Rossi, Renzo
+Rotraut, Susanne
+Rowling, J.K
+Rowling, J.K.
+Roydhouse, Sandy
+Rubin, Ken
+Rubin, Sarah
+Ruggenberg, Rob
+Ruiters, Els
+Rushton, Rosie
+Russel,  Rachel Renee
+Russel, Rachel
+Russel, Rachel Renée
+Russel,Rachel
+Russell, Rachel Renée
+Rutland, J
+Sabatier, Claudine
+Samoyault, Tiphaine
+Samson, Gideon
+Sanders, Bruce
+Sansone, Emma
+Sassen, Erna
+Saulles, Janet de
+Saunders, Karen
+Saunders, Kate
+Savage, Stephen
+Scarrow, Simon
+Scarry, Richard
+Schaap, Annet
+Schaapman, Karina
+Schaefer, Claus
+Scharer, Kathrin
+Scheffler, Alex
+Scheffler, Donaldson
+Scheffler, Ursel
+Scheidl, Gerda Marie
+Scherstra, Martin
+Schilling, Govert
+Schlaepfer, Gloria
+Schmid, ,Annie M.G.
+Schmidt, Annie M.G
+Schmidt, Annie M.G.
+Schmitz, Jowi
+Schnieper, Claudia
+Schoemans, R.H.
+Scholten, Barbara
+Scholten,Barbara
+Scholtens, Anneke
+Scholtes, Anneke
+Scholtes,Anneke
+Scholtnes, Anneke
+Schothorst, Danielle
+Schotveld, Janneke
+Schotveld,Janneke
+Schraa, Trudy
+Schreiber-Wicke, Edith
+Schroder, Ron
+Schubert, Dieter
+Schubert, Inge
+Schubert, Ingrid
+Schubert, Ingrid & Dieter
+Schulte, Miriam
+Schutten, Jan Paul
+Schutten, jan Paul
+Schuurman, Katja
+Schuurmans, Hilde
+Schwabacher, Martin
+Scibendi, Ars
+Scribendi, Ars
+Sean, Wolfe
+Sebestyen, Ouida
+Sedgwick, Julian
+Seidensticker, John
+Sekreve, Marie-Louise
+Senior, Kathryn
+Sesam,Junior
+Seth, Vikram
+Setterington, Ken
+Seuss, Dr.
+Sfax, Joann
+Sheldon, Dyan
+Sheldon, Dylan
+Shusterman, Neal
+Siegenthaler, Kathrin
+Sikkel, Manon
+Simon, Francesca
+Simons, Jane
+Simpson, Judith
+Singh, Asavari
+Sirett, Dawn
+Skott, Maria
+Slee, Carry
+Slee,Carry
+Slegers, Liesbet
+Slegers, Marlies
+Sluyzer, Betty
+Smallmann, Steve
+Smids, Annejoke
+Smit, Niki
+Smit, Peter
+Smith, Alex
+Smith, Lucy
+Smith, Miranda
+Smith, Stan
+Smits, Heidi
+Smits, Henk
+Smulders, Frank
+Snoeij, Marjolein
+Sobering, Mieke
+Solotareff, Gregoire
+Somper, Justin
+Soonckindt, Edith
+Soonkindt, Edith
+Souza, Chris de
+Sowler, Sandie
+Spee, Gitte
+Spetter, Jung-Hee
+Spilsbury, R.L.
+Spilsbury,R.L.
+Spruit, Hilda
+Stacey, Tom
+Staes, Guido
+Stamp, Emer
+Starmans, Agnes
+Starosta, Paul
+Stead, Rebecca
+Steedman, Scott
+Steele, Philip
+Steen Hansen, Ole
+Steer, Dugald A.
+Stein, Mathilde
+Stenvert, Natascha
+Stephens, John
+Sterk, Marita de
+Stevenson, Steve
+Steward, David
+Stewart, David
+Stewart, Trent
+Stidworthy, John
+Stienhofel,Andreas
+Stigter, Bianca
+Stilton, Gernonimo
+Stilton, Geronimo
+Stilton, Thea
+Stilton,Geronimo
+Stilton,Thea
+Stine, R. L.
+Stine, R.L.
+Stine,R.L
+Stine,R.L.
+Stobbelaar, Iris
+Stoffels, Maren
+Stork, Francisco X
+Stott, Carole
+Straate , Harmen van
+Straaten, Harmen van
+Straaten, Herman van
+Straaten, van Harmen
+Strejan, John
+Strong, Jeremy
+Struyf, Kris
+Suhr, Mandy
+Sully, Katherine
+Susso, Eva
+Svarre, Karin-Lis
+Swan-Jackson, Alys
+Swiers, Robbert Jan
+Swift, Jonathan
+Swindells, Robert
+Sy,Astrid
+Sykes, Julie
+Sykorova, Eva
+Szekeres, Cyndy
+Tait, Noel
+Tak, Bibi Dumon
+Takens, Anne
+Talsma, Annet
+Tames, Richard
+Taplin, Sam
+Tatarsky, Daniel
+Taylor, Barbara
+Taylor, Kim
+Taylor, Paul
+Tellegen, Toon
+Tempest, Annabel
+Temple, Kathryn
+Teng, Tais
+Terlouw, Jan
+Thant, Katrein
+Tharlet, Eve
+Thiele, Colin
+Thijssen, Monique
+Thomas, Ruth
+Thomas, Valerie
+Thomas,Scarlett
+Thor, Annika
+Tijsinger, Ellen
+Tilburg, Mieke
+Tilburg, Mieke van
+Timmers, Leo
+Tison, Annette
+Tjong-Khing, Thé
+Tolman, Marije
+Tolonen, Tuutikki
+Tornqvist, Marit
+Torti, Marie-Christine
+Tortuga, Oscar
+Tracqui, Valerie
+Tremaine,Jon
+Trivizas, Eugene
+Trotman, Felicity
+Turvey, Peter
+Twain, Mark
+Twist, Clint
+Tyberg, Son
+Tyldesley, Joyce
+Uebe, Ingrid
+Ulyatt, K
+Unwin, Mike
+Ursem, Peter
+Vainio, Pirkko
+Valk , Mary van der
+Valk, Mary van der
+Valk, van der
+Vandersteen, Willy
+Vandewoude, Katrien
+Vandyck, Kim
+Vanspauwen, Patrick
+Veen, Herman van
+Veenstra, Tseard
+Vegt, Han van der
+Vegter, Chris
+Veld, Wateringse
+Velde , Rene van der
+Veldkamp, Tjibbe
+Velthuijs, Max
+Velzen , Ellen van
+Vendel, Edward van de
+Verbeeck, Lydia
+Verberk, Suzanne
+Verdonck, Alja
+Verhagen,Marc
+Verhoef, Esther
+Verlyen, Karel
+Vermeulen, Moniek
+Verroen, Dolf
+Verschoor, Diet
+Verstegen, Jeska
+Vervloed, Peter
+Verweij, Arno
+Vicario, Arantxa Sanchez
+Vincent, Gabrielle
+Vink, Hijltje
+Visser, Rian
+Vissinga, Heleen
+Viza, Montserrat
+Vledkamp, Tjibbe
+Vliek, Rika
+Vlugt, Simone van der
+Vogt, C Richard
+Voigt, Cynthia
+Vonk, John
+Voogd, Sjamke de
+Vos, Carole
+Vos, Ida
+Vrancken, Kaat
+Vriends, Jacques
+Vriens, Jacques
+Vriens, Jaques
+Vriens, jacques
+Vries, Anke de
+Vries, Anke de
+Vries, Jannes de
+Vromant, Wim
+Waarsenburg, Truus van de
+Waddell, Martin
+Wade, Rosalyn
+Wal, Emiel van der
+Walker, Richard
+Walker,Dan
+Wallace, Danny
+Walliams, David
+Walliman, Dominic
+Walraven, Esther
+Walraven,Esther
+Walters, Catherine
+Wan-Ling, Sun
+Waters, Elizabeth
+Waters, Rob
+Waters, Rod
+Watson, Charlie
+Watson, Phillip
+Watthez, Christian
+Watts, Barry
+Watts, Claire
+Watts, Franklin
+Wauters, Jos
+Webber, Julian
+Weber, Belinda
+Welford, Sue
+Wenger, Patricia
+Weninger, Brigitte
+Werner, Hans
+Westendorp, Fiep
+Westera, Bette
+Westera, Bette
+Whitehorn, Harriet
+Whitehouse, Patricia
+Wiedijk,  Frederik
+Wieslander, Jujja en Tomas
+Wigersma, Tanneke
+Wijtsma, Roelof
+Wild, Emiel de
+Wildsmith, Brian
+Wilkes, Angela
+Wilkinson, Philip
+Wilkon, Jozef
+Wilkon, Piotr
+Wille, Riet
+Willems, Brian
+Williams, Brian
+Williams, Brian
+Williams, Michael
+Winden, Henk van der
+Winters, Pierre
+Wissen, Driek van
+Wit, Joke
+Witte, Marianne
+Wolf, Alex de
+Wolf, Alex de
+Wolfe ,Sean
+Wolfe, Robert
+Wolfe, Sean Fay
+Wolfe, Sean fay
+Wolfe,Sean Fay
+Wolkers, Jan
+Woltz, Anna
+Woltz, Gips
+Wood, Marion
+Woodward, John
+Wouda, Suzanne
+Wright, Nicola
+Yates, Irene
+Yigitoglu, Esma
+Yolen, Jane
+York, Vanessa
+Young, Tracie
+Zacharias, Debora
+Zachariasse, Debora
+Zadel, Rob
+Zanden, Monique van der
+Zanger, Jan de
+Zommer, Yuval
+Zpevak, Jaromir
+Zuiderveld, Richard
+Zwigtman, Floortje
+d'Escury, Jenny
+d´Harcourt, Claire
