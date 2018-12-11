@@ -1,23 +1,25 @@
 p#notice = notice
 
-p
-  strong Author:
-  = @book.author.full_name
-p
-  strong ID:
-  = @book.id.to_s.rjust(4,'0')
-p
-  strong Title:
-  = @book.title
-p
-  strong Subtitle:
-  = @book.subtitle
-p
-  strong Reading level:
-  = @book.reading_level
-p
-  strong Avi level:
-  = @book.avi_level
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th Author
+      td = @book.author.full_name
+    tr
+      th ID
+      td = @book.id.to_s.rjust(4,'0')
+    tr
+      th Title
+      td = @book.title
+    tr
+      th Subtitle
+      td = @book.subtitle
+    tr
+      th Reading level
+      td = @book.reading_level
+    tr
+      th Avi level
+      td = @book.avi_level
 
 p
   pre= @book.sticker
@@ -25,4 +27,6 @@ p
 
 = link_to 'Edit', edit_book_path(@book), class: 'button warning'
 = link_to 'New Book', new_book_path, class: 'button'
-= link_to 'Back', books_path, class: 'button'
+= link_to 'New Book for Author', new_book_path(book: { author_id: @book.author_id }), class: 'button'
+= link_to 'New Subtitle', new_book_path(book: { author_id: @book.author_id, title: @book.title }), class: 'button'
+= link_to 'Back', :back, class: 'button'

@@ -4,11 +4,12 @@ class Book < ApplicationRecord
   validates :title, presence: true
 
   def sticker
-    <<-DOC.strip_heredoc
-      laksjdlak
-      lkajsdlk
-      lakdjlakjdlajsdlasj
-      klsjd laskdjlka
+    <<~DOC
+      ID: #{id.to_s.rjust(4, '0')}
+      #{author.full_name}
+      #{title}
+      #{subtitle}
+      #{reading_level} / #{avi_level}
     DOC
   end
 end

@@ -4,6 +4,9 @@
 
   .form-inputs
     = f.input :first_name
+    = f.input :middle_name
     = f.input :last_name
 
-  .form-actions = f.button :submit, class: 'button'
+  .form-actions
+    = f.button :submit, class: 'button'
+    = link_to 'Cancel', :back, class: 'button secondary'

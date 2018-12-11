@@ -1,11 +1,19 @@
 p#notice = notice
 
-p
-  strong First name:
-  = @author.first_name
-p
-  strong Last name:
-  = @author.last_name
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th First name
+      td = @author.first_name
+    tr
+      th Middle name
+      td = @author.middle_name
+    tr
+      th Last name
+      td = @author.last_name
 
 = link_to 'Edit', edit_author_path(@author), class: 'button warning'
-= link_to 'Back', authors_path, class: 'button'
+= link_to 'New Book for Author', new_book_path(book: { author_id: @author.id }), class: 'button'
+= link_to 'Back', :back, class: 'button'
+
+= render 'books', books: @author.books

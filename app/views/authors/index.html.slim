@@ -1,24 +1,23 @@
-h1 Listing authors
+h1 Listing Authors
+
+= link_to 'New Author', new_author_path, class: 'button'
 
 table
   thead
     tr
+      th Last name
       th First name
       th Middle name
-      th Last name
       th.actions
 
   tbody
     - @authors.each do |author|
       tr
+        td = author.last_name
         td = author.first_name
         td = author.middle_name
-        td = author.last_name
         td.actions
           = link_to 'Show', author, class: 'button tiny'
           = link_to 'Edit', edit_author_path(author), class: 'button warning tiny'
           = link_to 'Destroy', author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
-br
-
-= link_to 'New Author', new_author_path, class: 'button'

@@ -14,7 +14,11 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    if params[:book]
+      @book = Book.new(book_params)
+    else
+      @book = Book.new
+    end
   end
 
   # GET /books/1/edit
