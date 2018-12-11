@@ -1,0 +1,267 @@
+➜  schoolbieb git:(master) git push heroku master
+Counting objects: 391, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (215/215), done.
+Writing objects: 100% (391/391), 131.98 KiB | 43.99 MiB/s, done.
+Total 391 (delta 151), reused 372 (delta 142)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote:  !     Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used.
+remote: 			Detected buildpacks: Ruby,Node.js
+remote: 			See https://devcenter.heroku.com/articles/buildpacks#buildpack-detect-order
+remote: -----> Ruby app detected
+remote: -----> Compiling Ruby/Rails
+remote: -----> Using Ruby version: ruby-2.5.3
+remote: -----> Installing dependencies using bundler 1.15.2
+remote:        Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment
+remote:        Warning: the running version of Bundler (1.15.2) is older than the version that created the lockfile (1.17.2). We suggest you upgrade to the latest version of Bundler by running `gem install bundler`.
+remote:        Fetching gem metadata from https://rubygems.org/.........
+remote:        Fetching version metadata from https://rubygems.org/..
+remote:        Fetching dependency metadata from https://rubygems.org/.
+remote:        Fetching rake 12.3.2
+remote:        Fetching concurrent-ruby 1.1.3
+remote:        Fetching minitest 5.11.3
+remote:        Installing rake 12.3.2
+remote:        Installing minitest 5.11.3
+remote:        Installing concurrent-ruby 1.1.3
+remote:        Fetching thread_safe 0.3.6
+remote:        Installing thread_safe 0.3.6
+remote:        Fetching builder 3.2.3
+remote:        Installing builder 3.2.3
+remote:        Fetching erubi 1.7.1
+remote:        Installing erubi 1.7.1
+remote:        Fetching mini_portile2 2.3.0
+remote:        Installing mini_portile2 2.3.0
+remote:        Fetching crass 1.0.4
+remote:        Installing crass 1.0.4
+remote:        Fetching rack 2.0.6
+remote:        Installing rack 2.0.6
+remote:        Fetching nio4r 2.3.1
+remote:        Installing nio4r 2.3.1 with native extensions
+remote:        Fetching websocket-extensions 0.1.3
+remote:        Installing websocket-extensions 0.1.3
+remote:        Fetching mini_mime 1.0.1
+remote:        Installing mini_mime 1.0.1
+remote:        Fetching arel 9.0.0
+remote:        Installing arel 9.0.0
+remote:        Fetching mimemagic 0.3.2
+remote:        Installing mimemagic 0.3.2
+remote:        Fetching execjs 2.7.0
+remote:        Installing execjs 2.7.0
+remote:        Fetching babel-source 5.8.35
+remote:        Fetching bcrypt 3.1.12
+remote:        Installing babel-source 5.8.35
+remote:        Installing bcrypt 3.1.12 with native extensions
+remote:        Fetching msgpack 1.2.4
+remote:        Installing msgpack 1.2.4 with native extensions
+remote:        Using bundler 1.15.2
+remote:        Fetching coffee-script-source 1.12.2
+remote:        Installing coffee-script-source 1.12.2
+remote:        Fetching method_source 0.9.2
+remote:        Installing method_source 0.9.2
+remote:        Fetching thor 0.20.3
+remote:        Installing thor 0.20.3
+remote:        Fetching orm_adapter 0.5.0
+remote:        Installing orm_adapter 0.5.0
+remote:        Fetching foundation-rails 6.5.1.0
+remote:        Installing foundation-rails 6.5.1.0
+remote:        Fetching multi_json 1.13.1
+remote:        Installing multi_json 1.13.1
+remote:        Fetching pg 1.1.3
+remote:        Installing pg 1.1.3 with native extensions
+remote:        Fetching puma 3.12.0
+remote:        Installing puma 3.12.0 with native extensions
+remote:        Fetching sass 3.4.25
+remote:        Installing sass 3.4.25
+remote:        Fetching tilt 2.0.9
+remote:        Installing tilt 2.0.9
+remote:        Fetching temple 0.8.0
+remote:        Installing temple 0.8.0
+remote:        Fetching turbolinks-source 5.2.0
+remote:        Installing turbolinks-source 5.2.0
+remote:        Fetching tzinfo 1.2.5
+remote:        Installing tzinfo 1.2.5
+remote:        Fetching nokogiri 1.8.5
+remote:        Installing nokogiri 1.8.5 with native extensions
+remote:        Fetching i18n 1.2.0
+remote:        Installing i18n 1.2.0
+remote:        Fetching websocket-driver 0.7.0
+remote:        Installing websocket-driver 0.7.0 with native extensions
+remote:        Fetching mail 2.7.1
+remote:        Installing mail 2.7.1
+remote:        Fetching rack-test 1.1.0
+remote:        Installing rack-test 1.1.0
+remote:        Fetching warden 1.2.8
+remote:        Installing warden 1.2.8
+remote:        Fetching rack-proxy 0.6.5
+remote:        Installing rack-proxy 0.6.5
+remote:        Fetching sprockets 3.7.2
+remote:        Installing sprockets 3.7.2
+remote:        Fetching autoprefixer-rails 9.4.2
+remote:        Installing autoprefixer-rails 9.4.2
+remote:        Fetching uglifier 4.1.20
+remote:        Installing uglifier 4.1.20
+remote:        Fetching marcel 0.3.3
+remote:        Installing marcel 0.3.3
+remote:        Fetching babel-transpiler 0.7.0
+remote:        Installing babel-transpiler 0.7.0
+remote:        Fetching coffee-script 2.4.1
+remote:        Installing coffee-script 2.4.1
+remote:        Fetching select2-rails 4.0.3
+remote:        Installing select2-rails 4.0.3
+remote:        Fetching bootsnap 1.3.2
+remote:        Installing bootsnap 1.3.2 with native extensions
+remote:        Fetching slim 4.0.1
+remote:        Installing slim 4.0.1
+remote:        Fetching turbolinks 5.2.0
+remote:        Installing turbolinks 5.2.0
+remote:        Fetching activesupport 5.2.2
+remote:        Installing activesupport 5.2.2
+remote:        Fetching sprockets-es6 0.9.2
+remote:        Installing sprockets-es6 0.9.2
+remote:        Fetching loofah 2.2.3
+remote:        Installing loofah 2.2.3
+remote:        Fetching rails-html-sanitizer 1.0.4
+remote:        Installing rails-html-sanitizer 1.0.4
+remote:        Fetching rails-dom-testing 2.0.3
+remote:        Fetching globalid 0.4.1
+remote:        Installing globalid 0.4.1
+remote:        Installing rails-dom-testing 2.0.3
+remote:        Fetching activemodel 5.2.2
+remote:        Fetching jbuilder 2.8.0
+remote:        Installing jbuilder 2.8.0
+remote:        Installing activemodel 5.2.2
+remote:        Fetching activejob 5.2.2
+remote:        Installing activejob 5.2.2
+remote:        Fetching actionview 5.2.2
+remote:        Installing actionview 5.2.2
+remote:        Fetching activerecord 5.2.2
+remote:        Installing activerecord 5.2.2
+remote:        Fetching actionpack 5.2.2
+remote:        Installing actionpack 5.2.2
+remote:        Fetching actioncable 5.2.2
+remote:        Fetching actionmailer 5.2.2
+remote:        Installing actioncable 5.2.2
+remote:        Installing actionmailer 5.2.2
+remote:        Fetching railties 5.2.2
+remote:        Fetching sprockets-rails 3.2.1
+remote:        Installing sprockets-rails 3.2.1
+remote:        Installing railties 5.2.2
+remote:        Fetching simple_form 4.1.0
+remote:        Installing simple_form 4.1.0
+remote:        Fetching activestorage 5.2.2
+remote:        Installing activestorage 5.2.2
+remote:        Fetching responders 2.4.0
+remote:        Fetching coffee-rails 4.2.2
+remote:        Fetching jquery-rails 4.3.3
+remote:        Installing coffee-rails 4.2.2
+remote:        Installing responders 2.4.0
+remote:        Fetching rails 5.2.2
+remote:        Installing rails 5.2.2
+remote:        Fetching sass-rails 5.0.7
+remote:        Installing sass-rails 5.0.7
+remote:        Installing jquery-rails 4.3.3
+remote:        Fetching select2-foundation 0.1.1
+remote:        Fetching slim-rails 3.2.0
+remote:        Installing slim-rails 3.2.0
+remote:        Installing select2-foundation 0.1.1
+remote:        Fetching webpacker 3.5.5
+remote:        Fetching devise 4.5.0
+remote:        Installing webpacker 3.5.5
+remote:        Installing devise 4.5.0
+remote:        Bundle complete! 29 Gemfile dependencies, 76 gems now installed.
+remote:        Gems in the groups development and test were not installed.
+remote:        Bundled gems are installed into ./vendor/bundle.
+remote:        Post-install message from i18n:
+remote:
+remote:        HEADS UP! i18n 1.1 changed fallbacks to exclude default locale.
+remote:        But that may break your application.
+remote:
+remote:        Please check your Rails app for 'config.i18n.fallbacks = true'.
+remote:        If you're using I18n 1.1.x and Rails (< 6.0), this should be
+remote:        'config.i18n.fallbacks = [I18n.default_locale]'.
+remote:        If not, fallbacks will be broken in your app by I18n 1.1.x.
+remote:
+remote:        For more info see:
+remote:        https://github.com/svenfuchs/i18n/releases/tag/v1.1.0
+remote:
+remote:        Bundle completed (44.26s)
+remote:        Cleaning up the bundler cache.
+remote:        Warning: the running version of Bundler (1.15.2) is older than the version that created the lockfile (1.17.2). We suggest you upgrade to the latest version of Bundler by running `gem install bundler`.
+remote:        The latest bundler is 2.0.0.pre.2, but you are currently running 1.15.2.
+remote:        To update, run `gem install bundler --pre`
+remote: -----> Installing node-v8.10.0-linux-x64
+remote: -----> Installing yarn-v1.5.1
+remote: -----> Detecting rake tasks
+remote: -----> Preparing app for Rails asset pipeline
+remote:        Running: rake assets:precompile
+remote:        yarn install v1.5.1
+remote:        [1/4] Resolving packages...
+remote:        [2/4] Fetching packages...
+remote:        info fsevents@1.2.4: The platform "linux" is incompatible with this module.
+remote:        info "fsevents@1.2.4" is an optional dependency and failed compatibility check. Excluding it from installation.
+remote:        [3/4] Linking dependencies...
+remote:        warning "@rails/webpacker > postcss-cssnext@3.1.0" has unmet peer dependency "caniuse-lite@^1.0.30000697".
+remote:        warning " > webpack-dev-server@2.11.2" has unmet peer dependency "webpack@^2.2.0 || ^3.0.0".
+remote:        warning "webpack-dev-server > webpack-dev-middleware@1.12.2" has unmet peer dependency "webpack@^1.0.0 || ^2.0.0 || ^3.0.0".
+remote:        [4/4] Building fresh packages...
+remote:        Done in 20.88s.
+remote:        I, [2018-12-11T12:39:46.109213 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/application-b8ec4c633fe1e3cf9968875a4e8a398ebaef4ddaff51857725325a1d986ceac1.js
+remote:        I, [2018-12-11T12:39:46.109700 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/application-b8ec4c633fe1e3cf9968875a4e8a398ebaef4ddaff51857725325a1d986ceac1.js.gz
+remote:        I, [2018-12-11T12:40:04.963327 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/application-35242927aadfbd326bd1fa4ea358d2d85b50f8606160c1b135a13dc977c8a0fa.css
+remote:        I, [2018-12-11T12:40:04.964121 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/application-35242927aadfbd326bd1fa4ea358d2d85b50f8606160c1b135a13dc977c8a0fa.css.gz
+remote:        I, [2018-12-11T12:40:05.368671 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/@stimulus/core/dist/src/application-c36e8b6e40e1ba914819007984866d0aea9cec5c67e3c738da49487b82d780f0.js
+remote:        I, [2018-12-11T12:40:05.369551 #1254]  INFO -- : Writing /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/assets/@stimulus/core/dist/src/application-c36e8b6e40e1ba914819007984866d0aea9cec5c67e3c738da49487b82d780f0.js.gz
+remote:        Webpacker is installed 🎉 🍰
+remote:        Using /tmp/build_e05676c9348bf7c89011a65e14c93a8d/config/webpacker.yml file for setting up webpack paths
+remote:        Compiling…
+remote:        Compiled all packs in /tmp/build_e05676c9348bf7c89011a65e14c93a8d/public/packs
+remote:        Asset precompilation completed (58.43s)
+remote:        Cleaning assets
+remote:        Running: rake assets:clean
+remote: -----> Detecting rails configuration
+remote:
+remote: ###### WARNING:
+remote:
+remote:        You set your `config.active_storage.service` to :local in production.
+remote:        If you are uploading files to this app, they will not persist after the app
+remote:        is restarted, on one-off dynos, or if the app has multiple dynos.
+remote:        Heroku applications have an ephemeral file system. To
+remote:        persist uploaded files, please use a service such as S3 and update your Rails
+remote:        configuration.
+remote:
+remote:        For more information can be found in this article:
+remote:          https://devcenter.heroku.com/articles/active-storage-on-heroku
+remote:
+remote:
+remote: ###### WARNING:
+remote:
+remote:        We detected that some binary dependencies required to
+remote:        use all the preview features of Active Storage are not
+remote:        present on this system.
+remote:
+remote:        For more information please see:
+remote:          https://devcenter.heroku.com/articles/active-storage-on-heroku
+remote:
+remote:
+remote: ###### WARNING:
+remote:
+remote:        No Procfile detected, using the default web server.
+remote:        We recommend explicitly declaring how to boot your server process via a Procfile.
+remote:        https://devcenter.heroku.com/articles/ruby-default-web-server
+remote:
+remote:
+remote: -----> Discovering process types
+remote:        Procfile declares types     -> (none)
+remote:        Default types for buildpack -> console, rake, web
+remote:
+remote: -----> Compressing...
+remote:        Done: 70.2M
+remote: -----> Launching...
+remote:        Released v6
+remote:        https://afternoon-bastion-81072.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/afternoon-bastion-81072.git
+ * [new branch]      master -> master
