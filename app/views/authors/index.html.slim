@@ -2,22 +2,34 @@ h1 Listing Authors
 
 = link_to 'New Author', new_author_path, class: 'button'
 
-table
-  thead
-    tr
-      th Last name
-      th First name
-      th Middle name
-      th.actions
-
-  tbody
-    - @authors.each do |author|
+= search_form_for @q do |f|
+  table
+    thead
       tr
-        td = author.last_name
-        td = author.first_name
-        td = author.middle_name
-        td.actions
-          = link_to 'Show', author, class: 'button tiny'
-          = link_to 'Edit', edit_author_path(author), class: 'button warning tiny'
-          = link_to 'Destroy', author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+        th = sort_link(@q, :last_name,   'Last Name', default_order: :asc)
+        th = sort_link(@q, :first_name,  'First Name')
+        th = sort_link(@q, :middle_name, 'Middle Name')
+        th.actions
+          = "#{@authors.count} / #{Author.count}"
+      tr
+        th= f.text_field :last_name_cont, placeholder: 'contains'
+        th= f.text_field :first_name_cont, placeholder: 'contains'
+        th= f.text_field :middle_name_cont, placeholder: 'contains'
+        th.actions
+          = f.submit class: 'button'
+          = link_to 'Reset', authors_path, class: 'button secondary'
+
+    tbody
+      - @authors.each do |author|
+        tr
+          td = author.last_name
+          td = author.first_name
+          td = author.middle_name
+          td.actions
+            = link_to 'Show', author, class: 'button tiny'
+            = link_to 'Edit', edit_author_path(author), class: 'button warning tiny'
+            = link_to 'Destroy', author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+
+br
+= link_to 'New Author', new_author_path, class: 'button'
 

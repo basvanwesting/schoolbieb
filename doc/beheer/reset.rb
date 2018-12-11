@@ -12,7 +12,7 @@ File.open('doc/authors.txt').each_line do |line|
   first ||= line.to_s
 
   first_name  = first.strip
-  middle_name = middle.strip.presence
+  middle_name = middle.strip
   last_name   = last.strip
 
   if first_name.present? && last_name.present?

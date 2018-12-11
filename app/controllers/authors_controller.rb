@@ -4,7 +4,8 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.order('last_name ASC').all
+    @q = Author.limit(100).ransack(params[:q])
+    @authors = @q.result(distinct: true)
   end
 
   # GET /authors/1
