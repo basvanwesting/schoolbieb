@@ -1,4 +1,3 @@
-
 Book.destroy_all
 Author.destroy_all
 

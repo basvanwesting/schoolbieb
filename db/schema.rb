@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_12_09_214314) do
 
-  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_214314) do
     t.string "middle_name"
   end
 
-  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "reading_level"
     t.string "avi_level"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_214314) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
