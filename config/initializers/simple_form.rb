@@ -64,6 +64,23 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
+  config.wrappers :zurb_input, class: "input-group", hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+    b.use :html5
+    b.use :placeholder
+
+    b.use :label, class: "input-group-label"
+    b.use :input, class: "input-group-field"
+
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    #b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    #b.use :error, wrap_with: { tag: :span, class: :error }
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 

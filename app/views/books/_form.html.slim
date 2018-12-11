@@ -3,11 +3,11 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2' }
-    = f.input :title, collection: Book.distinct.pluck(:title).sort,  include_blank: true, input_html: { class: 'js-select2', data: { tags: true } }
-    = f.input :subtitle
-    = f.input :reading_level, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
-    = f.input :avi_level, collection: Book::AviLevels::All, input_html: { class: 'js-select2' }
+    = f.association :author, wrapper: :zurb_input, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2' }
+    = f.input :title, wrapper: :zurb_input, collection: Book.distinct.pluck(:title).sort,  include_blank: true, input_html: { class: 'js-select2', data: { tags: true } }
+    = f.input :subtitle, wrapper: :zurb_input
+    = f.input :reading_level, wrapper: :zurb_input, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
+    = f.input :avi_level, wrapper: :zurb_input, collection: Book::AviLevels::All, input_html: { class: 'js-select2' }
 
   .form-actions
     = f.button :submit, class: 'button'
