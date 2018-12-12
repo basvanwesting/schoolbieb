@@ -9,6 +9,7 @@ h1 Listing Books
         th = sort_link(@q, :id,     'ID')
         th = sort_link(@q, :title,  'Title')
         th = sort_link(@q, :series, 'Series')
+        th = sort_link(@q, :part,   'Part')
         th = link_to 'Author', '#'
         th = sort_link(@q, :reading_level, 'Reading level')
         th = sort_link(@q, :avi_level,     'Avi level')
@@ -18,6 +19,7 @@ h1 Listing Books
         th = f.text_field :id_eq,                 placeholder: 'equals'
         th = f.text_field :title_cont,            placeholder: 'contains'
         th = f.text_field :series_cont,           placeholder: 'contains'
+        th = f.text_field :part_eq,               placeholder: 'equals'
         th = f.text_field :author_last_name_cont, placeholder: 'last name contains'
         th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
         th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
@@ -32,6 +34,7 @@ h1 Listing Books
           td = book.id.to_s.rjust(4,'0')
           td = book.title
           td = book.series
+          td = book.part
           td = book.author.full_name
           td = book.reading_level
           td = book.avi_level

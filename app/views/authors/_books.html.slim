@@ -6,6 +6,7 @@ table
       th ID
       th Title
       th Series
+      th Part
       th Reading level
       th Avi level
       th.actions
@@ -16,6 +17,7 @@ table
         td = book.id.to_s.rjust(4,'0')
         td = book.title
         td = book.series
+        td = book.part
         td = book.reading_level
         td = book.avi_level
         td.actions

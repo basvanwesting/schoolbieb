@@ -28,7 +28,7 @@ class Book < ApplicationRecord
     <<~DOC
       ID: #{id.to_s.rjust(4, '0')}
       #{author.full_name}
-      #{title}
+      #{title} #{part.present? ? "(deel #{part})" : nil}
       #{series}
       #{reading_level} / #{avi_level}
     DOC
