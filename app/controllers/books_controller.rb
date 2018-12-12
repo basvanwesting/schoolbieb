@@ -47,7 +47,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: t('action.update.success', model: Author.model_name.human) }
+        format.html { redirect_to @book, notice: t('action.update.success', model: Book.model_name.human) }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: t('action.destroy.success', model: Author.model_name.human) }
+      format.html { redirect_to books_url, notice: t('action.destroy.success', model: Book.model_name.human) }
       format.json { head :no_content }
     end
   end
