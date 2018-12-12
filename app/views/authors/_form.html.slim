@@ -8,5 +8,5 @@
     = f.input :last_name, wrapper: :zurb_input
 
   .form-actions
-    = f.button :submit, class: 'button'
-    = link_to 'Cancel', :back, class: 'button secondary'
+    = f.submit t('button.submit'), class: 'button'
+    = link_to t('button.cancel'), :back, class: 'button secondary'

@@ -1,14 +1,14 @@
-h3 Listing Books
+h3 = Book.model_name.human.pluralize
 
 table
   thead
     tr
-      th ID
-      th Title
-      th Series
-      th Part
-      th Reading level
-      th Avi level
+      th = Book.human_attribute_name(:id)
+      th = Book.human_attribute_name(:title)
+      th = Book.human_attribute_name(:series)
+      th = Book.human_attribute_name(:part)
+      th = Book.human_attribute_name(:reading_level)
+      th = Book.human_attribute_name(:avi_level)
       th.actions
 
   tbody
@@ -21,7 +21,7 @@ table
         td = book.reading_level
         td = book.avi_level
         td.actions
-          = link_to 'Show', book, class: 'button tiny'
-          = link_to 'Edit', edit_book_path(book), class: 'button warning warning tiny'
-          = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+          = link_to t('button.show'), book, class: 'button tiny'
+          = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'
+          = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 

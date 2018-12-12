@@ -1,26 +1,26 @@
-h1 Listing Books
+h1 = t('action.index', models: Book.model_name.human.pluralize)
 
-= link_to 'New Book', new_book_path, class: 'button'
+= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
 
 = search_form_for @q do |f|
   table
     thead
       tr
-        th = sort_link(@q, :id,     'ID')
-        th = sort_link(@q, :title,  'Title')
-        th = sort_link(@q, :series, 'Series')
-        th = sort_link(@q, :part,   'Part')
-        th = link_to 'Author', '#'
-        th = sort_link(@q, :reading_level, 'Reading level')
-        th = sort_link(@q, :avi_level,     'Avi level')
+        th = sort_link(@q, :id,     Book.human_attribute_name(:id))
+        th = sort_link(@q, :title,  Book.human_attribute_name(:title))
+        th = sort_link(@q, :series, Book.human_attribute_name(:series))
+        th = sort_link(@q, :part,   Book.human_attribute_name(:part))
+        th = link_to Author.model_name.human, '#'
+        th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
+        th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
         th.actions
           = "#{@books.count} / #{Book.count}"
       tr
-        th = f.text_field :id_eq,                 placeholder: 'equals'
-        th = f.text_field :title_cont,            placeholder: 'contains'
-        th = f.text_field :series_cont,           placeholder: 'contains'
-        th = f.text_field :part_eq,               placeholder: 'equals'
-        th = f.text_field :author_last_name_cont, placeholder: 'last name contains'
+        th = f.text_field :id_eq,                 placeholder: t('placeholder.eq')
+        th = f.text_field :title_cont,            placeholder: t('placeholder.cont')
+        th = f.text_field :series_cont,           placeholder: t('placeholder.cont')
+        th = f.text_field :part_eq,               placeholder: t('placeholder.eq')
+        th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
         th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
         th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
 
@@ -39,9 +39,9 @@ h1 Listing Books
           td = book.reading_level
           td = book.avi_level
           td.actions
-            = link_to 'Show', book, class: 'button tiny'
-            = link_to 'Edit', edit_book_path(book), class: 'button warning warning tiny'
-            = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+            = link_to t('button.show'), book, class: 'button tiny'
+            = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'
+            = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
-= link_to 'New Book', new_book_path, class: 'button'
+= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'

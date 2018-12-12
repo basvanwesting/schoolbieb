@@ -3,33 +3,33 @@ p#notice = notice
 table.hover.unstriped.condensed.text-left
   tbody
     tr
-      th Author
+      th = Author.model_name.human
       td = link_to @book.author.full_name, @book.author
     tr
-      th ID
+      th = Book.human_attribute_name(:id)
       td = @book.id.to_s.rjust(4,'0')
     tr
-      th Title
+      th = Book.human_attribute_name(:titel)
       td = @book.title
     tr
-      th Series
+      th = Book.human_attribute_name(:series)
       td = @book.series
     tr
-      th Part
+      th = Book.human_attribute_name(:part)
       td = @book.part
     tr
-      th Reading level
+      th = Book.human_attribute_name(:reading_level)
       td = @book.reading_level
     tr
-      th Avi level
+      th = Book.human_attribute_name(:avi_level)
       td = @book.avi_level
 
 p
   pre= @book.sticker
 
 
-= link_to 'Edit', edit_book_path(@book), class: 'button warning'
-= link_to 'New Book', new_book_path, class: 'button'
-= link_to 'New Book for Author', new_book_path(book: { author_id: @book.author_id }), class: 'button'
-= link_to 'New Series', new_book_path(book: { author_id: @book.author_id, title: @book.title }), class: 'button'
-= link_to 'Back', :back, class: 'button'
+= link_to t('button.edit'), edit_book_path(@book), class: 'button warning'
+= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
+= link_to t('button.add', add_model: Book.model_name.human, to_model: Author.model_name.human), new_book_path(book: { author_id: @book.author_id }), class: 'button'
+= link_to t('button.add', add_model: Book.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_path(book: { author_id: @book.author_id, series: @book.series }), class: 'button'
+= link_to t('button.back'), :back, class: 'button'
