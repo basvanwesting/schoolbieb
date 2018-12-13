@@ -41,6 +41,7 @@ nl:
     reset: Reset
     cancel: Afbreken
     submit: Opslaan
+    clone: Dupliceren
     add: "%{add_model} toevoegen aan %{to_model}"
   placeholder:
     cont: 'bevat'
