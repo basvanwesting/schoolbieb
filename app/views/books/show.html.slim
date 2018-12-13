@@ -31,6 +31,6 @@ p
 = link_to t('button.edit'), edit_book_path(@book), class: 'button warning'
 = link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
 = link_to t('button.add', add_model: Book.model_name.human, to_model: Author.model_name.human), new_book_path(book: { author_id: @book.author_id }), class: 'button'
-= link_to t('button.add', add_model: Book.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_path(book: { author_id: @book.author_id, series: @book.series }), class: 'button'
+= link_to t('button.add', add_model: Book.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_path(book: @book.attributes.slice(*%w[author_id series reading_level avi_level])), class: 'button'
 = link_to t('button.clone'), new_book_path(book: @book.attributes.slice(*%w[author_id title series part reading_level avi_level])), class: 'button'
 = link_to t('button.back'), :back, class: 'button'
