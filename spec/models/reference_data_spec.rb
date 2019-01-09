@@ -30,4 +30,21 @@ RSpec.describe ReferenceData, type: :model do
     end
   end
 
+  describe '.series' do
+    it 'has a lot of them' do
+      expect(described_class.series.size).to satisfy { |v| v > 350 }
+    end
+
+    it 'supports a series_cont filter' do
+      expect(described_class.series(series_cont: 'pot')).to match_array [
+        "Harry potter",
+      ]
+    end
+
+    it 'allows options hash as filter' do
+      options = { series_cont: 'pot' }
+      expect(described_class.series(options)).to eq described_class.series(series_cont: 'pot')
+    end
+  end
+
 end

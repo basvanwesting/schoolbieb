@@ -4,8 +4,8 @@
 
   .form-inputs
     = f.association :author, wrapper: :zurb_input, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
-    = f.input :title, wrapper: :zurb_input, collection: [],  include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: titles_path(format: :json), tags: true, 'minimum-input-length': 3 } }
-    = f.input :series, wrapper: :zurb_input, collection: Book.distinct.pluck(:series).sort + ReferenceData.series,  include_blank: true, input_html: { class: 'js-select2', data: { tags: true, 'minimum-input-length': 3 } }
+    = f.input :title,  wrapper: :zurb_input, collection: [], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: titles_path(format: :json),       tags: true, 'minimum-input-length': 3 } }
+    = f.input :series, wrapper: :zurb_input, collection: [], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: series_index_path(format: :json), tags: true, 'minimum-input-length': 3 } }
     = f.input :part, wrapper: :zurb_input
     = f.input :reading_level, wrapper: :zurb_input, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
     = f.input :avi_level, wrapper: :zurb_input, collection: Book::AviLevels::All, input_html: { class: 'js-select2' }

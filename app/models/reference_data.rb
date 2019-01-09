@@ -4202,9 +4202,10 @@ class ReferenceData
     end.compact.sort.uniq
   end
 
-  def self.series
+  def self.series(series_cont: nil, **options)
     BOOKS.map do |_titel, reeks, _deel, _info, _bouw|
       next unless reeks.present?
+      next if series_cont.present? && !reeks.upcase[series_cont.upcase]
       reeks.capitalize
     end.compact.sort.uniq
   end
