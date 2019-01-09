@@ -9,7 +9,6 @@ document.addEventListener("turbolinks:load", function() {
     theme: "foundation",
     allowClear: true,
     ajax: {
-      url: "/titles.json",
       dataType: "json",
       processResults: function (data) {
         return {
