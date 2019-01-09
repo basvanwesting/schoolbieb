@@ -1,9 +1,6 @@
-h1 = t('action.index', models: Book.model_name.human.pluralize)
+h1 = t('action.index', models: 'Stickers')
 
-= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
-= link_to 'Stickers', stickers_path, class: 'button'
-
-= search_form_for @q do |f|
+= search_form_for @q, url: stickers_path do |f|
   table
     thead
       tr
@@ -27,22 +24,8 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
 
         th.actions
           = f.submit class: 'button'
-          = link_to 'Reset', books_path, class: 'button secondary'
+          = link_to 'Reset', stickers_path, class: 'button secondary'
 
-    tbody
-      - @books.each do |book|
-        tr
-          td = book.id.to_s.rjust(4,'0')
-          td = book.title
-          td = book.series
-          td = book.part
-          td = book.author.full_name
-          td = book.reading_level
-          td = book.avi_level
-          td.actions
-            = link_to t('button.show'), book, class: 'button tiny'
-            = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'
-            = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
-
-br
-= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
+- @books.each do |book|
+  = render 'card_sticker', book: book
+  = render 'cover_sticker', book: book

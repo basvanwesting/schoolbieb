@@ -24,6 +24,10 @@ class Book < ApplicationRecord
     ]
   end
 
+  def sanitized_title
+    title.sub(/\[\[.*?\]\]/,'')
+  end
+
   def sticker
     <<~DOC
       ID: #{id.to_s.rjust(4, '0')}

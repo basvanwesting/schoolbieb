@@ -25,7 +25,9 @@ table.hover.unstriped.condensed.text-left
       td = @book.avi_level
 
 p
-  pre= @book.sticker
+  h1 Stickers
+  = render 'card_sticker', book: @book
+  = render 'cover_sticker', book: @book
 
 
 = link_to t('button.edit'), edit_book_path(@book), class: 'button warning'

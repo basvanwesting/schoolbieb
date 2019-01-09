@@ -12,4 +12,15 @@ class Author < ApplicationRecord
       last_name,
     ].select(&:present?).join(' ')
   end
+
+  def formal_name
+    [
+      "#{last_name}, #{first_name}",
+      middle_name,
+    ].select(&:present?).join(' ')
+  end
+
+  def abbr_last_name
+    last_name[0..2]
+  end
 end
