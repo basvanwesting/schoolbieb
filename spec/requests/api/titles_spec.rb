@@ -12,8 +12,16 @@ feature 'Titles JSON API', type: :request do
       @env['ACCEPT'] = 'application/json'
     end
 
-    it "index" do
+    xit "index" do
       get "/titles", params: { q: { title_cont: 'weerwolv' } }, headers: @env
+
+      expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos [[A]]\",\"Weerwolvenbos [[B]]\",\"Weerwolvenfeest [[A]]\",\"Weerwolvenfeest [[E4 | AVI]]\",\"Weerwolvensoep [[A]]\"]"
+      expect(response.headers["Content-Type"]).to eq "application/json; charset=utf-8"
+      expect(response.status).to eq 200
+    end
+
+    it "index" do
+      get "/titles", params: { term: 'weerwolv' }, headers: @env
 
       expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos [[A]]\",\"Weerwolvenbos [[B]]\",\"Weerwolvenfeest [[A]]\",\"Weerwolvenfeest [[E4 | AVI]]\",\"Weerwolvensoep [[A]]\"]"
       expect(response.headers["Content-Type"]).to eq "application/json; charset=utf-8"
