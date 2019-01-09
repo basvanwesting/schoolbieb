@@ -60,4 +60,11 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
+  config.before(:suite) do
+    RSpec::Support::ObjectFormatter.default_instance.max_formatted_output_length = 10_000 # do not trash string like: expected: "abc .... def"
+  end
 end

@@ -4189,9 +4189,10 @@ class ReferenceData
     ["zonder dromen?",                                     "Hoe overleef ik?",                             12,  "",                "C"],
   ]
 
-  def self.enriched_titles
+  def self.enriched_titles(title_cont: nil, **options)
     BOOKS.map do |titel, reeks, deel, info, bouw|
       next unless titel.present?
+      next if title_cont.present? && !titel.upcase[title_cont.upcase]
       enrichment = [
         info.present? ? info           : nil,
         bouw.present? ? bouw           : nil,
