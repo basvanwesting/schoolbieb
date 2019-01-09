@@ -4,7 +4,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
 
   module ReadingLevels
-    All = %w[ A B C P ]
+    All = %w[ A B C P ML ]
   end
 
   module AviLevels
