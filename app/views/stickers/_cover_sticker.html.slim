@@ -1,7 +1,5 @@
-table.unstriped.condensed.text-left
-  tbody
-    tr
-      td
-        h1 #{book.reading_level}
-    tr
-      td #{book.author.abbr_last_name}
+.grid-x
+  .cell style="font-size: 2.0em;"
+    = book.reading_level
+  .cell style="font-size: 1.2em;"
+    = book.author.abbr_last_name

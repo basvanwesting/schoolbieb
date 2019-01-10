@@ -1,10 +1,11 @@
-table.unstriped.text-left
-  tbody
-    tr
-      td #{book.sanitized_title} #{book.part.present? ? "(deel #{book.part})" : nil}
-      td #{book.id.to_s.rjust(4, '0')}
-      td #{book.author.formal_name}
-    tr
-      td #{book.series}
-      td &nbsp;
-      td #{book.reading_level}
+.grid-x
+  .cell.medium-8 style="font-size: 1.0em;"
+    = "#{book.unextended_title} #{book.part.present? ? "(deel #{book.part})" : nil}"
+  .cell.medium-4 style="font-size: 1.0em; text-align: right;"
+    = "#{book.author.formal_name}"
+.grid-x
+.grid-x
+  .cell.medium-8 style="font-size: 1.0em;"
+    = "#{book.series}"
+  .cell.medium-4 style="font-size: 1.0em; text-align: right;"
+    = "#{book.id.to_s.rjust(4, '0')}, #{book.reading_level}"

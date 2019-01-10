@@ -31,8 +31,3 @@ table.hover.unstriped.condensed.text-left
 = link_to t('button.add', add_model: Book.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_path(book: @book.attributes.slice(*%w[author_id series reading_level avi_level])), class: 'button'
 = link_to t('button.clone'), new_book_path(book: @book.attributes.slice(*%w[author_id title series part reading_level avi_level])), class: 'button'
 = link_to t('button.back'), :back, class: 'button'
-
-p
-  h1 Stickers
-  = render 'card_sticker', book: @book
-  = render 'cover_sticker', book: @book

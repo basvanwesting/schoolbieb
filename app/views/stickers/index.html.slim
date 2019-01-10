@@ -1,31 +1,40 @@
-h1 = t('action.index', models: 'Stickers')
+.no-print
+  h1 = t('action.index', models: 'Stickers')
 
-= search_form_for @q, url: stickers_path do |f|
-  table
-    thead
-      tr
-        th = sort_link(@q, :id,     Book.human_attribute_name(:id))
-        th = sort_link(@q, :title,  Book.human_attribute_name(:title))
-        th = sort_link(@q, :series, Book.human_attribute_name(:series))
-        th = sort_link(@q, :part,   Book.human_attribute_name(:part))
-        th = link_to Author.model_name.human, '#'
-        th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
-        th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
-        th.actions
-          = "#{@books.count} / #{Book.count}"
-      tr
-        th = f.text_field :id_eq,                 placeholder: t('placeholder.eq')
-        th = f.text_field :title_cont,            placeholder: t('placeholder.cont')
-        th = f.text_field :series_cont,           placeholder: t('placeholder.cont')
-        th = f.text_field :part_eq,               placeholder: t('placeholder.eq')
-        th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
-        th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
-        th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
+  = search_form_for @q, url: stickers_path do |f|
+    table
+      thead
+        tr
+          th = sort_link(@q, :id,     Book.human_attribute_name(:id))
+          th = sort_link(@q, :title,  Book.human_attribute_name(:title))
+          th = sort_link(@q, :series, Book.human_attribute_name(:series))
+          th = sort_link(@q, :part,   Book.human_attribute_name(:part))
+          th = link_to Author.model_name.human, '#'
+          th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
+          th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
+          th.actions
+            = "#{@books.count} / #{Book.count}"
+        tr
+          th = f.text_field :id_eq,                 placeholder: t('placeholder.eq')
+          th = f.text_field :title_cont,            placeholder: t('placeholder.cont')
+          th = f.text_field :series_cont,           placeholder: t('placeholder.cont')
+          th = f.text_field :part_eq,               placeholder: t('placeholder.eq')
+          th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
+          th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
+          th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
 
-        th.actions
-          = f.submit class: 'button'
-          = link_to 'Reset', stickers_path, class: 'button secondary'
+          th.actions
+            = f.submit class: 'button'
+            = link_to t('buttons.print'), '#', onclick: 'print(); return false', class: 'button warning'
+            = link_to 'Reset', stickers_path, class: 'button secondary'
 
-- @books.each do |book|
-  = render 'card_sticker', book: book
-  = render 'cover_sticker', book: book
+- if @books.empty?
+  h1 Voeg tenminste 1 zoekterm toe voor resultaten
+
+- @books.sort_by { |b| b.author.last_name }.each do |book|
+  .grid-x
+    .cell.medium-2= render 'cover_sticker', book: book
+    .cell.medium-1
+    .cell.medium-9= render 'card_sticker', book: book
+  br
+  br

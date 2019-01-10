@@ -26,7 +26,7 @@ class Book < ApplicationRecord
     ]
   end
 
-  def sanitized_title
+  def unextended_title
     title.sub(/\[\[.*?\]\]/,'')
   end
 

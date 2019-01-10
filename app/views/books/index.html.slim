@@ -1,7 +1,6 @@
 h1 = t('action.index', models: Book.model_name.human.pluralize)
 
 = link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
-= link_to 'Stickers', stickers_path, class: 'button'
 
 = search_form_for @q do |f|
   table

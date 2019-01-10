@@ -21,3 +21,21 @@
 table.condensed {
   width: 0%;
 }
+
+@media print {
+  #header, #footer, #nav, header, footer, nav {
+    display: none !important;
+  }
+
+  .no-print, .no-print * {
+    display: none !important;
+  }
+
+  .actions {
+    display: none !important;
+  }
+
+  a[href]:after {
+    display: none !important;
+  }
+}
