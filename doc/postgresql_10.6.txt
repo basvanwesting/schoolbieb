@@ -1,0 +1,29 @@
+➜  schoolbieb git:(master) ✗ brew install postgresql@10
+==> Downloading https://homebrew.bintray.com/bottles/postgresql@10-10.6.mojave.bottle.1.tar.gz
+==> Downloading from https://akamai.bintray.com/16/16a3c8380446f2e3b4356acd47217afbdb5b1dc8c6acede4e7834dfff897d4f8?__gda__=exp=1547109761~hmac=0a994161d57c5b384c5422fd6e7cff2881eaaaf7058aa08a975fd0d578e08fbc&response-content-disposition=attachment%3Bfilename%3D%22postg
+######################################################################## 100.0%
+==> Pouring postgresql@10-10.6.mojave.bottle.1.tar.gz
+==> Caveats
+To migrate existing data from a previous major version of PostgreSQL run:
+  brew postgresql-upgrade-database
+
+postgresql@10 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have postgresql@10 first in your PATH run:
+  echo 'export PATH="/usr/local/opt/postgresql@10/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find postgresql@10 you may need to set:
+  export LDFLAGS="-L/usr/local/opt/postgresql@10/lib"
+  export CPPFLAGS="-I/usr/local/opt/postgresql@10/include"
+
+For pkg-config to find postgresql@10 you may need to set:
+  export PKG_CONFIG_PATH="/usr/local/opt/postgresql@10/lib/pkgconfig"
+
+
+To have launchd start postgresql@10 now and restart at login:
+  brew services start postgresql@10
+Or, if you don't want/need a background service you can just run:
+  pg_ctl -D /usr/local/var/postgresql@10 start
+==> Summary
+🍺  /usr/local/Cellar/postgresql@10/10.6: 1,706 files, 20.8MB
