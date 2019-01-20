@@ -58,4 +58,27 @@ class Book < ApplicationRecord
       #{reading_level} / #{avi_level}
     DOC
   end
+
+  class << self
+    def wildcard_search(v)
+      terms = v.split.map(&:upcase)
+      clause = terms.map do |term|
+        if term.in?(Book::ReadingLevels::All)
+          "books.reading_level = '#{term}'"
+        elsif term.in?(Book::AviLevels::All)
+          "books.avi_level = '#{term}'"
+        else
+          [
+            [:books,   :title],
+            [:books,   :series],
+            [:authors, :first_name],
+            [:authors, :last_name],
+          ].map do |table, field|
+            "#{table}.#{field} ilike '%#{term}%'"
+          end.join(" or ")
+        end
+      end.map { |v| "(#{v})" }.join(" and ")
+      where(clause).joins(:author).pluck(:id)
+    end
+  end
 end
