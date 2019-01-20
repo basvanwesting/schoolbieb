@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books do
+    member do
+      get :qr
+    end
+  end
   resources :authors
 
   resources :titles,   only: :index
