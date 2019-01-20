@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :qr]
 
   # GET /books
   # GET /books.json
@@ -11,6 +11,15 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+  end
+
+  # GET /books/1/qr
+  # GET /books/1/qr.json
+  def qr
+    respond_to do |format|
+      format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
+      format.json { render :show, location: @book }
+    end
   end
 
   # GET /books/new
