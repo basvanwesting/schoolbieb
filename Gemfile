@@ -49,6 +49,7 @@ gem "select2-rails"
 gem 'select2-foundation'
 gem 'jquery-rails'
 gem 'ransack'
+gem 'kaminari'
 gem 'rqrcode'
 
 group :development, :test do

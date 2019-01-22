@@ -1,6 +1,7 @@
 h1 = t('action.index', models: Author.model_name.human.pluralize)
 
 = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
+= paginate @authors
 
 = search_form_for @q do |f|
   table
@@ -31,5 +32,6 @@ h1 = t('action.index', models: Author.model_name.human.pluralize)
             = link_to t('button.destroy'), author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
+= paginate @authors
 = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
 

@@ -1,5 +1,6 @@
 .no-print
   h1 = t('action.index', models: 'Stickers')
+  = paginate @books
 
   = search_form_for @q, url: stickers_path do |f|
     table
@@ -27,9 +28,6 @@
             = f.submit class: 'button'
             = link_to t('buttons.print'), '#', onclick: 'print(); return false', class: 'button warning'
             = link_to 'Reset', stickers_path, class: 'button secondary'
-
-- if @books.empty?
-  h1 Voeg tenminste 1 zoekterm toe voor resultaten
 
 - @books.sort_by { |b| b.author.last_name }.each_slice(7) do |books_for_page|
   - books_for_page.each do |book|

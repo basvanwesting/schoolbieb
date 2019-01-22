@@ -4,8 +4,8 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @q = Author.limit(100).ransack(params[:q])
-    @authors = @q.result(distinct: true)
+    @q = Author.ransack(params[:q])
+    @authors = @q.result(distinct: true).page(params[:page]).per(100)
   end
 
   # GET /authors/1

@@ -1,6 +1,6 @@
 h1 = t('action.index', models: Book.model_name.human.pluralize)
 
-
+= paginate @books
 = search_form_for @q do |f|
   .grid-x
     .cell.medium-2= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
@@ -48,4 +48,5 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
             = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
+= paginate @books
 = link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
