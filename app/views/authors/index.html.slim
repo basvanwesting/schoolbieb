@@ -1,13 +1,12 @@
 h1 = t('action.index', models: Author.model_name.human.pluralize)
 
 = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
-= paginate @authors
 
 = search_form_for @q do |f|
   table
     thead
       tr
-        th = sort_link(@q, :last_name,   Author.human_attribute_name(:last_name), default_order: :asc)
+        th = sort_link(@q, :last_name,   Author.human_attribute_name(:last_name))
         th = sort_link(@q, :first_name,  Author.human_attribute_name(:first_name))
         th = sort_link(@q, :middle_name, Author.human_attribute_name(:middle_name))
         th.actions
