@@ -38,4 +38,8 @@ table.condensed {
   a[href]:after {
     display: none !important;
   }
+
+  .page-break {
+    page-break-after: always;
+  }
 }
