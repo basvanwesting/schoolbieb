@@ -11,7 +11,7 @@ h1 = t('action.index', models: Author.model_name.human.pluralize)
         th = sort_link(@q, :first_name,  Author.human_attribute_name(:first_name))
         th = sort_link(@q, :middle_name, Author.human_attribute_name(:middle_name))
         th.actions
-          = "#{@authors.count} / #{Author.count}"
+          = search_result_info(@authors)
       tr
         th= f.text_field :last_name_cont, placeholder: t('placeholder.cont')
         th= f.text_field :first_name_cont, placeholder: t('placeholder.cont')

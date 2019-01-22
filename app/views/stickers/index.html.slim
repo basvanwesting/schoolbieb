@@ -14,7 +14,7 @@
           th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
           th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
           th.actions
-            = "#{@books.count} / #{Book.count}"
+            = search_result_info(@books)
         tr
           th = f.text_field :id_eq,                 placeholder: t('placeholder.eq')
           th = f.text_field :title_cont,            placeholder: t('placeholder.cont')
