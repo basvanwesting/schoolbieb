@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   belongs_to :author
   delegate :id, :first_name, :middle_name, :last_name, to: :author, prefix: true
 
-  before_save :extend_title!
+  before_save :extend_title!, :update_sticker_pending!
 
   module ReadingLevels
     All = %w[ A B C P ML ]
@@ -51,14 +51,14 @@ class Book < ApplicationRecord
     self.title = extended_title
   end
 
-  def sticker
-    <<~DOC
-      ID: #{id.to_s.rjust(4, '0')}
-      #{author.full_name}
-      #{title} #{part.present? ? "(deel #{part})" : nil}
-      #{series}
-      #{reading_level} / #{avi_level}
-    DOC
+  def update_sticker_pending!
+    if (changes.keys & %w[title series part reading_level author_id]).present?
+      self.sticker_pending = true
+    end
+  end
+
+  def sticker!
+    update(sticker_pending: false)
   end
 
   class << self
