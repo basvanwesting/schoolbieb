@@ -1,7 +1,9 @@
+require 'csv'
 class Book < ApplicationRecord
-  belongs_to :author
-
   validates :title, presence: true
+
+  belongs_to :author
+  delegate :id, :first_name, :middle_name, :last_name, to: :author, prefix: true
 
   before_save :extend_title!
 
@@ -79,6 +81,29 @@ class Book < ApplicationRecord
         end
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).joins(:author).pluck(:id)
+    end
+
+    def to_csv(io = StringIO.new)
+      csv_options = { col_sep: ';' }
+      fields = %w[
+        id
+        title
+        series
+        part
+        reading_level
+        avi_level
+        sticker_pending
+        author_id
+        author_first_name
+        author_middle_name
+        author_last_name
+      ]
+      io.puts CSV.generate_line(fields, csv_options)
+      find_each do |record|
+        row = fields.map {|f| record.public_send(f) }.map(&:presence)
+        io.puts CSV.generate_line(row, csv_options)
+      end
+      io.string
     end
   end
 end

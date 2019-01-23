@@ -5,7 +5,12 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @q = Book.ransack(params[:q])
-    @books = @q.result.includes(:author).order("authors.last_name ASC, title ASC").page(params[:page]).per(100)
+    scope = @q.result.includes(:author).order("authors.last_name ASC, title ASC")
+
+    respond_to do |format|
+      format.html { @books = scope.page(params[:page]).per(100) }
+      format.csv { send_data scope.to_csv, filename: "books.csv" }
+    end
   end
 
   # GET /books/1
