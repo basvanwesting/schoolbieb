@@ -33,3 +33,6 @@ yarn-debug.log*
 .yarn-integrity
 
 *.dump
+
+*.vpp.lck
+*.vpp.bak*
