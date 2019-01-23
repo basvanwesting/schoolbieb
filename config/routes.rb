@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :books do
     member do
       get :qr
-      post :sticker
+      post :unset_sticker_pending
+      post :set_sticker_pending
     end
   end
   resources :authors

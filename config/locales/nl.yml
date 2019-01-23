@@ -44,7 +44,8 @@ nl:
     cancel: Afbreken
     submit: Opslaan
     clone: Dupliceren
-    sticker: Sticker is bijgewerkt
+    unset_sticker_pending: Sticker is bijgewerkt
+    set_sticker_pending: Sticker moet worden bijgewerkt
     add: "%{add_model} toevoegen aan %{to_model}"
   placeholder:
     cont: 'bevat'
@@ -84,6 +85,3 @@ nl:
         avi_level: AVI niveau
         author: Auteur
         sticker_pending: Sticker bijwerken?
-      book/sticker_pending:
-        true: Sticker moet worden bijgewerkt
-        false: Sticker is in orde

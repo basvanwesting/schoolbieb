@@ -57,8 +57,12 @@ class Book < ApplicationRecord
     end
   end
 
-  def sticker!
+  def unset_sticker_pending!
     update(sticker_pending: false)
+  end
+
+  def set_sticker_pending!
+    update(sticker_pending: true)
   end
 
   class << self

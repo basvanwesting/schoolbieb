@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :qr, :sticker]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :qr, :set_sticker_pending, :unset_sticker_pending]
 
   # GET /books
   # GET /books.json
@@ -27,8 +27,13 @@ class BooksController < ApplicationController
     end
   end
 
-  def sticker
-    @book.sticker!
+  def unset_sticker_pending
+    @book.unset_sticker_pending!
+    redirect_back fallback_location: @book
+  end
+
+  def set_sticker_pending
+    @book.set_sticker_pending!
     redirect_back fallback_location: @book
   end
 

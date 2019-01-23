@@ -42,27 +42,27 @@ RSpec.describe Book, type: :model do
       expect(subject.sticker_pending).to be_truthy
     end
 
-    it 'removes flag on sticker!' do
-      subject.sticker!
+    it 'removes flag on unset_sticker_pending!' do
+      subject.unset_sticker_pending!
       expect(subject.sticker_pending).to be_falsey
     end
 
     it 'sets flag on relevant change (reading_level)' do
-      subject.sticker!
+      subject.unset_sticker_pending!
       expect(subject.sticker_pending).to be_falsey
       subject.update(reading_level: 'B')
       expect(subject.sticker_pending).to be_truthy
     end
 
     it 'sets flag on relevant change (author)' do
-      subject.sticker!
+      subject.unset_sticker_pending!
       expect(subject.sticker_pending).to be_falsey
       subject.update(author: author2)
       expect(subject.sticker_pending).to be_truthy
     end
 
     it 'sets flag on irrelevant change' do
-      subject.sticker!
+      subject.unset_sticker_pending!
       expect(subject.sticker_pending).to be_falsey
       subject.update(avi_level: 'M4')
       expect(subject.sticker_pending).to be_falsey
