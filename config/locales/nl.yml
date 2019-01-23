@@ -30,6 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 nl:
+  true: "Ja"
+  false: "Nee"
   button:
     back: Terug
     show: Details
@@ -42,6 +44,7 @@ nl:
     cancel: Afbreken
     submit: Opslaan
     clone: Dupliceren
+    sticker: Sticker is bijgewerkt
     add: "%{add_model} toevoegen aan %{to_model}"
   placeholder:
     cont: 'bevat'
@@ -80,3 +83,7 @@ nl:
         reading_level: Leesniveau
         avi_level: AVI niveau
         author: Auteur
+        sticker_pending: Sticker bijwerken?
+      book/sticker_pending:
+        true: Sticker moet worden bijgewerkt
+        false: Sticker is in orde

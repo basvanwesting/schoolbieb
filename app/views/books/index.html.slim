@@ -20,8 +20,9 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
         th = sort_link(@q, :series, Book.human_attribute_name(:series))
         th = sort_link(@q, :part,   Book.human_attribute_name(:part))
         th = link_to Author.model_name.human, '#'
-        th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
-        th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
+        th = sort_link(@q, :reading_level,   Book.human_attribute_name(:reading_level))
+        th = sort_link(@q, :avi_level,       Book.human_attribute_name(:avi_level))
+        th = sort_link(@q, :sticker_pending, Book.human_attribute_name(:sticker_pending))
         th.actions
           = search_result_info(@books)
       tr
@@ -32,6 +33,7 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
         th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
         th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
         th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
+        th = f.select :sticker_pending_eq, [true,false].map { |v| [t(v), v] }, { include_blank: ' - '}
 
         th.actions
           = f.submit class: 'button', data: { disable_with: false }
@@ -47,6 +49,7 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
           td = book.author.full_name
           td = book.reading_level
           td = book.avi_level
+          td = t(book.sticker_pending)
           td.actions
             = link_to t('button.show'), book, class: 'button tiny'
             = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'

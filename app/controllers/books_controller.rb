@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :qr]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :qr, :sticker]
 
   # GET /books
   # GET /books.json
@@ -25,6 +25,11 @@ class BooksController < ApplicationController
       format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
       format.json { render :show, location: @book }
     end
+  end
+
+  def sticker
+    @book.sticker!
+    redirect_back fallback_location: @book
   end
 
   # GET /books/new

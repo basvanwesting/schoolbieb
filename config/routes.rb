@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :books do
     member do
       get :qr
+      post :sticker
     end
   end
   resources :authors

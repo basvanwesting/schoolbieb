@@ -13,6 +13,7 @@
           th = link_to Author.model_name.human, '#'
           th = sort_link(@q, :reading_level, Book.human_attribute_name(:reading_level))
           th = sort_link(@q, :avi_level,     Book.human_attribute_name(:avi_level))
+          th = sort_link(@q, :sticker_pending, Book.human_attribute_name(:sticker_pending))
           th.actions
             = search_result_info(@books)
         tr
@@ -23,6 +24,7 @@
           th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
           th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
           th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
+          th = f.select :sticker_pending_eq, [true,false].map { |v| [t(v), v] }, { include_blank: ' - '}
 
           th.actions
             = f.submit class: 'button'
