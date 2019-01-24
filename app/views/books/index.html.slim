@@ -10,7 +10,16 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
         class: 'button',
         data: { disable_with: false }
     .cell.medium-8
-      = f.text_field :id_wildcard, placeholder: "Snelzoeken"
+      = f.text_field :id_wildcard,
+        placeholder: t( \
+          'placeholder.wildcard', \
+          attributes: [ \
+            Book.human_attribute_name(:title), \
+            Book.human_attribute_name(:series), \
+            Author.model_name.human, \
+            Book.human_attribute_name(:reading_level) \
+          ].to_sentence \
+        )
 
   table
     thead
