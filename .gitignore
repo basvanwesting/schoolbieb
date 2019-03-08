@@ -36,3 +36,4 @@ yarn-debug.log*
 
 *.vpp.lck
 *.vpp.bak*
+.fzf-history
