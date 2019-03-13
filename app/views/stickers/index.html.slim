@@ -33,7 +33,7 @@
             = link_to t('buttons.print'), '#', onclick: 'print(); return false', class: 'button warning'
             = link_to 'Reset', stickers_path, class: 'button secondary'
 
-- @books.each_slice(7) do |books_for_page|
+- @books.each_slice(6) do |books_for_page|
   - books_for_page.each do |book|
     .grid-x
       .cell.medium-2= render 'cover_sticker', book: book
