@@ -94,4 +94,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      :email_prefix => "[PROD] ",
+      :sender_address => 'noreply@schoolbieb-nvr.nl',
+      :exception_recipients => %w{support@fourstack.nl}
+    }
+
 end
