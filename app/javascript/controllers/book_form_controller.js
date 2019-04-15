@@ -26,6 +26,7 @@ export default class extends Controller {
 
   setTitleOptions(values) {
     this.clearTitleOptions()
+    if (values.length == 1 && values[0] == this.titleTarget.value) { return }
 
     values.forEach(v => {
       const opt = document.createElement("option")
