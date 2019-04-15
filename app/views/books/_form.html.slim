@@ -3,17 +3,12 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs data-controller="book-form"
-    datalist#authors
-      option value="Chocolate" TEST CHOCO
-      option value="Coconut"
-      option value="Mint"
-      option value="Strawberry"
-      option value="Vanilla"
+    datalist#titles data-target="book-form.titleList"
 
-    /= f.association :author, wrapper: :zurb_input, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
-    = f.input :author_full_name, wrapper: :zurb_input, as: :datalist, label: 'Author', value_method: :to_s, input_html: { list: :authors, data: { target: :authorFullName } }
+    = f.association :author, wrapper: :zurb_input, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
 
-    = f.input :title,  wrapper: :zurb_input, collection: [@book.title], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: titles_path(format: :json),       tags: true, 'minimum-input-length': 3 } }
+    /= f.input :title, wrapper: :zurb_input, collection: [@book.title], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: titles_path(format: :json),       tags: true, 'minimum-input-length': 3 } }
+    = f.input :title, wrapper: :zurb_input, input_html: { list: :titles, data: { target: 'book-form.title', action: 'keypress->book-form#inputTitle' } }
     = f.input :series, wrapper: :zurb_input, collection: [@book.series], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: series_index_path(format: :json), tags: true, 'minimum-input-length': 3 } }
     = f.input :part, wrapper: :zurb_input
     = f.input :reading_level, wrapper: :zurb_input, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
