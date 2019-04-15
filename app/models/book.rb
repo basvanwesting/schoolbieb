@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
 
   belongs_to :author
-  delegate :first_name, :middle_name, :last_name, to: :author, prefix: true
+  delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true
 
   before_save :extend_title!, :update_sticker_pending!
 

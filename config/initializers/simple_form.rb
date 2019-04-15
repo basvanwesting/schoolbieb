@@ -194,3 +194,33 @@ SimpleForm.setup do |config|
   # config.input_field_valid_class = 'is-valid'
   # config.input_field_error_class = 'is-invalid'
 end
+
+class DatalistInput < SimpleForm::Inputs::CollectionSelectInput
+  include ActionView::Context
+
+  def input(wrapper_options = nil)
+    merged_input_options = merge_wrapper_options(input_html_options, wrapper_options)
+
+    out = ActiveSupport::SafeBuffer.new
+    out << @builder.text_field(attribute_name, merged_input_options)
+    out << tag.datalist(id: attribute_name) { datalist_options.join.html_safe }
+  end
+
+  #def input_html_options
+    #_label_method, value_method = detect_collection_methods
+
+    #super.merge(list: attribute_name, value: object.send(value_method))
+  #end
+
+  def datalist_options
+    label_method, value_method = detect_collection_methods
+
+    collection.map do |item|
+      tag.option(
+        item.send(label_method),
+        selected: item.send(value_method) == object.send(value_method),
+        value: item.send(value_method)
+      )
+    end
+  end
+end
