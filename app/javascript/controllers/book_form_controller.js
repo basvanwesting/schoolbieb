@@ -1,14 +1,21 @@
 import { Controller } from "stimulus"
+import { debounce } from "lodash"
 
 export default class extends Controller {
   static targets = [ "title", "titleList" ]
 
-  inputTitle() {
+  handleInputTitle() {
     if (this.titleTarget.value.length > 3) {
       this.updateTitleOptions()
     } else {
       this.clearTitleOptions()
     }
+  }
+
+  debouncedHandleInputTitle = debounce(this.handleInputTitle, 300)
+
+  inputTitle() {
+    this.debouncedHandleInputTitle()
   }
 
   clearTitleOptions() {
