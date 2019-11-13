@@ -1,7 +1,10 @@
 class RemoveExtendedTitleFromBook < ActiveRecord::Migration[5.2]
   def up
     Book.find_each do |book|
-      book.update(title: book.title.sub(/\[\[.*?\]\]/,''))
+      book.update_columns(
+        title: book.title.sub(/\[\[.*?\]\]/,'').strip,
+        series: book.series.strip
+      )
     end
   end
 
@@ -13,7 +16,7 @@ class RemoveExtendedTitleFromBook < ActiveRecord::Migration[5.2]
         book.avi_level.present?     ? book.avi_level      : nil,
         book.part.present?          ? "deel #{book.part}" : nil,
       ].compact.join(' | ')
-      book.update(title: "#{book.title} [[#{enrichment}]]")
+      book.update_columns(title: "#{book.title} [[#{enrichment}]]")
     end
   end
 end
