@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   belongs_to :author
   delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true
 
-  before_save :extend_title!, :update_sticker_pending!
+  before_save :update_sticker_pending!
 
   module ReadingLevels
     All = %w[ A B C P ML ]
@@ -26,29 +26,6 @@ class Book < ApplicationRecord
       E7
       PLUS
     ]
-  end
-
-  def unextended_title
-    title.sub(/\[\[.*?\]\]/,'')
-  end
-
-  def extended_title?
-    title.to_s[/\[\[.*\]\]$/]
-  end
-
-  def extended_title
-    return title if extended_title?
-    enrichment = [
-      reading_level.present? ? reading_level  : nil,
-      avi_level.present?     ? avi_level      : nil,
-      part.present?          ? "deel #{part}" : nil,
-    ].compact.join(' | ')
-    "#{title} [[#{enrichment}]]"
-  end
-
-  def extend_title!
-    return if extended_title?
-    self.title = extended_title
   end
 
   def update_sticker_pending!

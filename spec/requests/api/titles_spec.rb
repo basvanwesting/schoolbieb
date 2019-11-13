@@ -21,7 +21,7 @@ feature 'Titles JSON API', type: :request do
     xit "index" do
       get "/titles", params: { q: { title_cont: 'weerwolv' } }, headers: @env
 
-      expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos [[]]\",\"Weerwolvenbos [[]]\",\"Weerwolvenfeest [[deel 1]]\",\"Weerwolvenfeest [[deel 2]]\",\"Weerwolvensoep [[]]\"]"
+      expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos\",\"Weerwolvenbos\",\"Weerwolvenfeest\",\"Weerwolvensoep\"]"
       expect(response.headers["Content-Type"]).to eq "application/json; charset=utf-8"
       expect(response.status).to eq 200
     end
@@ -29,7 +29,7 @@ feature 'Titles JSON API', type: :request do
     it "index" do
       get "/titles", params: { term: 'weerwolv' }, headers: @env
 
-      expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos [[]]\",\"Weerwolvenbos [[]]\",\"Weerwolvenfeest [[deel 1]]\",\"Weerwolvenfeest [[deel 2]]\",\"Weerwolvensoep [[]]\"]"
+      expect(response.body).to eq "[\"Een miniheks in het weerwolvenbos\",\"Weerwolvenbos\",\"Weerwolvenfeest\",\"Weerwolvensoep\"]"
       expect(response.headers["Content-Type"]).to eq "application/json; charset=utf-8"
       expect(response.status).to eq 200
     end
