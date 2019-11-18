@@ -22,6 +22,6 @@ table
         td = book.avi_level
         td.actions
           = link_to t('button.show'), book, class: 'button tiny'
-          = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'
+          = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
           = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 

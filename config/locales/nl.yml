@@ -67,6 +67,12 @@ nl:
       book:
         one: Boek
         other: Boeken
+      book/fiction:
+        one: Leesboek
+        other: Leesboeken
+      book/non_fiction:
+        one: Infoboek
+        other: Infoboeken
       author:
         one: Auteur
         other: Auteurs
@@ -79,6 +85,7 @@ nl:
         middle_name: Tussenvoegsel
         full_name: Auteur
       book:
+        sti_type: Type
         id: ID
         title: Titel
         series: Reeks

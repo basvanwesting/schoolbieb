@@ -1,3 +1,4 @@
+* add search#q storage in session
 * add exception notification
 * add feature specs
 * schedule backup database

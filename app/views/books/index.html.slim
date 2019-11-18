@@ -3,7 +3,8 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
 = search_form_for @q do |f|
   .grid-x
     .cell.medium-4
-      = link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
+      = link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
+      = link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
       = f.submit class: 'button', style: "display: none;"
       = f.submit 'Download as CSV',
         formaction: books_path(format: 'csv'),
@@ -24,10 +25,11 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
   table
     thead
       tr
-        th = sort_link(@q, :id,     Book.human_attribute_name(:id))
-        th = sort_link(@q, :title,  Book.human_attribute_name(:title))
-        th = sort_link(@q, :series, Book.human_attribute_name(:series))
-        th = sort_link(@q, :part,   Book.human_attribute_name(:part))
+        th = sort_link(@q, :id,       Book.human_attribute_name(:id))
+        th = sort_link(@q, :sti_type, Book.human_attribute_name(:sti_type))
+        th = sort_link(@q, :title,    Book.human_attribute_name(:title))
+        th = sort_link(@q, :series,   Book.human_attribute_name(:series))
+        th = sort_link(@q, :part,     Book.human_attribute_name(:part))
         th = link_to Author.model_name.human, '#'
         th = sort_link(@q, :reading_level,   Book.human_attribute_name(:reading_level))
         th = sort_link(@q, :avi_level,       Book.human_attribute_name(:avi_level))
@@ -36,6 +38,7 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
           = search_result_info(@books)
       tr
         th = f.text_field :id_eq,                 placeholder: t('placeholder.eq')
+        th = f.select :sti_type_eq, Book.classes.map { |k| [k.model_name.human, k.name] }, { include_blank: ' - '}
         th = f.text_field :title_cont,            placeholder: t('placeholder.cont')
         th = f.text_field :series_cont,           placeholder: t('placeholder.cont')
         th = f.text_field :part_eq,               placeholder: t('placeholder.eq')
@@ -52,18 +55,20 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
       - @books.each do |book|
         tr
           td = book.id.to_s.rjust(4,'0')
+          td = book.class.model_name.human
           td = book.title
           td = book.series
           td = book.part
-          td = book.author.full_name
+          td = book.author_full_name
           td = book.reading_level
           td = book.avi_level
           td = t(book.sticker_pending)
           td.actions
             = link_to t('button.show'), book, class: 'button tiny'
-            = link_to t('button.edit'), edit_book_path(book), class: 'button warning warning tiny'
+            = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
             = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
 br
 = paginate @books
-= link_to t('action.new', model: Book.model_name.human), new_book_path, class: 'button'
+= link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
+= link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'

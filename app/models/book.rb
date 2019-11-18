@@ -1,9 +1,8 @@
 require 'csv'
 class Book < ApplicationRecord
   validates :title, presence: true
-
-  belongs_to :author
-  delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true
+  belongs_to :author, optional: true
+  delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true, allow_nil: true
 
   before_save :update_sticker_pending!
 
@@ -43,6 +42,14 @@ class Book < ApplicationRecord
   end
 
   class << self
+
+    def classes
+      [
+        Book::Fiction,
+        Book::NonFiction,
+      ]
+    end
+
     def wildcard_search(v)
       terms = v.split.map(&:upcase)
       clause = terms.map do |term|
@@ -61,7 +68,7 @@ class Book < ApplicationRecord
           end.join(" or ")
         end
       end.map { |v| "(#{v})" }.join(" and ")
-      where(clause).joins(:author).pluck(:id)
+      where(clause).left_joins(:author).pluck(:id)
     end
 
     def to_csv(io = StringIO.new)
