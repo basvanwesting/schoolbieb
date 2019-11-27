@@ -45,9 +45,9 @@ h1 = t('action.index', models: Book.model_name.human.pluralize)
         th = f.text_field :series_cont,           placeholder: t('placeholder.cont')
         th = f.text_field :part_eq,               placeholder: t('placeholder.eq')
         th = f.text_field :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
-        th = f.select :category_eq, Book::NonFiction::Categories::All, { include_blank: ' - '}
-        th = f.select :reading_level_eq, Book::ReadingLevels::All, { include_blank: ' - '}
-        th = f.select :avi_level_eq,     Book::AviLevels::All,     { include_blank: ' - '}
+        th = f.select :category_eq,      Book::NonFiction::Categories::All, { include_blank: ' - '}
+        th = f.select :reading_level_eq, Book::ReadingLevels::All,          { include_blank: ' - '}
+        th = f.select :avi_level_eq,     Book::AviLevels::All,              { include_blank: ' - '}
         th = f.select :sticker_pending_eq, [true,false].map { |v| [t(v), v] }, { include_blank: ' - '}
 
         th.actions
