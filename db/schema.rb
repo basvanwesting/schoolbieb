@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_175808) do
+ActiveRecord::Schema.define(version: 2019_11_27_183516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,9 @@ ActiveRecord::Schema.define(version: 2019_11_27_175808) do
     t.boolean "sticker_pending", default: true, null: false
     t.string "sti_type"
     t.string "category"
+    t.string "tags", default: [], array: true
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["tags"], name: "index_books_on_tags", using: :gin
   end
 
   create_table "users", force: :cascade do |t|

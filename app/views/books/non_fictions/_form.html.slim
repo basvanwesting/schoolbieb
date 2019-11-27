@@ -9,6 +9,7 @@
     = f.input :title, wrapper: :zurb_input, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#inputTitle' } }
     = f.input :series, wrapper: :zurb_input, collection: [@book.series], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: series_index_path(format: :json), tags: true, 'minimum-input-length': 3 } }
     = f.input :part, wrapper: :zurb_input
+    = f.input :tags, wrapper: :zurb_input, collection: Book::NonFiction.sorted_existing_tags, input_html: { multiple: true, class: 'js-select2-free-tags' }
     = f.input :reading_level, wrapper: :zurb_input, collection: Book::ReadingLevels::All, input_html: { class: 'js-select2' }
     = f.input :avi_level, wrapper: :zurb_input, collection: Book::AviLevels::All, input_html: { class: 'js-select2' }
 

@@ -18,6 +18,9 @@ table.hover.unstriped.condensed.text-left
       th = Book.human_attribute_name(:part)
       td = @book.part
     tr
+      th = Book.human_attribute_name(:tags)
+      td = @book.tags.to_sentence
+    tr
       th = Book.human_attribute_name(:reading_level)
       td = @book.reading_level
     tr
