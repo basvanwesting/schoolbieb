@@ -42,17 +42,19 @@ RSpec.describe Book, type: :model do
   describe '.to_csv' do
     before do
       FactoryBot.create(:author, id: 1)
-      FactoryBot.create(:book, id: 1, title: 'book1')
-      FactoryBot.create(:book, id: 2, title: 'book2')
-      FactoryBot.create(:book, id: 3, title: 'other')
+      FactoryBot.create(:book_fiction, id: 1, title: 'book1')
+      FactoryBot.create(:book_fiction, id: 2, title: 'book2')
+      FactoryBot.create(:book_fiction, id: 3, title: 'other')
+      FactoryBot.create(:book_non_fiction, id: 4, title: 'book3', category: Book::NonFiction::Categories::All.first)
     end
 
     it 'returns a CSV for a scope' do
       csv = Book.where("title like 'book%'").to_csv
       expect(csv).to eq <<~DOC
-       id;title;series;part;reading_level;avi_level;sticker_pending;author_id;author_first_name;author_middle_name;author_last_name
-       1;book1;;;;;true;1;John;;Doe
-       2;book2;;;;;true;1;John;;Doe
+       ID;Type;Titel;Reeks;Deel;Categorie;Leesniveau;AVI niveau;Sticker bijwerken?;Auteur ID;Auteur Voornaam;Auteur Tussenvoegsel;Auteur Achternaam
+       1;Leesboek;book1;;;;;;true;1;John;;Doe
+       2;Leesboek;book2;;;;;;true;1;John;;Doe
+       4;Infoboek;book3;;;Temp1;;;true;;;;
       DOC
     end
 

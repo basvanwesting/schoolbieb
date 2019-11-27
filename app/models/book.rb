@@ -3,6 +3,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
   belongs_to :author, optional: true
   delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true, allow_nil: true
+  delegate :human, to: :model_name, prefix: true
 
   before_save :update_sticker_pending!
 
@@ -75,22 +76,24 @@ class Book < ApplicationRecord
 
     def to_csv(io = StringIO.new)
       csv_options = { col_sep: ';' }
-      fields = %w[
-        id
-        title
-        series
-        part
-        reading_level
-        avi_level
-        sticker_pending
-        author_id
-        author_first_name
-        author_middle_name
-        author_last_name
-      ]
-      io.puts CSV.generate_line(fields, csv_options)
+      mapping = {
+        id:                 Book.human_attribute_name(:id),
+        model_name_human:   Book.human_attribute_name(:sti_type),
+        title:              Book.human_attribute_name(:title),
+        series:             Book.human_attribute_name(:series),
+        part:               Book.human_attribute_name(:part),
+        category:           Book.human_attribute_name(:category),
+        reading_level:      Book.human_attribute_name(:reading_level),
+        avi_level:          Book.human_attribute_name(:avi_level),
+        sticker_pending:    Book.human_attribute_name(:sticker_pending),
+        author_id:          "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:id)}",
+        author_first_name:  "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:first_name)}",
+        author_middle_name: "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:middle_name)}",
+        author_last_name:   "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:last_name)}",
+      }
+      io.puts CSV.generate_line(mapping.values, csv_options)
       find_each do |record|
-        row = fields.map {|f| record.public_send(f) }.map(&:presence)
+        row = mapping.keys.map {|f| record.public_send(f) }.map(&:presence)
         io.puts CSV.generate_line(row, csv_options)
       end
       io.string

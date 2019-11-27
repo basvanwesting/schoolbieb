@@ -80,6 +80,7 @@ nl:
       created_at: Aangemaakt op
       updated_at: Bijgewerkt op
       author:
+        id: ID
         first_name: Voornaam
         last_name: Achternaam
         middle_name: Tussenvoegsel
