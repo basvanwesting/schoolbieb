@@ -53,6 +53,6 @@ class Books::NonFictionsController < BooksController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :series, :part, :reading_level, :avi_level, :author_id)
+      params.require(:book).permit(:title, :series, :part, :reading_level, :avi_level, :category)
     end
 end

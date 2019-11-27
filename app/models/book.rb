@@ -57,6 +57,8 @@ class Book < ApplicationRecord
           "books.reading_level = '#{term}'"
         elsif term.in?(Book::AviLevels::All)
           "books.avi_level = '#{term}'"
+        elsif term.downcase.in?(Book::NonFiction::Categories::All.map(&:downcase))
+          "books.category ilike '#{term}'"
         else
           [
             [:books,   :title],
