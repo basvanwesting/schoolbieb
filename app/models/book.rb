@@ -8,11 +8,11 @@ class Book < ApplicationRecord
   before_save :update_sticker_pending!
 
   module ReadingLevels
-    All = %w[ A B C P ML ]
+    ALL = %w[A B C P ML].freeze
   end
 
   module AviLevels
-    All = %w[
+    ALL = %w[
       START
       M3
       E3
@@ -25,13 +25,13 @@ class Book < ApplicationRecord
       M7
       E7
       PLUS
-    ]
+    ].freeze
   end
 
   def update_sticker_pending!
-    if (changes.keys & %w[title series part reading_level author_id]).present?
-      self.sticker_pending = true
-    end
+    return unless (changes.keys & %w[title series part reading_level author_id]).present?
+
+    self.sticker_pending = true
   end
 
   def unset_sticker_pending!
@@ -54,18 +54,18 @@ class Book < ApplicationRecord
     def wildcard_search(v)
       terms = v.split.map(&:upcase)
       clause = terms.map do |term|
-        if term.in?(Book::ReadingLevels::All)
+        if term.in?(Book::ReadingLevels::ALL)
           "books.reading_level = '#{term}'"
-        elsif term.in?(Book::AviLevels::All)
+        elsif term.in?(Book::AviLevels::ALL)
           "books.avi_level = '#{term}'"
-        elsif term.downcase.in?(Book::NonFiction::Categories::All.map(&:downcase))
+        elsif term.downcase.in?(Book::NonFiction::Categories::ALL.map(&:downcase))
           "books.category ilike '#{term}'"
         else
           [
-            [:books,   :title],
-            [:books,   :series],
-            [:authors, :first_name],
-            [:authors, :last_name],
+            %i[books title],
+            %i[books series],
+            %i[authors first_name],
+            %i[authors last_name],
           ].map do |table, field|
             "#{table}.#{field} ilike '%#{term}%'"
           end.join(" or ")
@@ -93,7 +93,7 @@ class Book < ApplicationRecord
       }
       io.puts CSV.generate_line(mapping.values, csv_options)
       find_each do |record|
-        row = mapping.keys.map {|f| record.public_send(f) }.map(&:presence)
+        row = mapping.keys.map { |f| record.public_send(f) }.map(&:presence)
         io.puts CSV.generate_line(row, csv_options)
       end
       io.string

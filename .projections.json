@@ -1,0 +1,13 @@
+{
+  "app/*.rb": {
+    "alternate": "spec/{}_spec.rb",
+    "type": "test"
+  },
+  "spec/*_spec.rb": {
+    "alternate": "app/{}.rb",
+    "type": "source"
+  },
+  "*": {
+    "path": "."
+  }
+}

@@ -5,6 +5,6 @@ FactoryBot.define do
   end
   factory 'book/non_fiction', aliases: [:book_non_fiction] do
     title { "My First Non-Fiction Book" }
-    category { Book::NonFiction::Categories::All.first }
+    category { Book::NonFiction::Categories::ALL.first }
   end
 end

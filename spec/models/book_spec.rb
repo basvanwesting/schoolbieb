@@ -45,7 +45,7 @@ RSpec.describe Book, type: :model do
       FactoryBot.create(:book_fiction, id: 1, title: 'book1')
       FactoryBot.create(:book_fiction, id: 2, title: 'book2')
       FactoryBot.create(:book_fiction, id: 3, title: 'other')
-      FactoryBot.create(:book_non_fiction, id: 4, title: 'book3', category: Book::NonFiction::Categories::All.first)
+      FactoryBot.create(:book_non_fiction, id: 4, title: 'book3', category: Book::NonFiction::Categories::ALL.first)
     end
 
     it 'returns a CSV for a scope' do

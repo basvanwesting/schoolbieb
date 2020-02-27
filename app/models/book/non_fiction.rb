@@ -3,20 +3,20 @@ class Book::NonFiction < Book
   before_save :flatten_tags
 
   def flatten_tags
-    self.tags = self.tags.flatten.uniq.sort.reject(&:blank?)
+    self.tags = tags.flatten.uniq.sort.reject(&:blank?)
   end
 
   module Categories
-    All = %w[
+    ALL = %w[
       Temp1
       Temp2
       Temp3
-    ]
+    ].freeze
   end
 
   class << self
     def sorted_existing_tags
-      pluck("distinct unnest(tags)")
+      pluck(Arel.sql("distinct unnest(tags)"))
     end
 
     def with_tag(tag)
