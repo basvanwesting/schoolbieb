@@ -2,7 +2,12 @@ import { Controller } from "stimulus"
 import { debounce } from "lodash"
 
 export default class extends Controller {
-  static targets = [ "title", "titleList" ]
+  static get targets() {
+    return [
+      "title",
+      "titleList",
+    ]
+  }
 
   handleInputTitle() {
     if (this.titleTarget.value.length > 3) {
@@ -12,10 +17,8 @@ export default class extends Controller {
     }
   }
 
-  debouncedHandleInputTitle = debounce(this.handleInputTitle, 300)
-
   inputTitle() {
-    this.debouncedHandleInputTitle()
+    debounce(this.handleInputTitle(), 300)
   }
 
   clearTitleOptions() {
@@ -26,7 +29,7 @@ export default class extends Controller {
 
   setTitleOptions(values) {
     this.clearTitleOptions()
-    if (values.length == 1 && values[0] == this.titleTarget.value) { return }
+    if (values.length === 1 && values[0] === this.titleTarget.value) { return }
 
     values.forEach(v => {
       const opt = document.createElement("option")
