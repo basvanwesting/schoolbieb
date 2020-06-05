@@ -58,12 +58,11 @@ class Book < ApplicationRecord
           "books.reading_level = '#{term}'"
         elsif term.in?(Book::AviLevels::ALL)
           "books.avi_level = '#{term}'"
-        elsif term.downcase.in?(Book::NonFiction::Categories::ALL.map(&:downcase))
-          "books.category ilike '#{term}'"
         else
           [
             %i[books title],
             %i[books series],
+            %i[books category],
             %i[authors first_name],
             %i[authors last_name],
           ].map do |table, field|

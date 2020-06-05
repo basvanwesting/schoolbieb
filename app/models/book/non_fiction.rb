@@ -7,10 +7,29 @@ class Book::NonFiction < Book
   end
 
   module Categories
-    ALL = %w[
-      Temp1
-      Temp2
-      Temp3
+    ALL = [
+      "Godsdienst",
+      "Lichaam & Gezondheid",
+      "Eten & Drinken",
+      "Huis & Tuin",
+      'Feest',
+      "Hobby's",
+      "Sport & Spel",
+      "Beroepen",
+      "Wetenschap & Techniek",
+      "Computers & Gamen & Online",
+      "Verkeer & Vervoer",
+      "Natuur & Milieu",
+      "Dieren",
+      "Landen & Volken",
+      "Nederland",
+      "Kunst & Cultuur",
+      "Theater & Film",
+      "Schrijvers & Boeken",
+      "Muziek",
+      "Sprookjes & Volksverhalen",
+      "Gedichten & Versjes",
+      "Mens & Maatschappij",
     ].freeze
   end
 
