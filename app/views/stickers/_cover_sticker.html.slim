@@ -1,9 +1,11 @@
-.grid-x
-  .cell style="font-size: 2.0em;"
-    = book.reading_level
-  .cell style="font-size: 1.2em;"
-    - case book
-    - when Book::Fiction
+- case book
+- when Book::Fiction
+  .grid-x
+    .cell style="font-size: 2.0em;"
+      = book.reading_level
+    .cell style="font-size: 1.2em;"
       = book.author.abbr_last_name
-    - when Book::NonFiction
-      = book.category
+- when Book::NonFiction
+  .grid-x
+    .cell style="font-size: 2.0em;"
+      i class="fas #{Book::NonFiction::Categories.fas_icon_for(book.category)}"

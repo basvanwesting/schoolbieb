@@ -7,30 +7,36 @@ class Book::NonFiction < Book
   end
 
   module Categories
-    ALL = [
-      "Godsdienst",
-      "Lichaam & Gezondheid",
-      "Eten & Drinken",
-      "Huis & Tuin",
-      'Feest',
-      "Hobby's",
-      "Sport & Spel",
-      "Beroepen",
-      "Wetenschap & Techniek",
-      "Computers & Gamen & Online",
-      "Verkeer & Vervoer",
-      "Natuur & Milieu",
-      "Dieren",
-      "Landen & Volken",
-      "Nederland",
-      "Kunst & Cultuur",
-      "Theater & Film",
-      "Schrijvers & Boeken",
-      "Muziek",
-      "Sprookjes & Volksverhalen",
-      "Gedichten & Versjes",
-      "Mens & Maatschappij",
-    ].freeze
+    DATA = {
+      "Godsdienst"                 => { fas_icon: "fa-praying-hands"      },
+      "Lichaam & Gezondheid"       => { fas_icon: "fa-heartbeat"          },
+      "Eten & Drinken"             => { fas_icon: "fa-utensils"           },
+      "Huis & Tuin"                => { fas_icon: "fa-home"               },
+      "Feest"                      => { fas_icon: "fa-birthday-cake"      },
+      "Hobby's"                    => { fas_icon: "fa-cut"                },
+      "Sport & Spel"               => { fas_icon: "fa-futbol"             },
+      "Beroepen"                   => { fas_icon: "fa-chalkboard-teacher" },
+      "Wetenschap & Techniek"      => { fas_icon: "fa-flask"              },
+      "Computers & Gamen & Online" => { fas_icon: "fa-desktop"            },
+      "Verkeer & Vervoer"          => { fas_icon: "fa-car-side"           },
+      "Natuur & Milieu"            => { fas_icon: "fa-tree"               },
+      "Dieren"                     => { fas_icon: "fa-paw"                },
+      "Landen & Volken"            => { fas_icon: "fa-globe-americas"     },
+      "Nederland"                  => { fas_icon: "fa-map-marked-alt"     },
+      "Kunst & Cultuur"            => { fas_icon: "fa-palette"            },
+      "Theater & Film"             => { fas_icon: "fa-theater-masks"      },
+      "Schrijvers & Boeken"        => { fas_icon: "fa-book-reader"        },
+      "Muziek"                     => { fas_icon: "fa-music"              },
+      "Sprookjes & Volksverhalen"  => { fas_icon: "fa-hat-wizard"         },
+      "Gedichten & Versjes"        => { fas_icon: "fa-feather-alt"        },
+      "Mens & Maatschappij"        => { fas_icon: "fa-users"              },
+    }.freeze
+
+    ALL = DATA.keys.freeze
+
+    def self.fas_icon_for(name)
+      DATA.fetch(name, { fas_icon: '' }).fetch(:fas_icon)
+    end
   end
 
   class << self
