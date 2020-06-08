@@ -3,9 +3,9 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :first_name, wrapper: :zurb_input
-    = f.input :middle_name, wrapper: :zurb_input
-    = f.input :last_name, wrapper: :zurb_input
+    = f.input :first_name
+    = f.input :middle_name
+    = f.input :last_name
 
   .form-actions
     = f.submit t('button.submit'), class: 'button'

@@ -1,11 +1,3 @@
-# frozen_string_literal: true
-#
-# Uncomment this and change the path if necessary to include your own
-# components.
-# See https://github.com/plataformatec/simple_form#custom-components to know
-# more about custom components.
-# Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
-#
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
@@ -14,7 +6,7 @@ SimpleForm.setup do |config|
   # stack. The options given below are used to wrap the
   # whole input.
   config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -36,11 +28,7 @@ SimpleForm.setup do |config|
     # extensions by default, you can change `b.optional` to `b.use`.
 
     # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
     b.optional :maxlength
-
-    # Calculate minlength from length validations for string inputs
-    b.optional :minlength
 
     # Calculates pattern from format validations for string inputs
     b.optional :pattern
@@ -52,7 +40,6 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
@@ -64,25 +51,8 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
-  config.wrappers :zurb_input, class: "input-group", hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
-    b.use :html5
-    b.use :placeholder
-
-    b.use :label, class: "input-group-label"
-    b.use :input, class: "input-group-field"
-
-    b.optional :maxlength
-    b.optional :minlength
-    b.optional :pattern
-    b.optional :min_max
-    b.optional :readonly
-
-    #b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    #b.use :error, wrap_with: { tag: :span, class: :error }
-  end
-
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :default
+  #config.default_wrapper = :default
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
@@ -91,7 +61,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  #config.button_class = 'btn'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -102,7 +72,10 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'error_notification'
+  #config.error_notification_class = 'error_notification'
+
+  # ID to add for error notification helper.
+  # config.error_notification_id = nil
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -137,7 +110,7 @@ SimpleForm.setup do |config|
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
-  # config.required_by_default = true
+  config.required_by_default = false
 
   # Tell browsers whether to use the native HTML5 validations (novalidate form option).
   # These validations are enabled in SimpleForm's internal config but disabled by default
@@ -147,7 +120,7 @@ SimpleForm.setup do |config|
   config.browser_validations = false
 
   # Collection of methods to detect if a file type was given.
-  # config.file_methods = [ :mounted_as, :file?, :public_filename, :attached? ]
+  # config.file_methods = [ :mounted_as, :file?, :public_filename ]
 
   # Custom mappings for input types. This should be a hash containing a regexp
   # to match as key, and the input type that will be used when the field name
@@ -189,10 +162,12 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+end
 
-  # Defines validation classes to the input_field. By default it's nil.
-  # config.input_field_valid_class = 'is-valid'
-  # config.input_field_error_class = 'is-invalid'
+class DatepickerInput < SimpleForm::Inputs::Base
+  def input(wrapper_options)
+    @builder.text_field(attribute_name, input_html_options)
+  end
 end
 
 class DatalistInput < SimpleForm::Inputs::CollectionSelectInput

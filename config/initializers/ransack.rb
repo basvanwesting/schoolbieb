@@ -1,3 +1,5 @@
+require 'ransack/helpers'
+
 Ransack.configure do |config|
   config.add_predicate 'eq_any_split_whitespace', # Name your predicate
     arel_predicate: 'in',
@@ -14,4 +16,13 @@ Ransack.configure do |config|
     compounds: false,
     wants_array: false,
     type: :string
+end
+
+Ransack::Helpers::FormBuilder.class_eval do
+  def submit_search_form
+    [
+      submit('Search', class: 'button small', id: 'search_button'),
+      @template.link_to('Reset', { reset_q: true }, class: 'search-reset button small secondary'),
+    ].join.html_safe
+  end
 end
