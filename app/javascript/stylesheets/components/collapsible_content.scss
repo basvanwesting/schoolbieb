@@ -1,0 +1,37 @@
+.collapsible-container {
+  .collapsible-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+
+    span::before {
+      content: '\f65d';
+      //@extend .fa, .fa-folder-minus;
+
+      font-family: "Font Awesome 5 Free";
+      padding-right: 1rem;
+      font-weight: 900;
+    }
+  }
+
+  &.collapsed {
+    .collapsible-title {
+      span::before {
+        content: '\f65e';
+        //@extend .fa, .fa-folder-plus;
+
+        font-family: "Font Awesome 5 Free";
+        padding-right: 1rem;
+        font-weight: 900;
+      }
+    }
+
+    .collapsible-content {
+      display: none;
+    }
+  }
+
+  .collapsible-container {
+    padding-left: 1em;
+  }
+}

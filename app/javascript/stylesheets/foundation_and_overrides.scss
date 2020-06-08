@@ -1,0 +1,47 @@
+@import '~foundation-sites/scss/util/util';
+@import 'foundation_settings';
+@import 'foundation-sites/scss/foundation';
+
+@include foundation-everything;
+@include foundation-prototype-sizing;
+
+.input.error {
+  label {
+    @extend .is-invalid-label;
+  }
+
+  input,
+  textarea,
+  select {
+    @extend .is-invalid-input;
+  }
+
+  small.error {
+    @extend .form-error;
+    @extend .is-visible;
+  }
+}
+
+nav.top-bar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.top-bar .menu-text {
+  color: $white;
+}
+
+.top-bar a {
+  color: $white;
+}
+.top-bar a:hover {
+  background-color: $primary-color;
+}
+
+.dropdown.menu > li > a {
+  padding: 1rem 1rem;
+}
+
+.menu .menu-text {
+  padding: 1rem 1rem;
+}

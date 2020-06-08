@@ -1,0 +1,21 @@
+tr.search {
+  .search-reset {
+    display: none;
+  }
+
+  #search_button {
+    margin: $button-margin;
+  }
+
+  input, select {
+    margin: 0;
+  }
+
+  &.conditions-present {
+    background-color: #7af !important;
+
+    .search-reset {
+      display: inline-block;
+    }
+  }
+}

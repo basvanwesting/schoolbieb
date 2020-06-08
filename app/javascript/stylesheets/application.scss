@@ -1,0 +1,57 @@
+
+@import "./foundation_and_overrides";
+@import "./select2_foundation";
+@import "./scaffolds";
+
+@import "./components/collapsible_content";
+@import "./components/search";
+
+fieldset.with_border {
+  border: 2px solid #aaa;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  margin-bottom: 1em;
+  padding: 1em;
+  /*background: #f8f8f8;*/
+}
+
+legend {
+  width: auto;
+  border: 0px;
+}
+
+table {
+  text-align: left;
+}
+
+.squeeze {
+  width: 1%;
+  white-space: nowrap;
+}
+
+table.condensed {
+  width: 0%;
+}
+
+@media print {
+  #header, #footer, #nav, header, footer, nav {
+    display: none !important;
+  }
+
+  .no-print, .no-print * {
+    display: none !important;
+  }
+
+  .actions {
+    display: none !important;
+  }
+
+  a[href]:after {
+    display: none !important;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+}
