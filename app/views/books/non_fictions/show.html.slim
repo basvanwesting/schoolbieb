@@ -19,7 +19,7 @@ table.hover.unstriped.condensed.text-left
       td = @book.part
     tr
       th = Book.human_attribute_name(:category)
-      td = @book.category
+      td = category_with_icon(@book.category)
     tr
       th = Book.human_attribute_name(:tags)
       td = @book.tags.to_sentence

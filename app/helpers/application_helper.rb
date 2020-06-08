@@ -15,4 +15,11 @@ module ApplicationHelper
     from_item = 0 if records.total_count.zero?
     "#{from_item} - #{to_item} / #{records.total_count}"
   end
+
+  def category_with_icon(category)
+    [
+      content_tag(:i, nil, class: "fas #{Book::NonFiction::Categories.fas_icon_for(category)}", style: "margin-right: 1rem"),
+      content_tag(:span, category),
+    ].join.html_safe
+  end
 end
