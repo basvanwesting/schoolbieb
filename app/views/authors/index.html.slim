@@ -2,7 +2,7 @@ h1 = t('action.index', models: Author.model_name.human.pluralize)
 
 = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
 
-= search_form_for @q do |f|
+= inline_search_form_for @q do |f|
   table
     thead
       tr
@@ -10,14 +10,13 @@ h1 = t('action.index', models: Author.model_name.human.pluralize)
         th = sort_link(@q, :first_name,  Author.human_attribute_name(:first_name))
         th = sort_link(@q, :middle_name, Author.human_attribute_name(:middle_name))
         th.actions
+          i.fas.fa-search
           = search_result_info(@authors)
-      tr
-        th= f.text_field :last_name_cont, placeholder: t('placeholder.cont')
-        th= f.text_field :first_name_cont, placeholder: t('placeholder.cont')
-        th= f.text_field :middle_name_cont, placeholder: t('placeholder.cont')
-        th.actions
-          = f.submit class: 'button'
-          = link_to t('button.reset'), authors_path, class: 'button secondary'
+      = search_row do
+        th= f.input :last_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :first_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :middle_name_cont, placeholder: t('placeholder.cont')
+        th.actions= f.submit_search_form
 
     tbody
       - @authors.each do |author|
