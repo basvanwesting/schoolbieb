@@ -18,10 +18,7 @@ export default class extends Controller {
   }
 
   debouncedInputTitle() {
-    debounce(
-      () => { this.inputTitle() },
-      300
-    )()
+    debounce(this.inputTitle.bind(this), 300)()
   }
 
   clearTitleOptions() {
