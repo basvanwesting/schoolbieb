@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.x'
 gem 'bootsnap', require: false
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
-gem 'webpacker'
+gem 'webpacker', '~> 5.x'
 gem 'turbolinks'
 gem 'jbuilder'
 
