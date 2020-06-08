@@ -9,7 +9,7 @@ export default class extends Controller {
     ]
   }
 
-  handleInputTitle() {
+  inputTitle() {
     if (this.titleTarget.value.length > 3) {
       this.updateTitleOptions()
     } else {
@@ -17,8 +17,11 @@ export default class extends Controller {
     }
   }
 
-  inputTitle() {
-    debounce(this.handleInputTitle(), 300)
+  debouncedInputTitle() {
+    debounce(
+      () => { this.inputTitle() },
+      300
+    )()
   }
 
   clearTitleOptions() {
