@@ -54,7 +54,7 @@ RSpec.describe Book, type: :model do
        ID;Type;Titel;Reeks;Deel;Categorie;Leesniveau;AVI niveau;Sticker bijwerken?;Auteur ID;Auteur Voornaam;Auteur Tussenvoegsel;Auteur Achternaam
        1;Leesboek;book1;;;;;;true;1;John;;Doe
        2;Leesboek;book2;;;;;;true;1;John;;Doe
-       4;Infoboek;book3;;;Godsdienst;;;true;;;;
+       4;Infoboek;book3;;;Beroepen;;;true;;;;
       DOC
     end
 
