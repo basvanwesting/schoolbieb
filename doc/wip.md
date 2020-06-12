@@ -1,4 +1,3 @@
-* add search#q storage in session
 * add exception notification
 * add feature specs
 * refactor ajax to allow for auther lookup in the same manner

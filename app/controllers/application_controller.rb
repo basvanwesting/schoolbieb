@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
     raise 'This is a test. This is only a test.'
   end
 
+  helper_method :ransack_filter_present?
+
+  private
+
+  def ransack_filter_present?
+    params[:q].present? && !params[:reset_q].present?
+  end
+
   def store_or_reset_params_q
     session_key = "#{controller_path}_q"
     session[session_key] = nil if params[:reset_q].present?
