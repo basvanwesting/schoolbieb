@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :non_fictions
   end
 
+  namespace :lending do
+    resources :borrows, only: [:new, :create]
+  end
+
   resources :authors
   resources :lenders
   resources :loans

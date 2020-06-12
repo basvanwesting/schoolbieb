@@ -78,7 +78,7 @@ nl:
       models:
         lending/borrow:
           attributes:
-            book:
+            book_id:
               may_not_borrow: kan niet uitgeleend worden
 
     models:
