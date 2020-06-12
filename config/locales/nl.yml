@@ -73,7 +73,14 @@ nl:
       destroy:
         success: 'Uitlening is succesvol verwijderd'
 
-  activerecord:
+  activemodel:
+    errors:
+      models:
+        lending/borrow:
+          attributes:
+            book:
+              may_not_borrow: kan niet uitgeleend worden
+
     models:
       book:
         one: Boek
