@@ -3,6 +3,9 @@ p#notice = notice
 table.hover.unstriped.condensed.text-left
   tbody
     tr
+      th = Book.human_attribute_name(:state)
+      td = @book.state
+    tr
       th = Book.human_attribute_name(:sti_type)
       td = @book.class.model_name.human
     tr

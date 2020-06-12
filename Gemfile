@@ -12,7 +12,8 @@ gem 'webpacker', '~> 5.x'
 gem 'turbolinks'
 gem 'jbuilder'
 
-gem "slim-rails"
+gem 'aasm'
+gem 'slim-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'ransack'

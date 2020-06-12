@@ -3,9 +3,6 @@ p#notice = notice
 table.hover.unstriped.condensed.text-left
   tbody
     tr
-      th = Loan.human_attribute_name(:state)
-      td = @loan.state
-    tr
       th = "#{Book.model_name.human} #{Book.human_attribute_name(:sti_type)}"
       td = @loan.book.model_name.human
     tr

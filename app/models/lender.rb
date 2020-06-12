@@ -1,4 +1,5 @@
 class Lender < ApplicationRecord
+  has_many :loans
 
   def full_name
     [

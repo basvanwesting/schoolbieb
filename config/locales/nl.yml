@@ -114,6 +114,7 @@ nl:
         category: Categorie
         tags: Labels
         sticker_pending: Sticker bijwerken?
+        state: Status
       lender:
         identifier: School ID
         first_name: Voornaam
@@ -127,5 +128,4 @@ nl:
         lending_date: Uitleendatum
         due_date: Retourdatum
         return_date: Ingeleverd op
-        state: Status
 

@@ -1,7 +1,12 @@
 require 'csv'
 class Book < ApplicationRecord
-  validates :title, presence: true
+  include AASM
+
   belongs_to :author, optional: true
+  has_many :loans
+
+  validates :title, presence: true
+
   delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true, allow_nil: true
   delegate :human, to: :model_name, prefix: true
 
@@ -26,6 +31,18 @@ class Book < ApplicationRecord
       E7
       PLUS
     ].freeze
+  end
+
+  aasm column: :state do
+    state :pending, initial: true
+    state :available
+    state :borrowed
+    state :disabled
+
+    event(:enable)  { transitions from: [:pending,:disabled], to: :available }
+    event(:borrow)  { transitions from: :available,           to: :borrowed  }
+    event(:receive) { transitions from: :borrowed,            to: :available }
+    event(:disable) { transitions from: :available,           to: :disabled  }
   end
 
   def to_s

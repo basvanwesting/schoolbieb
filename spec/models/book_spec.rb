@@ -2,6 +2,23 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
 
+  describe 'AASM' do
+    subject { FactoryBot.create(:book, reading_level: 'A', avi_level: 'M3') }
+
+    it 'has a life cycle' do
+      expect(subject).to be_pending
+      subject.enable!
+      expect(subject).to be_available
+      subject.borrow!
+      expect(subject).to be_borrowed
+      subject.receive!
+      expect(subject).to be_available
+
+      expect { subject.receive! }.to raise_error(AASM::InvalidTransition)
+    end
+
+  end
+
   describe 'sticker_pending' do
     let!(:author1) { FactoryBot.create(:author, id: 1, first_name: 'Foo') }
     let!(:author2) { FactoryBot.create(:author, id: 2, first_name: 'Bar') }

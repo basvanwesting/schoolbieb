@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_134945) do
+ActiveRecord::Schema.define(version: 2020_06_12_141749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_06_12_134945) do
     t.string "sti_type"
     t.string "category"
     t.string "tags", default: [], array: true
+    t.string "state"
+    t.boolean "overdue", default: false
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["tags"], name: "index_books_on_tags", using: :gin
   end
@@ -53,7 +55,6 @@ ActiveRecord::Schema.define(version: 2020_06_12_134945) do
   create_table "loans", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "lender_id"
-    t.string "state"
     t.date "lending_date"
     t.date "due_date"
     t.datetime "created_at", null: false
