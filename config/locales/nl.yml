@@ -126,5 +126,6 @@ nl:
         lender_id: Kind
         lending_date: Uitleendatum
         due_date: Retourdatum
+        return_date: Ingeleverd op
         state: Status
 
