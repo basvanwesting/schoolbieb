@@ -15,4 +15,9 @@ class Lender < ApplicationRecord
     ].select(&:present?).join(' ')
   end
 
+  def to_s
+    "#{full_name} (#{group_name})"
+  end
+
+
 end

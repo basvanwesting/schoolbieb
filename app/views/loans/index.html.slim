@@ -1,0 +1,53 @@
+h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
+
+= link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
+
+= inline_search_form_for @q do |f|
+  table
+    thead
+      tr
+        th = sort_link(@q, :state,             Loan.human_attribute_name(:state))
+        th = sort_link(@q, :book_sti_type, "#{Book.model_name.human} #{Book.human_attribute_name(:sti_type)}")
+        th = sort_link(@q, :book_id,       "#{Book.model_name.human} #{Book.human_attribute_name(:id)}")
+        th = sort_link(@q, :book_title,        Book.human_attribute_name(:title))
+        th = sort_link(@q, :lender_first_name, Lender.human_attribute_name(:first_name))
+        th = sort_link(@q, :lender_last_name,  Lender.human_attribute_name(:last_name))
+        th = sort_link(@q, :lender_group_name, Lender.human_attribute_name(:group_name))
+        th = sort_link(@q, :lending_date,      Loan.human_attribute_name(:lending_date))
+        th = sort_link(@q, :due_date,          Loan.human_attribute_name(:due_date))
+        th.actions
+          i.fas.fa-search
+          = search_result_info(@loans)
+      = search_row do
+        th= f.input :state_eq, placeholder: t('placeholder.eq')
+        th = f.input :book_sti_type_eq, collection: Book.classes.map { |k| [k.model_name.human, k.name] }, include_blank: ' - '
+        th= f.input :book_id_eq, placeholder: t('placeholder.eq')
+        th= f.input :book_title_cont,        placeholder: t('placeholder.cont')
+        th= f.input :lender_first_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :lender_last_name_cont,  placeholder: t('placeholder.cont')
+        th= f.input :lender_group_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :lending_date_eq, as: :datepicker, placeholder: t('placeholder.eq')
+        th= f.input :due_date_eq,     as: :datepicker, placeholder: t('placeholder.eq')
+        th.actions= f.submit_search_form
+
+    tbody
+      - @loans.each do |loan|
+        tr
+          td = loan.state
+          td = loan.book.model_name.human
+          td = loan.book_id
+          td = loan.book_title
+          td = loan.lender_first_name
+          td = loan.lender_last_name
+          td = loan.lender_group_name
+          td = loan.lending_date
+          td = loan.due_date
+          td.actions
+            = link_to t('button.show'), loan, class: 'button tiny'
+            = link_to t('button.edit'), edit_loan_path(loan), class: 'button warning tiny'
+            = link_to t('button.destroy'), loan, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+
+br
+= paginate @loans
+= link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
+

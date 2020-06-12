@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :authors
   resources :lenders
+  resources :loans
 
   resources :titles,   only: :index
   resources :series,   only: :index

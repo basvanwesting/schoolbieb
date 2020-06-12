@@ -28,6 +28,10 @@ class Book < ApplicationRecord
     ].freeze
   end
 
+  def to_s
+    "#{title} (#{self.model_name.human}, #{id})"
+  end
+
   def update_sticker_pending!
     return unless (changes.keys & %w[title series part reading_level author_id]).present?
 

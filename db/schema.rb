@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_120104) do
+ActiveRecord::Schema.define(version: 2020_06_12_121612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 2020_06_12_120104) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "loans", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "lender_id"
+    t.string "state"
+    t.date "lending_date"
+    t.date "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_loans_on_book_id"
+    t.index ["lender_id"], name: "index_loans_on_lender_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,4 +75,6 @@ ActiveRecord::Schema.define(version: 2020_06_12_120104) do
   end
 
   add_foreign_key "books", "authors"
+  add_foreign_key "loans", "books"
+  add_foreign_key "loans", "lenders"
 end

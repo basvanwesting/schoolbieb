@@ -62,6 +62,17 @@ nl:
       success: '%{model} is succesvol bijgewerkt'
     destroy:
       success: '%{model} is succesvol verwijderd'
+    loan:
+      index: "Uitgeleende Boeken"
+      new: "Uitlenen"
+      edit: "Uitlening Aanpassen"
+      create:
+        success: 'Succesvol uitgeleend'
+      update:
+        success: 'Uitlening is succesvol bijgewerkt'
+      destroy:
+        success: 'Uitlening is succesvol verwijderd'
+
   activerecord:
     models:
       book:
@@ -79,6 +90,9 @@ nl:
       lender:
         one: Kind
         other: Kinderen
+      loan:
+        one: Uitlening
+        other: Uitleningen
     attributes:
       created_at: Aangemaakt op
       updated_at: Bijgewerkt op
@@ -107,4 +121,10 @@ nl:
         middle_name: Tussenvoegsel
         group_name: Groep
         full_name: Kind
+      loan:
+        book_id: Boek
+        lender_id: Kind
+        lending_date: Uitleendatum
+        due_date: Retourdatum
+        state: Status
 

@@ -1,0 +1,37 @@
+p#notice = notice
+
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th = Loan.human_attribute_name(:state)
+      td = @loan.state
+    tr
+      th = "#{Book.model_name.human} #{Book.human_attribute_name(:sti_type)}"
+      td = @loan.book.model_name.human
+    tr
+      th = "#{Book.model_name.human} #{Book.human_attribute_name(:id)}"
+      td = @loan.book_id
+    tr
+      th = Book.human_attribute_name(:title)
+      td = @loan.book_title
+    tr
+      th = Lender.human_attribute_name(:first_name)
+      td = @loan.lender_first_name
+    tr
+      th = Lender.human_attribute_name(:middle_name)
+      td = @loan.lender_middle_name
+    tr
+      th = Lender.human_attribute_name(:last_name)
+      td = @loan.lender_last_name
+    tr
+      th = Lender.human_attribute_name(:group_name)
+      td = @loan.lender_group_name
+    tr
+      th = Loan.human_attribute_name(:lending_date)
+      td = @loan.lending_date
+    tr
+      th = Loan.human_attribute_name(:due_date)
+      td = @loan.due_date
+
+= link_to t('button.edit'), edit_loan_path(@loan), class: 'button warning'
+= link_to t('button.back'), :back, class: 'button'

@@ -1,0 +1,14 @@
+= simple_form_for @loan do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :book, label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+    = f.association :lender, label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+    = f.input :state
+    = f.input :lending_date, as: :datepicker, value: f.object.lending_date || Date.today
+    = f.input :due_date, as: :datepicker, value: f.object.due_date || (Date.today + 14)
+
+  .form-actions
+    = f.submit t('button.submit'), class: 'button'
+    = link_to t('button.cancel'), :back, class: 'button secondary'
