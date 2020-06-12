@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :authors
+  resources :lenders
 
   resources :titles,   only: :index
   resources :series,   only: :index

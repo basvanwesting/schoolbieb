@@ -3,8 +3,8 @@ nav.top-bar
     ul.menu data-dropdown-menu=true
       li.menu-text SchoolBieb NVR
       - if user_signed_in?
-        li = link_to Author.model_name.human.pluralize, authors_path, tabindex: -1
-        li = link_to Book.model_name.human.pluralize, books_path, tabindex: -1
+        li = link_to Author.model_name.human(count: 2), authors_path, tabindex: -1
+        li = link_to Book.model_name.human(count: 2), books_path, tabindex: -1
         li = link_to 'Stickers', stickers_path, tabindex: -1
   .top-bar-right
     ul.menu

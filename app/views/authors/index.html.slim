@@ -1,4 +1,4 @@
-h1 = t('action.index', models: Author.model_name.human.pluralize)
+h1 = t('action.index', models: Author.model_name.human(count: 2))
 
 = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
 

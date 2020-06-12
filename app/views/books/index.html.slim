@@ -1,4 +1,4 @@
-h1 = t('action.index', models: Book.model_name.human.pluralize)
+h1 = t('action.index', models: Book.model_name.human(count: 2))
 
 = inline_search_form_for @q do |f|
   .grid-x

@@ -76,6 +76,9 @@ nl:
       author:
         one: Auteur
         other: Auteurs
+      lender:
+        one: Kind
+        other: Kinderen
     attributes:
       created_at: Aangemaakt op
       updated_at: Bijgewerkt op
@@ -97,3 +100,11 @@ nl:
         category: Categorie
         tags: Labels
         sticker_pending: Sticker bijwerken?
+      lender:
+        identifier: School ID
+        first_name: Voornaam
+        last_name: Achternaam
+        middle_name: Tussenvoegsel
+        group_name: Groep
+        full_name: Kind
+

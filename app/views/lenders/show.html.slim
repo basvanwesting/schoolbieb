@@ -1,0 +1,22 @@
+p#notice = notice
+
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th = Lender.human_attribute_name(:identifier)
+      td = @lender.identifier
+    tr
+      th = Lender.human_attribute_name(:first_name)
+      td = @lender.first_name
+    tr
+      th = Lender.human_attribute_name(:middle_name)
+      td = @lender.middle_name
+    tr
+      th = Lender.human_attribute_name(:last_name)
+      td = @lender.last_name
+    tr
+      th = Lender.human_attribute_name(:group_name)
+      td = @lender.group_name
+
+= link_to t('button.edit'), edit_lender_path(@lender), class: 'button warning'
+= link_to t('button.back'), :back, class: 'button'

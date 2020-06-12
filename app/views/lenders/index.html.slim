@@ -1,0 +1,41 @@
+h1 = t('action.index', models: Lender.model_name.human(count: 2))
+
+= link_to t('action.new', model: Lender.model_name.human), new_lender_path, class: 'button'
+
+= inline_search_form_for @q do |f|
+  table
+    thead
+      tr
+        th = sort_link(@q, :identifier,  Lender.human_attribute_name(:identifier))
+        th = sort_link(@q, :last_name,   Lender.human_attribute_name(:last_name))
+        th = sort_link(@q, :first_name,  Lender.human_attribute_name(:first_name))
+        th = sort_link(@q, :middle_name, Lender.human_attribute_name(:middle_name))
+        th = sort_link(@q, :group_name,  Lender.human_attribute_name(:group_name))
+        th.actions
+          i.fas.fa-search
+          = search_result_info(@lenders)
+      = search_row do
+        th= f.input :identifier, placeholder: t('placeholder.cont')
+        th= f.input :last_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :first_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :middle_name_cont, placeholder: t('placeholder.cont')
+        th= f.input :group_name_cont, placeholder: t('placeholder.cont')
+        th.actions= f.submit_search_form
+
+    tbody
+      - @lenders.each do |lender|
+        tr
+          td = lender.identifier
+          td = lender.last_name
+          td = lender.first_name
+          td = lender.middle_name
+          td = lender.group_name
+          td.actions
+            = link_to t('button.show'), lender, class: 'button tiny'
+            = link_to t('button.edit'), edit_lender_path(lender), class: 'button warning tiny'
+            = link_to t('button.destroy'), lender, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+
+br
+= paginate @lenders
+= link_to t('action.new', model: Lender.model_name.human), new_lender_path, class: 'button'
+

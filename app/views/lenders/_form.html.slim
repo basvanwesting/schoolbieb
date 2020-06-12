@@ -1,0 +1,14 @@
+= simple_form_for @lender do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :identifier
+    = f.input :first_name
+    = f.input :middle_name
+    = f.input :last_name
+    = f.input :group_name
+
+  .form-actions
+    = f.submit t('button.submit'), class: 'button'
+    = link_to t('button.cancel'), :back, class: 'button secondary'
