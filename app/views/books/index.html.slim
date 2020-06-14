@@ -72,6 +72,10 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
             = link_to t('button.show'), book, class: 'button tiny'
             = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
             = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+            - if book.may_borrow?
+              = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: book.id }), class: 'button tiny'
+            - if book.may_return?
+              = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: book.id }), class: 'button tiny'
 
 br
 = paginate @books

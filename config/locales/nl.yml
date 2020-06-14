@@ -72,6 +72,11 @@ nl:
         success: 'Uitlening is succesvol bijgewerkt'
       destroy:
         success: 'Uitlening is succesvol verwijderd'
+    lending:
+      borrow:
+        success: 'Succesvol uitgeleend'
+      return:
+        success: 'Succesvol geretourneerd'
 
   activerecord:
     models:
@@ -130,6 +135,9 @@ nl:
         return_date: Ingeleverd op
 
   activemodel:
+    models:
+      lending/borrow: Uitlenen
+      lending/return: Retourneren
     errors:
       models:
         lending/borrow:

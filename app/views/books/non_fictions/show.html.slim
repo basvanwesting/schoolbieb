@@ -36,6 +36,11 @@ table.hover.unstriped.condensed.text-left
       th = Book.human_attribute_name(:sticker_pending)
       td = t(@book.sticker_pending)
 
+- if @book.may_borrow?
+  = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: @book.id }), class: 'button'
+- if @book.may_return?
+  = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: @book.id }), class: 'button'
+br
 = link_to t('button.edit'), edit_polymorphic_path(@book), class: 'button warning'
 = link_to t('button.destroy'), @book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert'
 - if @book.sticker_pending

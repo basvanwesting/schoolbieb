@@ -1,3 +1,5 @@
+h1 = Lending::Return.model_name.human
+
 = simple_form_for @lending_return do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
