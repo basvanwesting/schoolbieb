@@ -41,7 +41,7 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
           i.fas.fa-search
           = search_result_info(@books)
       = search_row do
-        th = f.input :state_eq, collection: Book.aasm.states, include_blank: ' - '
+        th = f.input :state_eq, collection: Book.aasm.states.map { |s| [Book.human_attribute_name("state.#{s}"), s] }, include_blank: ' - '
         th = f.input :id_eq,                 placeholder: t('placeholder.eq')
         th = f.input :sti_type_eq, collection: Book.classes.map { |k| [k.model_name.human, k.name] }, include_blank: ' - '
         th = f.input :title_cont,            placeholder: t('placeholder.cont')
@@ -57,7 +57,7 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
     tbody
       - @books.each do |book|
         tr
-          td = book.state
+          td = Book.human_attribute_name("state.#{book.state}")
           td = book.id.to_s.rjust(4,'0')
           td = book.class.model_name.human
           td = book.title

@@ -4,7 +4,7 @@ table.hover.unstriped.condensed.text-left
   tbody
     tr
       th = Book.human_attribute_name(:state)
-      td = @book.state
+      td = Book.human_attribute_name("state.#{@book.state}")
     tr
       th = Book.human_attribute_name(:sti_type)
       td = @book.class.model_name.human

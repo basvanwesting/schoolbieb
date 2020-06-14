@@ -120,6 +120,11 @@ nl:
         tags: Labels
         sticker_pending: Sticker bijwerken?
         state: Status
+      book/state:
+        pending: Invoeren
+        available: Beschikbaar
+        borrowed: Uitgeleend
+        disabled: Geblokkeerd
       lender:
         identifier: School ID
         first_name: Voornaam
