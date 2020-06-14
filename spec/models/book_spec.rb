@@ -11,10 +11,10 @@ RSpec.describe Book, type: :model do
       expect(subject).to be_available
       subject.borrow!
       expect(subject).to be_borrowed
-      subject.receive!
+      subject.return!
       expect(subject).to be_available
 
-      expect { subject.receive! }.to raise_error(AASM::InvalidTransition)
+      expect { subject.return! }.to raise_error(AASM::InvalidTransition)
     end
 
   end

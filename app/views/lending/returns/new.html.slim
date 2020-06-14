@@ -1,0 +1,10 @@
+= simple_form_for @lending_return do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :book_id, collection: Book.all, label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+
+  .form-actions
+    = f.submit t('button.submit'), class: 'button'
+    = link_to t('button.cancel'), :back, class: 'button secondary'

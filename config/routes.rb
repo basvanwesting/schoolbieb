@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :lending do
     resources :borrows, only: [:new, :create]
+    resources :returns, only: [:new, :create]
   end
 
   resources :authors

@@ -136,4 +136,9 @@ nl:
           attributes:
             book_id:
               may_not_borrow: kan niet uitgeleend worden
+        lending/return:
+          attributes:
+            book_id:
+              may_not_return: kan niet geretourneerd worden
+              loan_not_found: uitlening kan niet gevonden worden
 
