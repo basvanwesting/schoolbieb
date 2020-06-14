@@ -46,7 +46,7 @@ class Book < ApplicationRecord
   end
 
   def to_s
-    "#{title} (#{self.model_name.human}, #{id})"
+    "#{title} (#{model_name_human}, #{id})"
   end
 
   def update_sticker_pending!

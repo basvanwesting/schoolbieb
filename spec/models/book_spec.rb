@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Book, type: :model do
 
   describe 'AASM' do
-    subject { FactoryBot.create(:book, reading_level: 'A', avi_level: 'M3') }
+    subject { FactoryBot.create(:book, reading_level: 'A', avi_level: 'M3', state: 'pending') }
 
     it 'has a life cycle' do
       expect(subject).to be_pending

@@ -73,14 +73,7 @@ nl:
       destroy:
         success: 'Uitlening is succesvol verwijderd'
 
-  activemodel:
-    errors:
-      models:
-        lending/borrow:
-          attributes:
-            book_id:
-              may_not_borrow: kan niet uitgeleend worden
-
+  activerecord:
     models:
       book:
         one: Boek
@@ -135,4 +128,12 @@ nl:
         lending_date: Uitleendatum
         due_date: Retourdatum
         return_date: Ingeleverd op
+
+  activemodel:
+    errors:
+      models:
+        lending/borrow:
+          attributes:
+            book_id:
+              may_not_borrow: kan niet uitgeleend worden
 
