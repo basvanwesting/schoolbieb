@@ -53,7 +53,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     #b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    #b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
   config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'row' do |b|
@@ -136,5 +136,5 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'callout alert'
 
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :horizontal_input_group_form
+  config.default_wrapper = :vertical_form
 end

@@ -19,6 +19,10 @@ class Lending::ReturnsController < ApplicationController
   private
 
     def lending_return_params
-      params.require(:lending_return).permit(:book_id)
+      if params[:lending_return].present?
+        params.require(:lending_return).permit(:book_id)
+      else
+        {}
+      end
     end
 end

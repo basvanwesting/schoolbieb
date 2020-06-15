@@ -143,6 +143,13 @@ nl:
     models:
       lending/borrow: Uitlenen
       lending/return: Retourneren
+    attributes:
+      lending/borrow:
+        book_id: Boek
+        lender_id: Kind
+        due_date: Retourdatum
+      lending/return:
+        book_id: Boek
     errors:
       models:
         lending/borrow:

@@ -19,6 +19,10 @@ class Lending::BorrowsController < ApplicationController
   private
 
     def lending_borrow_params
-      params.require(:lending_borrow).permit(:book_id, :lender_id, :due_date)
+      if params[:lending_borrow].present?
+        params.require(:lending_borrow).permit(:book_id, :lender_id, :due_date)
+      else
+        {}
+      end
     end
 end
