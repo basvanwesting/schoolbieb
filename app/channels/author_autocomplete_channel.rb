@@ -7,8 +7,8 @@ class AuthorAutocompleteChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def search(*args)
-    p "called AuthorAutocompleteChannel#search with: #{args.inspect}"
-    AuthorAutocompleteChannel.broadcast_to(current_user, ["AuthorAutocompleteChannel#search", current_user.id])
+  def search(filter)
+    data = Author.ransack(filter).result(distinct: true).map { |author| { id: author.id, full_name: author.full_name } }
+    broadcast_to(current_user, data)
   end
 end
