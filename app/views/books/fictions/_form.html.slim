@@ -4,14 +4,14 @@
 
   .form-inputs data-controller="book-form"
     datalist#titles data-target="book-form.titleList"
+    datalist#series data-target="book-form.seriesList"
     datalist#authors data-target="book-form.authorList"
 
     /= f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
     = f.input :author_id, as: :string, input_html: { list: :authors, data: { target: 'book-form.author', action: 'input->book-form#debouncedInputAuthor' } }
 
-    /= f.input :title, collection: [@book.title], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: titles_path(format: :json),       tags: true, 'minimum-input-length': 3 } }
     = f.input :title, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedInputTitle' } }
-    = f.input :series, collection: [@book.series], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: series_index_path(format: :json), tags: true, 'minimum-input-length': 3 } }
+    = f.input :series, input_html: { list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedInputSeries' } }
     = f.input :part
     = f.input :reading_level, collection: Book::ReadingLevels::ALL, input_html: { class: 'js-select2' }
     = f.input :avi_level, collection: Book::AviLevels::ALL, input_html: { class: 'js-select2' }

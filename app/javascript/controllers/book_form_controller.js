@@ -7,6 +7,8 @@ export default class extends Controller {
     return [
       "title",
       "titleList",
+      "series",
+      "seriesList",
       "author",
       "authorList",
     ]
@@ -45,11 +47,22 @@ export default class extends Controller {
       },
       received(data) {
         console.log(`BookAutocompleteChannel received: ${data}`)
-        bookFormController.setTitleOptions(data)
+        switch(data.action) {
+          case 'search_title':
+            bookFormController.setTitleOptions(data.titles)
+            break
+          case 'search_series':
+            bookFormController.setSeriesOptions(data.series)
+            break
+          default:
+            console.log(`Unknown action for BookAutocompleteChannel#received ${data}`)
+        }
       },
       search_title(filter) {
-        // Calls `AppearanceChannel#away` on the server.
         this.perform("search_title", filter)
+      },
+      search_series(filter) {
+        this.perform("search_series", filter)
       },
     })
   }
@@ -90,6 +103,44 @@ export default class extends Controller {
 
   updateTitleOptions() {
     this.bookAutocompleteChannel.search_title({ title_cont: this.titleTarget.value })
+  }
+
+  ///////////////////// Book#series //////////////////
+
+  inputSeries() {
+    console.log('call inputSeries')
+    if (this.seriesTarget.value.length > 2) {
+      this.updateSeriesOptions()
+    } else {
+      this.clearSeriesOptions()
+    }
+  }
+
+  debouncedInputSeries = debounce(this.inputSeries, 300)
+
+  clearSeriesOptions() {
+    while (this.seriesListTarget.hasChildNodes()) {
+      this.seriesListTarget.removeChild(this.seriesListTarget.firstChild)
+    }
+  }
+
+  setSeriesOptions(seriess) {
+    if (seriess.length === 1 && seriess[0] === this.seriesTarget.value) {
+      this.clearSeriesOptions()
+    } else {
+      const newOptions = seriess.map(v => {
+        const opt = document.createElement("option")
+        opt.value = v
+        return opt
+      })
+      $(this.seriesListTarget)
+        .empty()
+        .append(newOptions)
+    }
+  }
+
+  updateSeriesOptions() {
+    this.bookAutocompleteChannel.search_series({ series_cont: this.seriesTarget.value })
   }
 
   ///////////////////// AUTHOR //////////////////
