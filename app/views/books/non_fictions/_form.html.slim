@@ -4,14 +4,15 @@
 
   .form-inputs data-controller="book-form"
     datalist#titles data-target="book-form.titleList"
+    datalist#series data-target="book-form.seriesList"
 
-    = f.input :category, collection: Book::NonFiction::Categories::ALL, input_html: { class: 'js-select2' }
-    = f.input :title, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#inputTitle' } }
-    = f.input :series, collection: [@book.series], include_blank: true, input_html: { class: 'js-select2-ajax', data: { ajax__url: series_index_path(format: :json), tags: true, 'minimum-input-length': 3 } }
+    = f.input :category, collection: Book::NonFiction::Categories::ALL
+    = f.input :title, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedInputTitle' } }
+    = f.input :series, input_html: { list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedInputSeries' } }
     = f.input :part
     = f.input :tags, collection: Book::NonFiction.sorted_existing_tags, input_html: { multiple: true, class: 'js-select2-free-tags' }
-    = f.input :reading_level, collection: Book::ReadingLevels::ALL, input_html: { class: 'js-select2' }
-    = f.input :avi_level, collection: Book::AviLevels::ALL, input_html: { class: 'js-select2' }
+    = f.input :reading_level, collection: Book::ReadingLevels::ALL
+    = f.input :avi_level, collection: Book::AviLevels::ALL
 
   .form-actions
     = f.button :submit, class: 'button'

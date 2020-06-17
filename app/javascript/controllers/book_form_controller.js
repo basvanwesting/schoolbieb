@@ -2,14 +2,17 @@ import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
 import { debounce } from "lodash"
 
+const RESULT_LIMIT = 25
 export default class extends Controller {
+
   static get targets() {
     return [
       "title",
       "titleList",
       "series",
       "seriesList",
-      "author",
+      "authorId",
+      "authorFullName",
       "authorList",
     ]
   }
@@ -70,7 +73,6 @@ export default class extends Controller {
   ///////////////////// Book#title //////////////////
 
   inputTitle() {
-    console.log('call inputTitle')
     if (this.titleTarget.value.length > 3) {
       this.updateTitleOptions()
     } else {
@@ -89,6 +91,12 @@ export default class extends Controller {
   setTitleOptions(titles) {
     if (titles.length === 1 && titles[0] === this.titleTarget.value) {
       this.clearTitleOptions()
+    } else if (titles.length >= RESULT_LIMIT) {
+      const opt = document.createElement("option")
+      opt.value = `${this.titleTarget.value}... Too many results (${titles.length}), type more`
+      $(this.titleListTarget)
+        .empty()
+        .append(opt)
     } else {
       const newOptions = titles.map(v => {
         const opt = document.createElement("option")
@@ -108,7 +116,6 @@ export default class extends Controller {
   ///////////////////// Book#series //////////////////
 
   inputSeries() {
-    console.log('call inputSeries')
     if (this.seriesTarget.value.length > 2) {
       this.updateSeriesOptions()
     } else {
@@ -124,11 +131,17 @@ export default class extends Controller {
     }
   }
 
-  setSeriesOptions(seriess) {
-    if (seriess.length === 1 && seriess[0] === this.seriesTarget.value) {
+  setSeriesOptions(series) {
+    if (series.length === 1 && series[0] === this.seriesTarget.value) {
       this.clearSeriesOptions()
+    } else if (series.length >= RESULT_LIMIT) {
+      const opt = document.createElement("option")
+      opt.value = `${this.seriesTarget.value}... Too many results (${series.length}), type more`
+      $(this.seriesListTarget)
+        .empty()
+        .append(opt)
     } else {
-      const newOptions = seriess.map(v => {
+      const newOptions = series.map(v => {
         const opt = document.createElement("option")
         opt.value = v
         return opt
@@ -146,7 +159,7 @@ export default class extends Controller {
   ///////////////////// AUTHOR //////////////////
 
   inputAuthor() {
-    if (this.authorTarget.value.length > 1) {
+    if (this.authorFullNameTarget.value.length > 1) {
       this.updateAuthorOptions()
     } else {
       this.clearAuthorOptions()
@@ -162,19 +175,31 @@ export default class extends Controller {
   }
 
   setAuthorOptions(data) {
-    this.clearAuthorOptions()
-    if (data.length === 1 && data[0].id == this.authorTarget.value) { return }
-
-    data.forEach(author => {
-      console.log(author)
+    if (data.length === 1 && data[0].full_name === this.authorFullNameTarget.value) {
+      this.authorIdTarget.value = data[0].id
+      this.clearAuthorOptions()
+    } else if (data.length >= RESULT_LIMIT) {
+      this.authorIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = author.id
-      opt.text = author.full_name
-      this.authorListTarget.appendChild(opt)
-    })
+      opt.value = `${this.authorFullNameTarget.value}... Too many results (${data.length}), type more`
+      $(this.authorListTarget)
+        .empty()
+        .append(opt)
+    } else {
+      this.authorIdTarget.value = ''
+      const newOptions = data.map(author => {
+        const opt = document.createElement("option")
+        opt.value = author.full_name
+        //opt.setAttribute("author_id", author.id)
+        return opt
+      })
+      $(this.authorListTarget)
+        .empty()
+        .append(newOptions)
+    }
   }
 
   updateAuthorOptions() {
-    this.authorAutocompleteChannel.search({ last_name_cont: this.authorTarget.value })
+    this.authorAutocompleteChannel.search({ id_author_wildcard: this.authorFullNameTarget.value })
   }
 }

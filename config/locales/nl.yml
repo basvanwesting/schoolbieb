@@ -116,6 +116,7 @@ nl:
         reading_level: Leesniveau
         avi_level: AVI niveau
         author: Auteur
+        author_full_name: Auteur
         category: Categorie
         tags: Labels
         sticker_pending: Sticker bijwerken?

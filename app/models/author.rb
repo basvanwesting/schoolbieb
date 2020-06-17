@@ -31,6 +31,7 @@ class Author < ApplicationRecord
       clause = terms.map do |term|
         [
           %i[authors first_name],
+          %i[authors middle_name],
           %i[authors last_name],
         ].map do |table, field|
           "#{table}.#{field} ilike '%#{term}%'"
