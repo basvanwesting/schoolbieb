@@ -13,7 +13,7 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
     .cell.medium-8
       = f.input :id_book_wildcard,
         placeholder: t( \
-          'placeholder.book_wildcard', \
+          'placeholder.wildcard', \
           attributes: [ \
             Book.human_attribute_name(:title), \
             Book.human_attribute_name(:series), \

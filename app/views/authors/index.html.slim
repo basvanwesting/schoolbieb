@@ -1,8 +1,20 @@
 h1 = t('action.index', models: Author.model_name.human(count: 2))
 
-= link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
 
 = inline_search_form_for @q do |f|
+  .grid-x
+    .cell.medium-4
+      = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
+    .cell.medium-8
+      = f.input :id_author_wildcard,
+        placeholder: t( \
+          'placeholder.wildcard', \
+          attributes: [ \
+            Author.human_attribute_name(:first_name), \
+            Author.human_attribute_name(:middle_name), \
+            Author.human_attribute_name(:last_name), \
+          ].to_sentence \
+        )
   table
     thead
       tr
