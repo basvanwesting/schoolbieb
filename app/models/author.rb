@@ -26,7 +26,6 @@ class Author < ApplicationRecord
 
   class << self
     def wildcard_search(v)
-      p v
       terms = v.split.map(&:upcase)
       clause = terms.map do |term|
         [
