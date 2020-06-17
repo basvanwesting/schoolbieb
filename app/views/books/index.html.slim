@@ -11,9 +11,9 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
         class: 'button',
         data: { disable_with: false }
     .cell.medium-8
-      = f.input :id_wildcard,
+      = f.input :id_book_wildcard,
         placeholder: t( \
-          'placeholder.wildcard', \
+          'placeholder.book_wildcard', \
           attributes: [ \
             Book.human_attribute_name(:title), \
             Book.human_attribute_name(:series), \

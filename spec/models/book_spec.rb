@@ -56,6 +56,19 @@ RSpec.describe Book, type: :model do
 
   end
 
+  context 'ransack id_book_wildcard' do
+    let!(:book_1) { FactoryBot.create(:book, title: 'Borre en de beer', series: 'Op pad') }
+    let!(:book_2) { FactoryBot.create(:book, title: 'Beer en Kaas',     series: 'Dieren')       }
+    let!(:book_3) { FactoryBot.create(:book, title: 'Borre op de Koe',  series: 'Op pad') }
+
+    it 'searches' do
+      expect(Book.ransack(id_book_wildcard: 'beer').result).to            match_array [book_1, book_2]
+      expect(Book.ransack(id_book_wildcard: 'borre').result).to           match_array [book_1, book_3]
+      expect(Book.ransack(id_book_wildcard: 'pad').result).to             match_array [book_1, book_3]
+      expect(Book.ransack(id_book_wildcard: 'Borre op de Koe').result).to match_array [book_3]
+    end
+  end
+
   describe '.to_csv' do
     before do
       FactoryBot.create(:author, id: 1)

@@ -51,7 +51,7 @@ nl:
     cont: 'bevat'
     eq: 'gelijk aan'
     eq_any_split_whitespace: 'lijst gescheiden door spaties'
-    wildcard: 'Snelzoeken op %{attributes}'
+    book_wildcard: 'Snelzoeken op %{attributes}'
   action:
     index: "Lijst van %{models}"
     new: "%{model} Aanmaken"

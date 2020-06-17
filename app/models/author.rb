@@ -23,4 +23,20 @@ class Author < ApplicationRecord
   def abbr_last_name
     last_name[0..2]
   end
+
+  class << self
+    def wildcard_search(v)
+      p v
+      terms = v.split.map(&:upcase)
+      clause = terms.map do |term|
+        [
+          %i[authors first_name],
+          %i[authors last_name],
+        ].map do |table, field|
+          "#{table}.#{field} ilike '%#{term}%'"
+        end.join(" or ")
+      end.map { |v| "(#{v})" }.join(" and ")
+      where(clause).pluck(:id)
+    end
+  end
 end

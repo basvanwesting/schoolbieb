@@ -9,9 +9,17 @@ Ransack.configure do |config|
     wants_array: false,
     type: :string
 
-  config.add_predicate 'wildcard', # Name your predicate
+  config.add_predicate 'book_wildcard', # Name your predicate
     arel_predicate: 'in',
     formatter: proc { |v| Book.wildcard_search(v) },
+    validator: proc { |v| v.present? },
+    compounds: false,
+    wants_array: false,
+    type: :string
+
+  config.add_predicate 'author_wildcard', # Name your predicate
+    arel_predicate: 'in',
+    formatter: proc { |v| Author.wildcard_search(v) },
     validator: proc { |v| v.present? },
     compounds: false,
     wants_array: false,
