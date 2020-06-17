@@ -20,52 +20,39 @@ export default class extends Controller {
   connect() {
     const bookFormController = this
 
-    this.authorAutocompleteChannel = consumer.subscriptions.create("AuthorAutocompleteChannel", {
+    this.autocompleteChannel = consumer.subscriptions.create("AutocompleteChannel", {
       connected() {
         // Called when the subscription is ready for use on the server
-        console.log("AuthorAutocompleteChannel connected")
+        console.log("AutocompleteChannel connected")
       },
       disconnected() {
         // Called when the subscription has been terminated by the server
-        console.log("AuthorAutocompleteChannel disconnected")
+        console.log("AutocompleteChannel disconnected")
       },
       received(data) {
-        console.log(`AuthorAutocompleteChannel received: ${data}`)
-        bookFormController.setAuthorOptions(data)
-      },
-      search(filter) {
-        // Calls `AppearanceChannel#away` on the server.
-        this.perform("search", filter)
-      },
-    })
-
-    this.bookAutocompleteChannel = consumer.subscriptions.create("BookAutocompleteChannel", {
-      connected() {
-        // Called when the subscription is ready for use on the server
-        console.log("BookAutocompleteChannel connected")
-      },
-      disconnected() {
-        // Called when the subscription has been terminated by the server
-        console.log("BookAutocompleteChannel disconnected")
-      },
-      received(data) {
-        console.log(`BookAutocompleteChannel received: ${data}`)
+        console.log(`AutocompleteChannel received: ${data}`)
         switch(data.action) {
-          case 'search_title':
+          case 'search_book_title':
             bookFormController.setTitleOptions(data.titles)
             break
-          case 'search_series':
+          case 'search_book_series':
             bookFormController.setSeriesOptions(data.series)
             break
+          case 'search_author':
+            bookFormController.setAuthorOptions(data.authors)
+            break
           default:
-            console.log(`Unknown action for BookAutocompleteChannel#received ${data}`)
+            console.log(`Unknown action for AutocompleteChannel#received ${data}`)
         }
       },
-      search_title(filter) {
-        this.perform("search_title", filter)
+      search_book_title(filter) {
+        this.perform("search_book_title", filter)
       },
-      search_series(filter) {
-        this.perform("search_series", filter)
+      search_book_series(filter) {
+        this.perform("search_book_series", filter)
+      },
+      search_author(filter) {
+        this.perform("search_author", filter)
       },
     })
   }
@@ -110,7 +97,7 @@ export default class extends Controller {
   }
 
   updateTitleOptions() {
-    this.bookAutocompleteChannel.search_title({ title_cont: this.titleTarget.value })
+    this.autocompleteChannel.search_book_title({ title_cont: this.titleTarget.value })
   }
 
   ///////////////////// Book#series //////////////////
@@ -153,7 +140,7 @@ export default class extends Controller {
   }
 
   updateSeriesOptions() {
-    this.bookAutocompleteChannel.search_series({ series_cont: this.seriesTarget.value })
+    this.autocompleteChannel.search_book_series({ series_cont: this.seriesTarget.value })
   }
 
   ///////////////////// AUTHOR //////////////////
@@ -174,20 +161,20 @@ export default class extends Controller {
     }
   }
 
-  setAuthorOptions(data) {
-    if (data.length === 1 && data[0].full_name === this.authorFullNameTarget.value) {
-      this.authorIdTarget.value = data[0].id
+  setAuthorOptions(authors) {
+    if (authors.length === 1 && authors[0].full_name === this.authorFullNameTarget.value) {
+      this.authorIdTarget.value = authors[0].id
       this.clearAuthorOptions()
-    } else if (data.length >= RESULT_LIMIT) {
+    } else if (authors.length >= RESULT_LIMIT) {
       this.authorIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = `${this.authorFullNameTarget.value}... Too many results (${data.length}), type more`
+      opt.value = `${this.authorFullNameTarget.value}... Too many results (${authors.length}), type more`
       $(this.authorListTarget)
         .empty()
         .append(opt)
     } else {
       this.authorIdTarget.value = ''
-      const newOptions = data.map(author => {
+      const newOptions = authors.map(author => {
         const opt = document.createElement("option")
         opt.value = author.full_name
         //opt.setAttribute("author_id", author.id)
@@ -200,6 +187,6 @@ export default class extends Controller {
   }
 
   updateAuthorOptions() {
-    this.authorAutocompleteChannel.search({ id_author_wildcard: this.authorFullNameTarget.value })
+    this.autocompleteChannel.search_author({ id_author_wildcard: this.authorFullNameTarget.value })
   }
 }
