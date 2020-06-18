@@ -62,116 +62,97 @@ export default class BookFormController extends Controller {
 
   ///////////////////// Book#title //////////////////
 
-  inputTitle() {
-    if (this.titleTarget.value.length > 3) {
-      this.updateTitleOptions()
-    } else {
-      this.clearTitleOptions()
-    }
+  refreshTitleOptions() {
+    this.autocompleteChannel.search_book_title({ title_cont: this.titleTarget.value })
   }
-
-  debouncedInputTitle = debounce(this.inputTitle, 300)
-
-  clearTitleOptions() {
-    while (this.titleListTarget.hasChildNodes()) {
-      this.titleListTarget.removeChild(this.titleListTarget.firstChild)
-    }
-  }
+  debouncedRefreshTitleOptions = debounce(this.refreshTitleOptions, 300)
 
   setTitleOptions(titles) {
     if (titles.length === 1 && titles[0] === this.titleTarget.value) {
-      this.clearTitleOptions()
-    } else if (titles.length >= RESULT_LIMIT) {
+      $(this.titleListTarget)
+        .empty()
+    } else if (titles.length < RESULT_LIMIT) {
+      const newOptions = titles.map(title => {
+        const opt = document.createElement("option")
+        opt.value = title
+        return opt
+      })
+      $(this.titleListTarget)
+        .empty()
+        .append(newOptions)
+    } else {
       const opt = document.createElement("option")
       opt.value = this.titleTarget.value
       opt.text = 'Too many results, filter more'
       $(this.titleListTarget)
         .empty()
         .append(opt)
-    } else {
-      const newOptions = titles.map(v => {
-        const opt = document.createElement("option")
-        opt.value = v
-        return opt
-      })
-      $(this.titleListTarget)
-        .empty()
-        .append(newOptions)
     }
-  }
-
-  updateTitleOptions() {
-    this.autocompleteChannel.search_book_title({ title_cont: this.titleTarget.value })
   }
 
   ///////////////////// Book#series //////////////////
 
-  inputSeries() {
-    if (this.seriesTarget.value.length > 2) {
-      this.updateSeriesOptions()
-    } else {
-      this.clearSeriesOptions()
-    }
+  refreshSeriesOptions() {
+    this.autocompleteChannel.search_book_series({ series_cont: this.seriesTarget.value })
   }
-
-  debouncedInputSeries = debounce(this.inputSeries, 300)
-
-  clearSeriesOptions() {
-    while (this.seriesListTarget.hasChildNodes()) {
-      this.seriesListTarget.removeChild(this.seriesListTarget.firstChild)
-    }
-  }
+  debouncedRefreshSeriesOptions = debounce(this.refreshSeriesOptions, 300)
 
   setSeriesOptions(series) {
     if (series.length === 1 && series[0] === this.seriesTarget.value) {
-      this.clearSeriesOptions()
-    } else if (series.length >= RESULT_LIMIT) {
+      $(this.seriesListTarget)
+        .empty()
+    } else if (series.length < RESULT_LIMIT) {
+      const newOptions = series.map(series => {
+        const opt = document.createElement("option")
+        opt.value = series
+        return opt
+      })
+      $(this.seriesListTarget)
+        .empty()
+        .append(newOptions)
+    } else {
       const opt = document.createElement("option")
       opt.value = this.seriesTarget.value
       opt.text = 'Too many results, filter more'
       $(this.seriesListTarget)
         .empty()
         .append(opt)
-    } else {
-      const newOptions = series.map(v => {
-        const opt = document.createElement("option")
-        opt.value = v
-        return opt
-      })
-      $(this.seriesListTarget)
-        .empty()
-        .append(newOptions)
     }
-  }
-
-  updateSeriesOptions() {
-    this.autocompleteChannel.search_book_series({ series_cont: this.seriesTarget.value })
   }
 
   ///////////////////// AUTHOR //////////////////
 
-  inputAuthor() {
-    if (this.authorDescriptionTarget.value.length > 1) {
-      this.updateAuthorOptions()
-    } else {
-      this.clearAuthorOptions()
-    }
+  refreshAuthorOptions() {
+    this.autocompleteChannel.search_author({ id_author_wildcard: this.authorDescriptionTarget.value })
   }
-
-  debouncedInputAuthor = debounce(this.inputAuthor, 300)
-
-  clearAuthorOptions() {
-    while (this.authorListTarget.hasChildNodes()) {
-      this.authorListTarget.removeChild(this.authorListTarget.firstChild)
-    }
-  }
+  debouncedRefreshAuthorOptions = debounce(this.refreshAuthorOptions, 300)
 
   setAuthorOptions(authors) {
-    if (authors.length === 1 && authors[0].description === this.authorDescriptionTarget.value) {
+    if (authors.length === 0) {
+      this.authorIdTarget.value = ''
+      const opt = document.createElement("option")
+      opt.value = this.authorDescriptionTarget.value
+      opt.text = 'No match'
+      $(this.authorListTarget)
+        .empty()
+        .append(opt)
+    } else if (authors.length === 1) {
       //console.log(`set author_id to ${authors[0].id}`)
       this.authorIdTarget.value = authors[0].id
-      this.clearAuthorOptions()
-    } else if (authors.length >= RESULT_LIMIT) {
+      this.authorDescriptionTarget.value = authors[0].description
+      $(this.authorListTarget)
+        .empty()
+    } else if (authors.length < RESULT_LIMIT) {
+      this.authorIdTarget.value = ''
+      const newOptions = authors.map(author => {
+        const opt = document.createElement("option")
+        opt.value = author.description
+        return opt
+      })
+      $(this.authorListTarget)
+        .empty()
+        .append(newOptions)
+    } else {
       this.authorIdTarget.value = ''
       const opt = document.createElement("option")
       opt.value = this.authorDescriptionTarget.value
@@ -179,21 +160,6 @@ export default class BookFormController extends Controller {
       $(this.authorListTarget)
         .empty()
         .append(opt)
-    } else {
-      this.authorIdTarget.value = ''
-      const newOptions = authors.map(author => {
-        const opt = document.createElement("option")
-        opt.value = author.description
-        //opt.setAttribute("author_id", author.id)
-        return opt
-      })
-      $(this.authorListTarget)
-        .empty()
-        .append(newOptions)
     }
-  }
-
-  updateAuthorOptions() {
-    this.autocompleteChannel.search_author({ id_author_wildcard: this.authorDescriptionTarget.value })
   }
 }

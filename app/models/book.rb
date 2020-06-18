@@ -2,15 +2,18 @@ require 'csv'
 class Book < ApplicationRecord
   include AASM
 
+  attr_accessor :author_description #for form
+
   belongs_to :author, optional: true
   has_many :loans
 
   validates :title, presence: true
 
-  delegate :first_name, :middle_name, :last_name, :description, to: :author, prefix: true, allow_nil: true
+  delegate :first_name, :middle_name, :last_name, to: :author, prefix: true, allow_nil: true
   delegate :human, to: :model_name, prefix: true
 
   before_save :update_sticker_pending!
+  after_initialize :set_author_description #for form
 
   module ReadingLevels
     ALL = %w[A B C P ML].freeze
@@ -48,6 +51,10 @@ class Book < ApplicationRecord
   # Needs to be unique, so record can matched based on description
   def description
     "#{title} (#{id})"
+  end
+
+  def set_author_description
+    self.author_description ||= author&.description
   end
 
   def update_sticker_pending!

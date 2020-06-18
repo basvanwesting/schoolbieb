@@ -1,6 +1,6 @@
 * add exception notification
 * add feature specs
-* refactor ajax to allow for auther lookup in the same manner
+* scope title/series autocomplete to fiction/non_fiction
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|
