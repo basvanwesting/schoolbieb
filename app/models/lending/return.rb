@@ -3,6 +3,7 @@ class Lending::Return
 
   attr_accessor :book_id
   attr_accessor :book, :loan
+  attr_accessor :book_filter
 
   validates :book_id, presence: true
 

@@ -28,4 +28,9 @@ class AutocompleteChannel < ApplicationCable::Channel
     books = Book.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |book| { id: book.id, full_name: book.full_name } }
     broadcast_to(current_user, action: :search_book, books: books)
   end
+
+  def search_lender(filter)
+    lenders = Lender.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, full_name: lender.full_name } }
+    broadcast_to(current_user, action: :search_lender, lenders: lenders)
+  end
 end

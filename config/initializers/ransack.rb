@@ -24,6 +24,14 @@ Ransack.configure do |config|
     compounds: false,
     wants_array: false,
     type: :string
+
+  config.add_predicate 'lender_wildcard', # Name your predicate
+    arel_predicate: 'in',
+    formatter: proc { |v| Lender.wildcard_search(v) },
+    validator: proc { |v| v.present? },
+    compounds: false,
+    wants_array: false,
+    type: :string
 end
 
 Ransack::Helpers::FormBuilder.class_eval do

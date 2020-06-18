@@ -50,7 +50,7 @@ class Book < ApplicationRecord
   end
 
   def full_name
-    "#{title}"
+    "#{title} (#{model_name_human}, #{id})"
   end
 
   def update_sticker_pending!

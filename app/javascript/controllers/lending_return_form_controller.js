@@ -3,19 +3,17 @@ import consumer from "../channels/consumer"
 import { debounce } from "lodash"
 
 const RESULT_LIMIT = 25
-export default class LendingBorrowFormController extends Controller {
+export default class LendingReturnFormController extends Controller {
 
   static get targets() {
     return [
       "bookSelect",
       "bookFilter",
-      "lenderSelect",
-      "lenderFilter",
     ]
   }
 
   connect() {
-    const lendingBorrowFormController = this
+    const lendingReturnFormController = this
 
     this.autocompleteChannel = consumer.subscriptions.create("AutocompleteChannel", {
       connected() {
@@ -30,10 +28,7 @@ export default class LendingBorrowFormController extends Controller {
         console.log('AutocompleteChannel received', data)
         switch(data.action) {
           case 'search_book':
-            lendingBorrowFormController.setBookOptions(data.books)
-            break
-          case 'search_lender':
-            lendingBorrowFormController.setLenderOptions(data.lenders)
+            lendingReturnFormController.setBookOptions(data.books)
             break
           default:
             console.log('Unknown action for AutocompleteChannel#received', data)
@@ -42,19 +37,15 @@ export default class LendingBorrowFormController extends Controller {
       search_book(filter) {
         this.perform("search_book", filter)
       },
-      search_lender(filter) {
-        this.perform("search_lender", filter)
-      },
     })
 
     this.refreshBookOptions()
-    this.refreshLenderOptions()
   }
 
   ///////////////////// BOOK //////////////////
 
   refreshBookOptions() {
-    this.autocompleteChannel.search_book({ state_eq: 'available', id_book_wildcard: this.bookFilterTarget.value })
+    this.autocompleteChannel.search_book({ state_eq: 'borrowed', id_book_wildcard: this.bookFilterTarget.value })
   }
   debouncedRefreshBookOptions = debounce(this.refreshBookOptions, 300)
 
@@ -101,53 +92,4 @@ export default class LendingBorrowFormController extends Controller {
     }
   }
 
-  ///////////////////// LENDER //////////////////
-
-  refreshLenderOptions() {
-    this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderFilterTarget.value })
-  }
-  debouncedRefreshLenderOptions = debounce(this.refreshLenderOptions, 300)
-
-  setLenderOptions(lenders) {
-    if (lenders.length === 0) {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'No match'
-      $(this.lenderSelectTarget)
-        .empty()
-        .append(opt)
-        .prop('disabled', 'disabled')
-    } else if (lenders.length === 1) {
-      const opt = document.createElement("option")
-      opt.value = lenders[0].id
-      opt.text = lenders[0].full_name
-      $(this.lenderSelectTarget)
-        .empty()
-        .append(opt)
-        .prop('disabled', false)
-    } else if (lenders.length < RESULT_LIMIT) {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'Select one of the below...'
-      const newOptions = lenders.map(lender => {
-        const opt = document.createElement("option")
-        opt.value = lender.id
-        opt.text = lender.full_name
-        return opt
-      })
-      $(this.lenderSelectTarget)
-        .empty()
-        .append(opt)
-        .append(newOptions)
-        .prop('disabled', false)
-    } else {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'Too many results, filter more'
-      $(this.lenderSelectTarget)
-        .empty()
-        .append(opt)
-        .prop('disabled', 'disabled')
-    }
-  }
 }

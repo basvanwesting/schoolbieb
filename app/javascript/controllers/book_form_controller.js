@@ -32,7 +32,7 @@ export default class BookFormController extends Controller {
         console.log("AutocompleteChannel disconnected")
       },
       received(data) {
-        console.log(`AutocompleteChannel received: ${data}`)
+        console.log('AutocompleteChannel received', data)
         switch(data.action) {
           case 'search_book_title':
             bookFormController.setTitleOptions(data.titles)
@@ -44,7 +44,7 @@ export default class BookFormController extends Controller {
             bookFormController.setAuthorOptions(data.authors)
             break
           default:
-            console.log(`Unknown action for AutocompleteChannel#received ${data}`)
+            console.log('Unknown action for AutocompleteChannel#received', data)
         }
       },
       search_book_title(filter) {

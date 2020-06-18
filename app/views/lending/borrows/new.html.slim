@@ -6,14 +6,15 @@ h1 = Lending::Borrow.model_name.human
 
   .form-inputs data-controller="lending-borrow-form"
 
-    datalist#books data-target="lending-borrow-form.bookList"
+    = f.input :book_filter, input_html: { list: :books, data: { target: 'lending-borrow-form.bookFilter', action: 'input->lending-borrow-form#debouncedRefreshBookOptions' } }
+    = f.input :book_id, collection: [f.object.book].compact, label_method: :to_s, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.bookSelect' } }
 
-    = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'lending-borrow-form.bookId' } }
-    = f.input :book_full_name, required: true, input_html: { list: :books, data: { target: 'lending-borrow-form.bookFullName', action: 'input->lending-borrow-form#debouncedInputBook' } }
+    = f.input :lender_filter, input_html: { list: :lenders, data: { target: 'lending-borrow-form.lenderFilter', action: 'input->lending-borrow-form#debouncedRefreshLenderOptions' } }
+    = f.input :lender_id, collection: [f.object.lender].compact, label_method: :to_s, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.lenderSelect' } }
 
-    = f.input :lender_id, collection: Lender.all, label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
     = f.input :due_date
 
   .form-actions
     = f.submit t('button.submit'), class: 'button'
     = link_to t('button.cancel'), :back, class: 'button secondary'
+
