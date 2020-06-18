@@ -7,7 +7,7 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
 
-  delegate :first_name, :middle_name, :last_name, :full_name, to: :author, prefix: true, allow_nil: true
+  delegate :first_name, :middle_name, :last_name, :description, to: :author, prefix: true, allow_nil: true
   delegate :human, to: :model_name, prefix: true
 
   before_save :update_sticker_pending!
@@ -45,11 +45,7 @@ class Book < ApplicationRecord
     event(:disable) { transitions from: :available,           to: :disabled  }
   end
 
-  def to_s
-    "#{title} (#{model_name_human}, #{id})"
-  end
-
-  def full_name
+  def description
     "#{title} (#{model_name_human}, #{id})"
   end
 

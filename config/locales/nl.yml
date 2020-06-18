@@ -106,7 +106,7 @@ nl:
         first_name: Voornaam
         last_name: Achternaam
         middle_name: Tussenvoegsel
-        full_name: Auteur
+        description: Auteur
       book:
         sti_type: Type
         id: ID
@@ -116,7 +116,7 @@ nl:
         reading_level: Leesniveau
         avi_level: AVI niveau
         author: Auteur
-        author_full_name: Auteur
+        author_description: Auteur
         category: Categorie
         tags: Labels
         sticker_pending: Sticker bijwerken?
@@ -132,7 +132,7 @@ nl:
         last_name: Achternaam
         middle_name: Tussenvoegsel
         group_name: Groep
-        full_name: Kind
+        description: Kind
       loan:
         book_id: Boek
         lender_id: Kind

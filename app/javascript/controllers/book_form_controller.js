@@ -14,7 +14,7 @@ export default class BookFormController extends Controller {
       "series",
       "seriesList",
       "authorId",
-      "authorFullName",
+      "authorDescription",
       "authorList",
     ]
   }
@@ -22,41 +22,44 @@ export default class BookFormController extends Controller {
   connect() {
     const bookFormController = this
 
-    this.autocompleteChannel = consumer.subscriptions.create("AutocompleteChannel", {
-      connected() {
-        // Called when the subscription is ready for use on the server
-        console.log("AutocompleteChannel connected")
-      },
-      disconnected() {
-        // Called when the subscription has been terminated by the server
-        console.log("AutocompleteChannel disconnected")
-      },
-      received(data) {
-        console.log('AutocompleteChannel received', data)
-        switch(data.action) {
-          case 'search_book_title':
-            bookFormController.setTitleOptions(data.titles)
-            break
-          case 'search_book_series':
-            bookFormController.setSeriesOptions(data.series)
-            break
-          case 'search_author':
-            bookFormController.setAuthorOptions(data.authors)
-            break
-          default:
-            console.log('Unknown action for AutocompleteChannel#received', data)
-        }
-      },
-      search_book_title(filter) {
-        this.perform("search_book_title", filter)
-      },
-      search_book_series(filter) {
-        this.perform("search_book_series", filter)
-      },
-      search_author(filter) {
-        this.perform("search_author", filter)
-      },
-    })
+    this.autocompleteChannel = consumer.subscriptions.create(
+      { channel: "AutocompleteChannel", room: 'BookForm' },
+      {
+        connected() {
+          // Called when the subscription is ready for use on the server
+          console.log("AutocompleteChannel connected")
+        },
+        disconnected() {
+          // Called when the subscription has been terminated by the server
+          console.log("AutocompleteChannel disconnected")
+        },
+        received(data) {
+          console.log('AutocompleteChannel:BookForm received', data)
+          switch(data.action) {
+            case 'search_book_title':
+              bookFormController.setTitleOptions(data.titles)
+              break
+            case 'search_book_series':
+              bookFormController.setSeriesOptions(data.series)
+              break
+            case 'search_author':
+              bookFormController.setAuthorOptions(data.authors)
+              break
+            default:
+              console.log('Unknown action for AutocompleteChannel#received', data)
+          }
+        },
+        search_book_title(filter) {
+          this.perform("search_book_title", filter)
+        },
+        search_book_series(filter) {
+          this.perform("search_book_series", filter)
+        },
+        search_author(filter) {
+          this.perform("search_author", filter)
+        },
+      }
+    )
   }
 
 //  ///////////////////// Book#title //////////////////
@@ -148,7 +151,7 @@ export default class BookFormController extends Controller {
   ///////////////////// AUTHOR //////////////////
 
   inputAuthor() {
-    if (this.authorFullNameTarget.value.length > 1) {
+    if (this.authorDescriptionTarget.value.length > 1) {
       this.updateAuthorOptions()
     } else {
       this.clearAuthorOptions()
@@ -164,14 +167,14 @@ export default class BookFormController extends Controller {
   }
 
   setAuthorOptions(authors) {
-    if (authors.length === 1 && authors[0].full_name === this.authorFullNameTarget.value) {
+    if (authors.length === 1 && authors[0].description === this.authorDescriptionTarget.value) {
       console.log(`set author_id to ${authors[0].id}`)
       this.authorIdTarget.value = authors[0].id
       this.clearAuthorOptions()
     } else if (authors.length >= RESULT_LIMIT) {
       this.authorIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = `${this.authorFullNameTarget.value}... Too many results (${authors.length}), type more`
+      opt.value = `${this.authorDescriptionTarget.value}... Too many results (${authors.length}), type more`
       $(this.authorListTarget)
         .empty()
         .append(opt)
@@ -179,7 +182,7 @@ export default class BookFormController extends Controller {
       this.authorIdTarget.value = ''
       const newOptions = authors.map(author => {
         const opt = document.createElement("option")
-        opt.value = author.full_name
+        opt.value = author.description
         //opt.setAttribute("author_id", author.id)
         return opt
       })
@@ -190,7 +193,7 @@ export default class BookFormController extends Controller {
   }
 
   updateAuthorOptions() {
-    this.autocompleteChannel.search_author({ id_author_wildcard: this.authorFullNameTarget.value })
+    this.autocompleteChannel.search_author({ id_author_wildcard: this.authorDescriptionTarget.value })
   }
 }
 

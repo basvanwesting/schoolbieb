@@ -8,9 +8,9 @@
     datalist#series data-target="book-form.seriesList"
     datalist#authors data-target="book-form.authorList"
 
-    /= f.association :author, label_method: :full_name, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+    /= f.association :author, label_method: :description, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
     = f.input :author_id, required: true, as: :hidden, input_html: { data: { target: 'book-form.authorId' } }
-    = f.input :author_full_name, required: true, input_html: { list: :authors, data: { target: 'book-form.authorFullName', action: 'input->book-form#debouncedInputAuthor' } }
+    = f.input :author_description, required: true, input_html: { list: :authors, data: { target: 'book-form.authorDescription', action: 'input->book-form#debouncedInputAuthor' } }
 
     = f.input :title, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedInputTitle' } }
     = f.input :series, input_html: { list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedInputSeries' } }

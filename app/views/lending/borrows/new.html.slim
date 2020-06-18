@@ -7,10 +7,10 @@ h1 = Lending::Borrow.model_name.human
   .form-inputs data-controller="lending-borrow-form"
 
     = f.input :book_filter, input_html: { list: :books, data: { target: 'lending-borrow-form.bookFilter', action: 'input->lending-borrow-form#debouncedRefreshBookOptions' } }
-    = f.input :book_id, collection: [f.object.book].compact, label_method: :to_s, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.bookSelect' } }
+    = f.input :book_id, collection: [f.object.book].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.bookSelect' } }
 
     = f.input :lender_filter, input_html: { list: :lenders, data: { target: 'lending-borrow-form.lenderFilter', action: 'input->lending-borrow-form#debouncedRefreshLenderOptions' } }
-    = f.input :lender_id, collection: [f.object.lender].compact, label_method: :to_s, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.lenderSelect' } }
+    = f.input :lender_id, collection: [f.object.lender].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.lenderSelect' } }
 
     = f.input :due_date
 

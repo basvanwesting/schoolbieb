@@ -6,7 +6,7 @@ h1 = Lending::Return.model_name.human
 
   .form-inputs data-controller="lending-return-form"
     = f.input :book_filter, input_html: { list: :books, data: { target: 'lending-return-form.bookFilter', action: 'input->lending-return-form#debouncedRefreshBookOptions' } }
-    = f.input :book_id, collection: [f.object.book].compact, label_method: :to_s, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-return-form.bookSelect' } }
+    = f.input :book_id, collection: [f.object.book].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-return-form.bookSelect' } }
 
   .form-actions
     = f.submit t('button.submit'), class: 'button'

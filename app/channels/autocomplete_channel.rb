@@ -1,8 +1,12 @@
 class AutocompleteChannel < ApplicationCable::Channel
   RESULT_LIMIT = 25
 
+  def channel_room_key
+    "#{broadcasting_for(current_user)}_#{params[:room]}"
+  end
+
   def subscribed
-    stream_for current_user
+    stream_from channel_room_key
   end
 
   def unsubscribed
@@ -11,26 +15,26 @@ class AutocompleteChannel < ApplicationCable::Channel
 
   def search_book_title(filter)
     titles = Book.limit(RESULT_LIMIT).order("title ASC").ransack(filter).result(distinct: true).pluck(:title)
-    broadcast_to(current_user, action: :search_book_title, titles: titles)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_title, titles: titles)
   end
 
   def search_book_series(filter)
     series = Book.limit(RESULT_LIMIT).order("series ASC").ransack(filter).result(distinct: true).pluck(:series)
-    broadcast_to(current_user, action: :search_book_series, series: series)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_series, series: series)
   end
 
   def search_author(filter)
-    authors = Author.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |author| { id: author.id, full_name: author.full_name } }
-    broadcast_to(current_user, action: :search_author, authors: authors)
+    authors = Author.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |author| { id: author.id, description: author.description } }
+    ActionCable.server.broadcast(channel_room_key, action: :search_author, authors: authors)
   end
 
   def search_book(filter)
-    books = Book.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |book| { id: book.id, full_name: book.full_name } }
-    broadcast_to(current_user, action: :search_book, books: books)
+    books = Book.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |book| { id: book.id, description: book.description } }
+    ActionCable.server.broadcast(channel_room_key, action: :search_book, books: books)
   end
 
   def search_lender(filter)
-    lenders = Lender.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, full_name: lender.full_name } }
-    broadcast_to(current_user, action: :search_lender, lenders: lenders)
+    lenders = Lender.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, description: lender.description } }
+    ActionCable.server.broadcast(channel_room_key, action: :search_lender, lenders: lenders)
   end
 end

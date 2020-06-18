@@ -1,7 +1,7 @@
 class Lender < ApplicationRecord
   has_many :loans
 
-  def full_name
+  def description
     [
       first_name,
       middle_name,
@@ -16,10 +16,6 @@ class Lender < ApplicationRecord
       middle_name,
       "(#{group_name})",
     ].select(&:present?).join(' ')
-  end
-
-  def to_s
-    full_name
   end
 
   class << self

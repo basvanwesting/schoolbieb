@@ -17,35 +17,38 @@ export default class LendingBorrowFormController extends Controller {
   connect() {
     const lendingBorrowFormController = this
 
-    this.autocompleteChannel = consumer.subscriptions.create("AutocompleteChannel", {
-      connected() {
-        // Called when the subscription is ready for use on the server
-        console.log("AutocompleteChannel connected")
-      },
-      disconnected() {
-        // Called when the subscription has been terminated by the server
-        console.log("AutocompleteChannel disconnected")
-      },
-      received(data) {
-        console.log('AutocompleteChannel received', data)
-        switch(data.action) {
-          case 'search_book':
-            lendingBorrowFormController.setBookOptions(data.books)
-            break
-          case 'search_lender':
-            lendingBorrowFormController.setLenderOptions(data.lenders)
-            break
-          default:
-            console.log('Unknown action for AutocompleteChannel#received', data)
-        }
-      },
-      search_book(filter) {
-        this.perform("search_book", filter)
-      },
-      search_lender(filter) {
-        this.perform("search_lender", filter)
-      },
-    })
+    this.autocompleteChannel = consumer.subscriptions.create(
+      { channel: "AutocompleteChannel", room: 'LendingBorrowForm' },
+      {
+        connected() {
+          // Called when the subscription is ready for use on the server
+          console.log("AutocompleteChannel connected")
+        },
+        disconnected() {
+          // Called when the subscription has been terminated by the server
+          console.log("AutocompleteChannel disconnected")
+        },
+        received(data) {
+          console.log('AutocompleteChannel:LendingBorrowForm received', data)
+          switch(data.action) {
+            case 'search_book':
+              lendingBorrowFormController.setBookOptions(data.books)
+              break
+            case 'search_lender':
+              lendingBorrowFormController.setLenderOptions(data.lenders)
+              break
+            default:
+              console.log('Unknown action for AutocompleteChannel#received', data)
+          }
+        },
+        search_book(filter) {
+          this.perform("search_book", filter)
+        },
+        search_lender(filter) {
+          this.perform("search_lender", filter)
+        },
+      }
+    )
 
     this.refreshBookOptions()
     this.refreshLenderOptions()
@@ -70,7 +73,7 @@ export default class LendingBorrowFormController extends Controller {
     } else if (books.length === 1) {
       const opt = document.createElement("option")
       opt.value = books[0].id
-      opt.text = books[0].full_name
+      opt.text = books[0].description
       $(this.bookSelectTarget)
         .empty()
         .append(opt)
@@ -82,7 +85,7 @@ export default class LendingBorrowFormController extends Controller {
       const newOptions = books.map(book => {
         const opt = document.createElement("option")
         opt.value = book.id
-        opt.text = book.full_name
+        opt.text = book.description
         return opt
       })
       $(this.bookSelectTarget)
@@ -120,7 +123,7 @@ export default class LendingBorrowFormController extends Controller {
     } else if (lenders.length === 1) {
       const opt = document.createElement("option")
       opt.value = lenders[0].id
-      opt.text = lenders[0].full_name
+      opt.text = lenders[0].description
       $(this.lenderSelectTarget)
         .empty()
         .append(opt)
@@ -132,7 +135,7 @@ export default class LendingBorrowFormController extends Controller {
       const newOptions = lenders.map(lender => {
         const opt = document.createElement("option")
         opt.value = lender.id
-        opt.text = lender.full_name
+        opt.text = lender.description
         return opt
       })
       $(this.lenderSelectTarget)

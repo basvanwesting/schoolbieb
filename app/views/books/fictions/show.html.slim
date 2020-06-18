@@ -10,7 +10,7 @@ table.hover.unstriped.condensed.text-left
       td = @book.class.model_name.human
     tr
       th = Author.model_name.human
-      td = link_to @book.author.full_name, @book.author
+      td = link_to @book.author.description, @book.author
     tr
       th = Book.human_attribute_name(:id)
       td = @book.id.to_s.rjust(4,'0')

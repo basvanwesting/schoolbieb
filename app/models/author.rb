@@ -5,7 +5,7 @@ class Author < ApplicationRecord
   validates :last_name,  presence: true
   validates :first_name, uniqueness: { scope: %i[last_name middle_name] }
 
-  def full_name
+  def description
     [
       first_name,
       middle_name,
