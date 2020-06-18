@@ -24,11 +24,11 @@ export default class LendingBorrowFormController extends Controller {
       {
         connected() {
           // Called when the subscription is ready for use on the server
-          console.log("AutocompleteChannel connected")
+          console.log("AutocompleteChannel:LendingBorrowForm connected")
         },
         disconnected() {
           // Called when the subscription has been terminated by the server
-          console.log("AutocompleteChannel disconnected")
+          console.log("AutocompleteChannel:LendingBorrowForm disconnected")
         },
         received(data) {
           console.log('AutocompleteChannel:LendingBorrowForm received', data)
@@ -40,7 +40,7 @@ export default class LendingBorrowFormController extends Controller {
               lendingBorrowFormController.setLenderOptions(data.lenders)
               break
             default:
-              console.log('Unknown action for AutocompleteChannel#received', data)
+              console.log('Unknown action for AutocompleteChannel:LendingBorrowForm#received', data)
           }
         },
         search_book(filter) {

@@ -25,11 +25,11 @@ export default class BookFormController extends Controller {
       {
         connected() {
           // Called when the subscription is ready for use on the server
-          console.log("AutocompleteChannel connected")
+          console.log("AutocompleteChannel:BookForm connected")
         },
         disconnected() {
           // Called when the subscription has been terminated by the server
-          console.log("AutocompleteChannel disconnected")
+          console.log("AutocompleteChannel:BookForm disconnected")
         },
         received(data) {
           console.log('AutocompleteChannel:BookForm received', data)
@@ -44,7 +44,7 @@ export default class BookFormController extends Controller {
               bookFormController.setAuthorOptions(data.authors)
               break
             default:
-              console.log('Unknown action for AutocompleteChannel#received', data)
+              console.log('Unknown action for AutocompleteChannel:BookForm#received', data)
           }
         },
         search_book_title(filter) {

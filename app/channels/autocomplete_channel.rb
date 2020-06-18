@@ -14,27 +14,27 @@ class AutocompleteChannel < ApplicationCable::Channel
   end
 
   def search_book_title(filter)
-    titles = Book.limit(RESULT_LIMIT).order("title ASC").ransack(filter).result(distinct: true).pluck(:title)
+    titles = Book.limit(RESULT_LIMIT).order(:title).ransack(filter).result(distinct: true).pluck(:title)
     ActionCable.server.broadcast(channel_room_key, action: :search_book_title, titles: titles)
   end
 
   def search_book_series(filter)
-    series = Book.limit(RESULT_LIMIT).order("series ASC").ransack(filter).result(distinct: true).pluck(:series)
+    series = Book.limit(RESULT_LIMIT).order(:series).ransack(filter).result(distinct: true).pluck(:series)
     ActionCable.server.broadcast(channel_room_key, action: :search_book_series, series: series)
   end
 
   def search_author(filter)
-    authors = Author.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |author| { id: author.id, description: author.description } }
+    authors = Author.limit(RESULT_LIMIT).order(:first_name, :middle_name, :last_name).ransack(filter).result(distinct: true).map { |author| { id: author.id, description: author.description } }
     ActionCable.server.broadcast(channel_room_key, action: :search_author, authors: authors)
   end
 
   def search_book(filter)
-    books = Book.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |book| { id: book.id, description: book.description } }
+    books = Book.limit(RESULT_LIMIT).order(:title, :id).ransack(filter).result(distinct: true).map { |book| { id: book.id, description: book.description } }
     ActionCable.server.broadcast(channel_room_key, action: :search_book, books: books)
   end
 
   def search_lender(filter)
-    lenders = Lender.limit(RESULT_LIMIT).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, description: lender.description } }
+    lenders = Lender.limit(RESULT_LIMIT).order(:first_name, :middle_name, :last_name, :group_name).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, description: lender.description } }
     ActionCable.server.broadcast(channel_room_key, action: :search_lender, lenders: lenders)
   end
 end
