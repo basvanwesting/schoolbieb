@@ -49,6 +49,10 @@ class Book < ApplicationRecord
     "#{title} (#{model_name_human}, #{id})"
   end
 
+  def full_name
+    "#{title}"
+  end
+
   def update_sticker_pending!
     return unless (changes.keys & %w[title series part reading_level author_id]).present?
 

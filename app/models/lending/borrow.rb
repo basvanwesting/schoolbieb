@@ -17,6 +17,8 @@ class Lending::Borrow
   validate  :lender_found
   validate  :book_may_borrow
 
+  delegate :full_name, to: :book, prefix: true, allow_nil: true
+
   def initialize(*args)
     super
     self.book           = Book.find_by(id: book_id)

@@ -4,8 +4,13 @@ h1 = Lending::Borrow.model_name.human
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :book_id,   collection: Book.all,   label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+  .form-inputs data-controller="lending-borrow-form"
+
+    datalist#books data-target="lending-borrow-form.bookList"
+
+    = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'lending-borrow-form.bookId' } }
+    = f.input :book_full_name, required: true, input_html: { list: :books, data: { target: 'lending-borrow-form.bookFullName', action: 'input->lending-borrow-form#debouncedInputBook' } }
+
     = f.input :lender_id, collection: Lender.all, label_method: :to_s, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
     = f.input :due_date
 
