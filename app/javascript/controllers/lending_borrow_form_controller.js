@@ -50,8 +50,9 @@ export default class LendingBorrowFormController extends Controller {
       }
     )
 
-    this.refreshBookOptions()
-    this.refreshLenderOptions()
+    // issue resets prefilled form
+    //this.refreshBookOptions()
+    //this.refreshLenderOptions()
   }
 
   ///////////////////// BOOK //////////////////
