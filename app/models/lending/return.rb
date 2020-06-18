@@ -3,7 +3,7 @@ class Lending::Return
 
   attr_accessor :book_id
   attr_accessor :book, :loan
-  attr_accessor :book_filter
+  attr_accessor :book_description
 
   validates :book_id, presence: true
 
@@ -13,8 +13,9 @@ class Lending::Return
 
   def initialize(*args)
     super
-    self.book = Book.find_by(id: book_id)
-    self.loan = Loan.find_by(
+    self.book               = Book.find_by(id: book_id)
+    self.book_description ||= book&.description
+    self.loan               = Loan.find_by(
       book_id:     book_id,
       return_date: nil,
     )

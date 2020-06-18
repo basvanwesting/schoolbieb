@@ -7,7 +7,7 @@ class Lending::Borrow
   attr_accessor :lending_date, :due_date
 
   attr_accessor :lender, :book, :loan
-  attr_accessor :book_filter, :lender_filter, :lender_description
+  attr_accessor :book_description, :lender_description
 
   validates :lender_id,    presence: true
   validates :book_id,      presence: true
@@ -18,20 +18,20 @@ class Lending::Borrow
   validate  :lender_found
   validate  :book_may_borrow
 
-  delegate :description, to: :book, prefix: true, allow_nil: true
-
   def initialize(*args)
     super
-    self.book           = Book.find_by(id: book_id)
-    self.lender         = Lender.find_by(id: lender_id)
-    self.lending_date   = Date.today
-    self.due_date     ||= lending_date + DEFAULT_DUE_DATE_INTERVAL
+    self.book                 = Book.find_by(id: book_id)
+    self.book_description   ||= book&.description
+    self.lender               = Lender.find_by(id: lender_id)
+    self.lender_description ||= lender&.description
+    self.lending_date         = Date.today
+    self.due_date           ||= lending_date + DEFAULT_DUE_DATE_INTERVAL
   end
 
   def save
     return unless valid?
     ActiveRecord::Base.transaction do
-      Loan.create!(
+      self.loan = Loan.create!(
         book_id:      book_id,
         lender_id:    lender_id,
         lending_date: lending_date,

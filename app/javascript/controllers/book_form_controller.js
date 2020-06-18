@@ -168,7 +168,7 @@ export default class BookFormController extends Controller {
 
   setAuthorOptions(authors) {
     if (authors.length === 1 && authors[0].description === this.authorDescriptionTarget.value) {
-      console.log(`set author_id to ${authors[0].id}`)
+      //console.log(`set author_id to ${authors[0].id}`)
       this.authorIdTarget.value = authors[0].id
       this.clearAuthorOptions()
     } else if (authors.length >= RESULT_LIMIT) {

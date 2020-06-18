@@ -147,13 +147,13 @@ nl:
     attributes:
       lending/borrow:
         book_id: Boek
-        book_filter: Boek Filter
+        book_description: Boek
         lender_id: Kind
-        lender_filter: Kind Filter
+        lender_description: Kind
         due_date: Retourdatum
       lending/return:
         book_id: Boek
-        book_filter: Boek Filter
+        book_description: Boek
     errors:
       models:
         lending/borrow:

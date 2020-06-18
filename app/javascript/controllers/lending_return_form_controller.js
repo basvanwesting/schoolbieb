@@ -7,8 +7,9 @@ export default class LendingReturnFormController extends Controller {
 
   static get targets() {
     return [
-      "bookSelect",
-      "bookFilter",
+      "bookId",
+      "bookDescription",
+      "bookList",
     ]
   }
 
@@ -41,58 +42,48 @@ export default class LendingReturnFormController extends Controller {
         },
       }
     )
-
-    // issue resets prefilled form
-    //this.refreshBookOptions()
   }
 
   ///////////////////// BOOK //////////////////
 
   refreshBookOptions() {
-    this.autocompleteChannel.search_book({ state_eq: 'borrowed', id_book_wildcard: this.bookFilterTarget.value })
+    this.autocompleteChannel.search_book({ state_eq: 'borrowed', id_book_wildcard: this.bookDescriptionTarget.value })
   }
   debouncedRefreshBookOptions = debounce(this.refreshBookOptions, 300)
 
   setBookOptions(books) {
     if (books.length === 0) {
+      this.bookIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.bookDescriptionTarget.value
       opt.text = 'No match'
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     } else if (books.length === 1) {
-      const opt = document.createElement("option")
-      opt.value = books[0].id
-      opt.text = books[0].description
-      $(this.bookSelectTarget)
+      //console.log(`set book_id to ${books[0].id}`)
+      this.bookIdTarget.value = books[0].id
+      this.bookDescriptionTarget.value = books[0].description
+      $(this.bookListTarget)
         .empty()
-        .append(opt)
-        .prop('disabled', false)
     } else if (books.length < RESULT_LIMIT) {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'Select one of the below...'
+      this.bookIdTarget.value = ''
       const newOptions = books.map(book => {
         const opt = document.createElement("option")
-        opt.value = book.id
-        opt.text = book.description
+        opt.value = book.description
         return opt
       })
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
-        .append(opt)
         .append(newOptions)
-        .prop('disabled', false)
     } else {
+      this.bookIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.bookDescriptionTarget.value
       opt.text = 'Too many results, filter more'
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     }
   }
 

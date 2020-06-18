@@ -7,13 +7,12 @@ export default class LendingBorrowFormController extends Controller {
 
   static get targets() {
     return [
-      "bookSelect",
-      "bookFilter",
-      //"lenderSelect",
-      //"lenderFilter",
       "lenderId",
       "lenderDescription",
       "lenderList",
+      "bookId",
+      "bookDescription",
+      "bookList",
     ]
   }
 
@@ -52,111 +51,52 @@ export default class LendingBorrowFormController extends Controller {
         },
       }
     )
-
-    // issue resets prefilled form
-    //this.refreshBookOptions()
-    //this.refreshLenderOptions()
   }
 
   ///////////////////// BOOK //////////////////
 
   refreshBookOptions() {
-    this.autocompleteChannel.search_book({ state_eq: 'available', id_book_wildcard: this.bookFilterTarget.value })
+    this.autocompleteChannel.search_book({ state_eq: 'available', id_book_wildcard: this.bookDescriptionTarget.value })
   }
   debouncedRefreshBookOptions = debounce(this.refreshBookOptions, 300)
 
   setBookOptions(books) {
     if (books.length === 0) {
+      this.bookIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.bookDescriptionTarget.value
       opt.text = 'No match'
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     } else if (books.length === 1) {
-      const opt = document.createElement("option")
-      opt.value = books[0].id
-      opt.text = books[0].description
-      $(this.bookSelectTarget)
+      //console.log(`set book_id to ${books[0].id}`)
+      this.bookIdTarget.value = books[0].id
+      this.bookDescriptionTarget.value = books[0].description
+      $(this.bookListTarget)
         .empty()
-        .append(opt)
-        .prop('disabled', false)
     } else if (books.length < RESULT_LIMIT) {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'Select one of the below...'
+      this.bookIdTarget.value = ''
       const newOptions = books.map(book => {
         const opt = document.createElement("option")
-        opt.value = book.id
-        opt.text = book.description
+        opt.value = book.description
         return opt
       })
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
-        .append(opt)
         .append(newOptions)
-        .prop('disabled', false)
     } else {
+      this.bookIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.bookDescriptionTarget.value
       opt.text = 'Too many results, filter more'
-      $(this.bookSelectTarget)
+      $(this.bookListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     }
   }
 
   ///////////////////// LENDER //////////////////
-
-//  refreshLenderOptions() {
-//    this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderFilterTarget.value })
-//  }
-//  debouncedRefreshLenderOptions = debounce(this.refreshLenderOptions, 300)
-//
-//  setLenderOptions(lenders) {
-//    if (lenders.length === 0) {
-//      const opt = document.createElement("option")
-//      opt.value = ''
-//      opt.text = 'No match'
-//      $(this.lenderSelectTarget)
-//        .empty()
-//        .append(opt)
-//        .prop('disabled', 'disabled')
-//    } else if (lenders.length === 1) {
-//      const opt = document.createElement("option")
-//      opt.value = lenders[0].id
-//      opt.text = lenders[0].description
-//      $(this.lenderSelectTarget)
-//        .empty()
-//        .append(opt)
-//        .prop('disabled', false)
-//    } else if (lenders.length < RESULT_LIMIT) {
-//      const opt = document.createElement("option")
-//      opt.value = ''
-//      opt.text = 'Select one of the below...'
-//      const newOptions = lenders.map(lender => {
-//        const opt = document.createElement("option")
-//        opt.value = lender.id
-//        opt.text = lender.description
-//        return opt
-//      })
-//      $(this.lenderSelectTarget)
-//        .empty()
-//        .append(opt)
-//        .append(newOptions)
-//        .prop('disabled', false)
-//    } else {
-//      const opt = document.createElement("option")
-//      opt.value = ''
-//      opt.text = 'Too many results, filter more'
-//      $(this.lenderSelectTarget)
-//        .empty()
-//        .append(opt)
-//        .prop('disabled', 'disabled')
-//    }
-//  }
 
   refreshLenderOptions() {
     this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderDescriptionTarget.value })
@@ -173,7 +113,7 @@ export default class LendingBorrowFormController extends Controller {
         .empty()
         .append(opt)
     } else if (lenders.length === 1) {
-      console.log(`set lender_id to ${lenders[0].id}`)
+      //console.log(`set lender_id to ${lenders[0].id}`)
       this.lenderIdTarget.value = lenders[0].id
       this.lenderDescriptionTarget.value = lenders[0].description
       $(this.lenderListTarget)

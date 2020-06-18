@@ -1,20 +1,13 @@
 h1 = Lending::Return.model_name.human
 
-= simple_form_for @lending_return do |f|
-  .grid-container.fluid data-controller="lending-return-form"
+= simple_form_for @lending_return, html: { data: { controller: 'lending-return-form'  } } do |f|
+  datalist#books data-target="lending-return-form.bookList"
 
-    .grid-x.grid-padding-x
-      .cell
-        = f.error_notification
-        = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-    .grid-x.grid-padding-x
-      .cell.medium-2
-        = f.input :book_filter, input_html: { list: :books, data: { target: 'lending-return-form.bookFilter', action: 'input->lending-return-form#debouncedRefreshBookOptions' } }
-      .cell.medium-10
-        = f.input :book_id, collection: [f.object.book].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-return-form.bookSelect' } }
+  = f.input :book_description, required: true, input_html: { list: :books, data: { target: 'lending-return-form.bookDescription', action: 'input->lending-return-form#debouncedRefreshBookOptions' } }
+  = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'lending-return-form.bookId' } }
 
-    .grid-x.grid-padding-x
-      .cell
-        = f.submit t('button.submit'), class: 'button'
-        = link_to t('button.cancel'), :back, class: 'button secondary'
+  = f.submit t('button.submit'), class: 'button'
+  = link_to t('button.cancel'), :back, class: 'button secondary'

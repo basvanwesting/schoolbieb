@@ -3,7 +3,7 @@ export default class EnterToSearch {
     const searchRow = $('tr.search')
     if (searchRow) {
       searchRow.on('keydown', e => {
-        console.log(e)
+        //console.log(e)
         if (e.which === 13) {
           const searchButton = $('#search_button')
           if (searchButton) {
