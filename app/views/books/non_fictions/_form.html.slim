@@ -7,8 +7,8 @@
     datalist#series data-target="book-form.seriesList"
 
     = f.input :category, collection: Book::NonFiction::Categories::ALL
-    = f.input :title, input_html: { list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedInputTitle' } }
-    = f.input :series, input_html: { list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedInputSeries' } }
+    = f.input :title, input_html: { autocomplete: 'off', list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedInputTitle' } }
+    = f.input :series, input_html: { autocomplete: 'off', list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedInputSeries' } }
     = f.input :part
     = f.input :tags, collection: Book::NonFiction.sorted_existing_tags, input_html: { multiple: true, class: 'js-select2-free-tags' }
     = f.input :reading_level, collection: Book::ReadingLevels::ALL

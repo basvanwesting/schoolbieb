@@ -83,7 +83,8 @@ export default class BookFormController extends Controller {
       this.clearTitleOptions()
     } else if (titles.length >= RESULT_LIMIT) {
       const opt = document.createElement("option")
-      opt.value = `${this.titleTarget.value}... Too many results (${titles.length}), type more`
+      opt.value = this.titleTarget.value
+      opt.text = 'Too many results, filter more'
       $(this.titleListTarget)
         .empty()
         .append(opt)
@@ -126,7 +127,8 @@ export default class BookFormController extends Controller {
       this.clearSeriesOptions()
     } else if (series.length >= RESULT_LIMIT) {
       const opt = document.createElement("option")
-      opt.value = `${this.seriesTarget.value}... Too many results (${series.length}), type more`
+      opt.value = this.seriesTarget.value
+      opt.text = 'Too many results, filter more'
       $(this.seriesListTarget)
         .empty()
         .append(opt)
@@ -172,7 +174,8 @@ export default class BookFormController extends Controller {
     } else if (authors.length >= RESULT_LIMIT) {
       this.authorIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = `${this.authorDescriptionTarget.value}... Too many results (${authors.length}), type more`
+      opt.value = this.authorDescriptionTarget.value
+      opt.text = 'Too many results, filter more'
       $(this.authorListTarget)
         .empty()
         .append(opt)

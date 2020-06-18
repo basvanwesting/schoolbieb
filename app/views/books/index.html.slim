@@ -15,6 +15,7 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
         placeholder: t( \
           'placeholder.wildcard', \
           attributes: [ \
+            Book.human_attribute_name(:id), \
             Book.human_attribute_name(:title), \
             Book.human_attribute_name(:series), \
             Author.model_name.human, \

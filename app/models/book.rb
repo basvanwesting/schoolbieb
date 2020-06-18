@@ -79,6 +79,8 @@ class Book < ApplicationRecord
           "books.reading_level = '#{term}'"
         elsif term.in?(Book::AviLevels::ALL)
           "books.avi_level = '#{term}'"
+        elsif term[/^\d+$/]
+          "books.id = #{term}"
         else
           [
             %i[books title],
