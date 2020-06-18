@@ -45,8 +45,9 @@ class Book < ApplicationRecord
     event(:disable) { transitions from: :available,           to: :disabled  }
   end
 
+  # Needs to be unique, so record can matched based on description
   def description
-    "#{title} (#{model_name_human}, #{id})"
+    "#{title} (#{id})"
   end
 
   def update_sticker_pending!
@@ -73,7 +74,7 @@ class Book < ApplicationRecord
     end
 
     def wildcard_search(v)
-      terms = v.split.map(&:upcase)
+      terms = v.split.map(&:upcase).map { |s| s.gsub(/[()]/,'') }
       clause = terms.map do |term|
         if term.in?(Book::ReadingLevels::ALL)
           "books.reading_level = '#{term}'"

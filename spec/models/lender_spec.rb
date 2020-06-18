@@ -12,5 +12,11 @@ RSpec.describe Lender, type: :model do
       expect(Lender.ransack(id_lender_wildcard: 'vee').result).to match_array [lender_1, lender_2, lender_3]
       expect(Lender.ransack(id_lender_wildcard: 'TB3').result).to match_array [lender_1, lender_3]
     end
+
+    it 'matches description' do
+      expect(Lender.ransack(id_lender_wildcard: lender_1.description).result).to match_array [lender_1]
+      expect(Lender.ransack(id_lender_wildcard: lender_2.description).result).to match_array [lender_2]
+      expect(Lender.ransack(id_lender_wildcard: lender_3.description).result).to match_array [lender_3]
+    end
   end
 end

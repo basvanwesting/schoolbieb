@@ -11,5 +11,11 @@ RSpec.describe Author, type: :model do
       expect(Author.ransack(id_author_wildcard: 'Kees Vee').result).to match_array [author_1]
       expect(Author.ransack(id_author_wildcard: 'vee').result).to match_array [author_1, author_2, author_3]
     end
+
+    it 'matches description' do
+      expect(Author.ransack(id_author_wildcard: author_1.description).result).to match_array [author_1]
+      expect(Author.ransack(id_author_wildcard: author_2.description).result).to match_array [author_2]
+      expect(Author.ransack(id_author_wildcard: author_3.description).result).to match_array [author_3]
+    end
   end
 end

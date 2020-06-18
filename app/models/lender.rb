@@ -1,6 +1,11 @@
 class Lender < ApplicationRecord
   has_many :loans
 
+  validates :last_name,  presence: true
+  validates :group_name, presence: true
+  validates :first_name, presence: true, uniqueness: { scope: %i[last_name middle_name group_name] }
+
+  # Needs to be unique, so record can matched based on description
   def description
     [
       first_name,
@@ -20,7 +25,7 @@ class Lender < ApplicationRecord
 
   class << self
     def wildcard_search(v)
-      terms = v.split.map(&:upcase)
+      terms = v.split.map(&:upcase).map { |s| s.gsub(/[()]/,'') }
       clause = terms.map do |term|
         [
           %i[lenders first_name],

@@ -5,6 +5,7 @@ class Author < ApplicationRecord
   validates :last_name,  presence: true
   validates :first_name, uniqueness: { scope: %i[last_name middle_name] }
 
+  # Needs to be unique, so record can matched based on description
   def description
     [
       first_name,

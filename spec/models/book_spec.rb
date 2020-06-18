@@ -67,6 +67,12 @@ RSpec.describe Book, type: :model do
       expect(Book.ransack(id_book_wildcard: 'pad').result).to             match_array [book_1, book_3]
       expect(Book.ransack(id_book_wildcard: 'Borre op de Koe').result).to match_array [book_3]
     end
+
+    it 'matches description' do
+      expect(Book.ransack(id_book_wildcard: book_1.description).result).to match_array [book_1]
+      expect(Book.ransack(id_book_wildcard: book_2.description).result).to match_array [book_2]
+      expect(Book.ransack(id_book_wildcard: book_3.description).result).to match_array [book_3]
+    end
   end
 
   describe '.to_csv' do

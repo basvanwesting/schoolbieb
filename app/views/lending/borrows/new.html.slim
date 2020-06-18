@@ -2,6 +2,7 @@ h1 = Lending::Borrow.model_name.human
 
 = simple_form_for @lending_borrow do |f|
   .grid-container.fluid data-controller="lending-borrow-form"
+    datalist#lenders data-target="lending-borrow-form.lenderList"
 
     .grid-x.grid-padding-x
       .cell
@@ -15,10 +16,14 @@ h1 = Lending::Borrow.model_name.human
         = f.input :book_id, collection: [f.object.book].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.bookSelect' } }
 
     .grid-x.grid-padding-x
-      .cell.medium-2
-        = f.input :lender_filter, input_html: { list: :lenders, data: { target: 'lending-borrow-form.lenderFilter', action: 'input->lending-borrow-form#debouncedRefreshLenderOptions' } }
-      .cell.medium-10
-        = f.input :lender_id, collection: [f.object.lender].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.lenderSelect' } }
+
+      /.cell.medium-2
+        /= f.input :lender_filter, input_html: { list: :lenders, data: { target: 'lending-borrow-form.lenderFilter', action: 'input->lending-borrow-form#debouncedRefreshLenderOptions' } }
+      /.cell.medium-10
+        /= f.input :lender_id, collection: [f.object.lender].compact, label_method: :description, value_method: :id, include_blank: true, input_html: { data: { target: 'lending-borrow-form.lenderSelect' } }
+      .cell
+        = f.input :lender_description, required: true, input_html: { list: :lenders, data: { target: 'lending-borrow-form.lenderDescription', action: 'input->lending-borrow-form#debouncedRefreshLenderOptions' } }
+        = f.input :lender_id, required: true, as: :hidden, input_html: { data: { target: 'lending-borrow-form.lenderId' } }
 
     .grid-x.grid-padding-x
       .cell

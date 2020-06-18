@@ -9,8 +9,11 @@ export default class LendingBorrowFormController extends Controller {
     return [
       "bookSelect",
       "bookFilter",
-      "lenderSelect",
-      "lenderFilter",
+      //"lenderSelect",
+      //"lenderFilter",
+      "lenderId",
+      "lenderDescription",
+      "lenderList",
     ]
   }
 
@@ -107,51 +110,94 @@ export default class LendingBorrowFormController extends Controller {
 
   ///////////////////// LENDER //////////////////
 
+//  refreshLenderOptions() {
+//    this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderFilterTarget.value })
+//  }
+//  debouncedRefreshLenderOptions = debounce(this.refreshLenderOptions, 300)
+//
+//  setLenderOptions(lenders) {
+//    if (lenders.length === 0) {
+//      const opt = document.createElement("option")
+//      opt.value = ''
+//      opt.text = 'No match'
+//      $(this.lenderSelectTarget)
+//        .empty()
+//        .append(opt)
+//        .prop('disabled', 'disabled')
+//    } else if (lenders.length === 1) {
+//      const opt = document.createElement("option")
+//      opt.value = lenders[0].id
+//      opt.text = lenders[0].description
+//      $(this.lenderSelectTarget)
+//        .empty()
+//        .append(opt)
+//        .prop('disabled', false)
+//    } else if (lenders.length < RESULT_LIMIT) {
+//      const opt = document.createElement("option")
+//      opt.value = ''
+//      opt.text = 'Select one of the below...'
+//      const newOptions = lenders.map(lender => {
+//        const opt = document.createElement("option")
+//        opt.value = lender.id
+//        opt.text = lender.description
+//        return opt
+//      })
+//      $(this.lenderSelectTarget)
+//        .empty()
+//        .append(opt)
+//        .append(newOptions)
+//        .prop('disabled', false)
+//    } else {
+//      const opt = document.createElement("option")
+//      opt.value = ''
+//      opt.text = 'Too many results, filter more'
+//      $(this.lenderSelectTarget)
+//        .empty()
+//        .append(opt)
+//        .prop('disabled', 'disabled')
+//    }
+//  }
+
   refreshLenderOptions() {
-    this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderFilterTarget.value })
+    this.autocompleteChannel.search_lender({ id_lender_wildcard: this.lenderDescriptionTarget.value })
   }
   debouncedRefreshLenderOptions = debounce(this.refreshLenderOptions, 300)
 
   setLenderOptions(lenders) {
     if (lenders.length === 0) {
+      this.lenderIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.lenderDescriptionTarget.value
       opt.text = 'No match'
-      $(this.lenderSelectTarget)
+      $(this.lenderListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     } else if (lenders.length === 1) {
-      const opt = document.createElement("option")
-      opt.value = lenders[0].id
-      opt.text = lenders[0].description
-      $(this.lenderSelectTarget)
+      console.log(`set lender_id to ${lenders[0].id}`)
+      this.lenderIdTarget.value = lenders[0].id
+      this.lenderDescriptionTarget.value = lenders[0].description
+      $(this.lenderListTarget)
         .empty()
-        .append(opt)
-        .prop('disabled', false)
     } else if (lenders.length < RESULT_LIMIT) {
-      const opt = document.createElement("option")
-      opt.value = ''
-      opt.text = 'Select one of the below...'
+      this.lenderIdTarget.value = ''
       const newOptions = lenders.map(lender => {
         const opt = document.createElement("option")
-        opt.value = lender.id
-        opt.text = lender.description
+        opt.value = lender.description
         return opt
       })
-      $(this.lenderSelectTarget)
+      $(this.lenderListTarget)
         .empty()
-        .append(opt)
         .append(newOptions)
-        .prop('disabled', false)
     } else {
+      this.lenderIdTarget.value = ''
       const opt = document.createElement("option")
-      opt.value = ''
+      opt.value = this.lenderDescriptionTarget.value
       opt.text = 'Too many results, filter more'
-      $(this.lenderSelectTarget)
+      $(this.lenderListTarget)
         .empty()
         .append(opt)
-        .prop('disabled', 'disabled')
     }
   }
+
+
 }

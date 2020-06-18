@@ -7,7 +7,7 @@ class Lending::Borrow
   attr_accessor :lending_date, :due_date
 
   attr_accessor :lender, :book, :loan
-  attr_accessor :book_filter, :lender_filter
+  attr_accessor :book_filter, :lender_filter, :lender_description
 
   validates :lender_id,    presence: true
   validates :book_id,      presence: true
