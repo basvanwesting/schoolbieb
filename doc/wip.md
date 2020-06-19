@@ -1,6 +1,8 @@
 * add exception notification
 * add feature specs
 * scope title/series autocomplete to fiction/non_fiction
+* Book: pending => available
+* Book: => disabled
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|
