@@ -2,9 +2,11 @@ class Books::NonFictionsController < BooksController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def show
+    authorize! :read, Book::NonFiction
   end
 
   def edit
+    authorize! :update, @book
   end
 
   def new
@@ -13,9 +15,11 @@ class Books::NonFictionsController < BooksController
     else
       @book = Book::NonFiction.new
     end
+    authorize! :create, @book
   end
 
   def update
+    authorize! :update, @book
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: t('action.update.success', model: Book::Fiction.model_name.human) }
@@ -27,6 +31,7 @@ class Books::NonFictionsController < BooksController
 
   def create
     @book = Book::NonFiction.new(book_params)
+    authorize! :create, @book
 
     respond_to do |format|
       if @book.save
@@ -38,6 +43,7 @@ class Books::NonFictionsController < BooksController
   end
 
   def destroy
+    authorize! :destroy, @book
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: t('action.destroy.success', model: Book.model_name.human) }

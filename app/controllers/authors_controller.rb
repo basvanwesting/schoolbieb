@@ -2,22 +2,27 @@ class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, Author
     @q = Author.ransack(params[:q])
     @authors = @q.result.order("last_name ASC, first_name ASC").page(params[:page]).per(100)
   end
 
   def show
+    authorize! :read, @author
   end
 
   def new
     @author = Author.new
+    authorize! :create, @author
   end
 
   def edit
+    authorize! :update, @author
   end
 
   def create
     @author = Author.new(author_params)
+    authorize! :create, @author
 
     respond_to do |format|
       if @author.save
@@ -29,6 +34,7 @@ class AuthorsController < ApplicationController
   end
 
   def update
+    authorize! :update, @author
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to @author, notice: t('action.update.success', model: Author.model_name.human) }
@@ -39,6 +45,7 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @author
     @author.destroy
     respond_to do |format|
       format.html { redirect_to authors_url, notice: t('action.destroy.success', model: Author.model_name.human) }

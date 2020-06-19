@@ -2,10 +2,12 @@ class Lending::BorrowsController < ApplicationController
 
   def new
     @lending_borrow = Lending::Borrow.new(lending_borrow_params)
+    authorize! :create, @lending_borrow
   end
 
   def create
     @lending_borrow = Lending::Borrow.new(lending_borrow_params)
+    authorize! :create, @lending_borrow
 
     respond_to do |format|
       if @lending_borrow.save

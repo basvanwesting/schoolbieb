@@ -1,0 +1,6 @@
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    div.callout.round class="#{name.to_s == 'notice' ? 'success' : 'alert'}" data-alert="" data-closable=""
+      = content_tag :div, msg
+      button.close-button aria-label="Dismiss alert" type="button" data-close=""
+        span aria-hidden="true" &times;

@@ -2,10 +2,12 @@ class Lending::ReturnsController < ApplicationController
 
   def new
     @lending_return = Lending::Return.new(lending_return_params)
+    authorize! :create, @lending_return
   end
 
   def create
     @lending_return = Lending::Return.new(lending_return_params)
+    authorize! :create, @lending_return
 
     respond_to do |format|
       if @lending_return.save

@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, Book
+
     if user.role?(Role::Admin)
       can :manage, :all
     end

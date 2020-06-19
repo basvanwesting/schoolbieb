@@ -2,11 +2,18 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :store_or_reset_params_q, only: :index
 
-  def test_exception_notifier
-    raise 'This is a test. This is only a test.'
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden }
+      format.html { redirect_to main_app.root_url, alert: exception.message }
+    end
   end
 
   helper_method :ransack_filter_present?
+
+  def test_exception_notifier
+    raise 'This is a test. This is only a test.'
+  end
 
   private
 

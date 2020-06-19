@@ -2,22 +2,27 @@ class LendersController < ApplicationController
   before_action :set_lender, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, Lender
     @q = Lender.ransack(params[:q])
     @lenders = @q.result.order("last_name ASC, first_name ASC").page(params[:page]).per(100)
   end
 
   def show
+    authorize! :read, @lender
   end
 
   def new
     @lender = Lender.new
+    authorize! :create, @lender
   end
 
   def edit
+    authorize! :update, @lender
   end
 
   def create
     @lender = Lender.new(lender_params)
+    authorize! :create, @lender
 
     respond_to do |format|
       if @lender.save
@@ -29,6 +34,7 @@ class LendersController < ApplicationController
   end
 
   def update
+    authorize! :update, @lender
     respond_to do |format|
       if @lender.update(lender_params)
         format.html { redirect_to @lender, notice: t('action.update.success', model: Lender.model_name.human) }
@@ -39,6 +45,7 @@ class LendersController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @lender
     @lender.destroy
     respond_to do |format|
       format.html { redirect_to lenders_url, notice: t('action.destroy.success', model: Lender.model_name.human) }
