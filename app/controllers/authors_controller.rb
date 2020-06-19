@@ -1,64 +1,47 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
 
-  # GET /authors
-  # GET /authors.json
   def index
     @q = Author.ransack(params[:q])
     @authors = @q.result.order("last_name ASC, first_name ASC").page(params[:page]).per(100)
   end
 
-  # GET /authors/1
-  # GET /authors/1.json
   def show
   end
 
-  # GET /authors/new
   def new
     @author = Author.new
   end
 
-  # GET /authors/1/edit
   def edit
   end
 
-  # POST /authors
-  # POST /authors.json
   def create
     @author = Author.new(author_params)
 
     respond_to do |format|
       if @author.save
         format.html { redirect_to @author, notice: t('action.create.success', model: Author.model_name.human) }
-        format.json { render :show, status: :created, location: @author }
       else
         format.html { render :new }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /authors/1
-  # PATCH/PUT /authors/1.json
   def update
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to @author, notice: t('action.update.success', model: Author.model_name.human) }
-        format.json { render :show, status: :ok, location: @author }
       else
         format.html { render :edit }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /authors/1
-  # DELETE /authors/1.json
   def destroy
     @author.destroy
     respond_to do |format|
       format.html { redirect_to authors_url, notice: t('action.destroy.success', model: Author.model_name.human) }
-      format.json { head :no_content }
     end
   end
 

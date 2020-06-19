@@ -1,8 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:qr, :set_sticker_pending, :unset_sticker_pending]
 
-  # GET /books
-  # GET /books.json
   def index
     @q = Book.ransack(params[:q])
     scope = @q.result.includes(:author).order("authors.last_name ASC, title ASC")
@@ -13,12 +11,9 @@ class BooksController < ApplicationController
     end
   end
 
-  # GET /books/1/qr
-  # GET /books/1/qr.json
   def qr
     respond_to do |format|
       format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
-      format.json { render :show, location: @book }
     end
   end
 
