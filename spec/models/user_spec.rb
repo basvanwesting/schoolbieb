@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
         expect(subject.role?(Role::JuniorCollaborator)).to be_truthy
         expect(subject.role?(Role::SeniorCollaborator)).to be_falsey
 
-        subject.update(roles: [Role::Admin, Role::SeniorCollaborator])
+        subject.update(roles: [Role::Admin, Role::SeniorCollaborator, 'JUNK'])
         expect(subject.roles).to eq [Role::Admin, Role::SeniorCollaborator].map(&:to_s)
         expect(subject.reload.roles).to eq [Role::Admin, Role::SeniorCollaborator].map(&:to_s)
         expect(subject.role?(Role::Admin)).to be_truthy

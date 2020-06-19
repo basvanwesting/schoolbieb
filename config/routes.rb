@@ -19,13 +19,16 @@ Rails.application.routes.draw do
   resources :authors
   resources :lenders
   resources :loans
+  resources :stickers, only: :index
+
+  namespace :admin do
+    resources :users
+  end
+  devise_for :users
+  resources :users, only: [:show, :edit, :update]
 
   resources :titles,   only: :index
   resources :series,   only: :index
-  resources :stickers, only: :index
-
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'books#index'
   get '/test_exception_notifier', controller: 'authors', action: 'test_exception_notifier'

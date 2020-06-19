@@ -1,0 +1,32 @@
+h1 = t('action.index', models: User.model_name.human(count: 2))
+
+= link_to t('action.new', model: User.model_name.human), new_admin_user_path, class: 'button'
+
+= inline_search_form_for @q, url: admin_users_path do |f|
+  table
+    thead
+      tr
+        th = sort_link(@q, :email, User.human_attribute_name(:email))
+        th = sort_link(@q, :roles, User.human_attribute_name(:roles))
+        th.actions
+          i.fas.fa-search
+          = search_result_info(@users)
+      = search_row do
+        th= f.input :email_cont, placeholder: t('placeholder.cont'), as: :string
+        th
+        th.actions= f.submit_search_form
+
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.email
+          td = user.roles.to_sentence
+          td.actions
+            = link_to t('button.show'), [:admin, user], class: 'button tiny'
+            = link_to t('button.edit'), edit_admin_user_path(user), class: 'button warning tiny'
+            = link_to t('button.destroy'), [:admin, user], data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+
+= paginate @users
+
+= link_to t('action.new', model: User.model_name.human), new_admin_user_path, class: 'button'
+

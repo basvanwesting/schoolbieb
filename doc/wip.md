@@ -3,6 +3,7 @@
 * scope title/series autocomplete to fiction/non_fiction
 * Book: pending => available
 * Book: => disabled
+* Remove series and title controllers as they are unused
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|

@@ -80,6 +80,9 @@ nl:
 
   activerecord:
     models:
+      user:
+        one: Gebruiker
+        other: Gebruikers
       book:
         one: Boek
         other: Boeken

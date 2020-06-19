@@ -1,0 +1,14 @@
+p#notice = notice
+
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th = User.human_attribute_name(:email)
+      td = @user.email
+    tr
+      th = User.human_attribute_name(:roles)
+      td = @user.roles.to_sentence
+
+= link_to t('button.edit'), edit_admin_user_path(@user), class: 'button warning'
+= link_to t('button.back'), :back, class: 'button'
+

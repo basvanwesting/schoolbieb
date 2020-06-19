@@ -9,6 +9,10 @@ class Role
         Role::SeniorCollaborator,
       ]
     end
+
+    def class_names
+      classes.map(&:to_s)
+    end
   end
 
 end
