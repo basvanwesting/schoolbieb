@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :users
   end
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
+  resource :current_user, only: [:show, :edit, :update]
 
   resources :titles,   only: :index
   resources :series,   only: :index

@@ -2,11 +2,11 @@ table.hover.unstriped.condensed.text-left
   tbody
     tr
       th = User.human_attribute_name(:email)
-      td = @user.email
+      td = current_user.email
     tr
       th = User.human_attribute_name(:roles)
-      td = @user.roles.to_sentence
+      td = current_user.roles.to_sentence
 
-= link_to t('button.edit'), edit_user_path(@user), class: 'button warning'
+= link_to t('button.edit'), edit_current_user_path, class: 'button warning'
 = link_to t('button.back'), :back, class: 'button'
 

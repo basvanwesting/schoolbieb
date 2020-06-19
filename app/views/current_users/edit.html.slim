@@ -1,6 +1,6 @@
 h1 = User.model_name.human
 
-= simple_form_for @user do |f|
+= simple_form_for current_user, url: current_user_path do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
