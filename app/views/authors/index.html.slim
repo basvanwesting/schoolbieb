@@ -4,7 +4,8 @@ h1 = t('action.index', models: Author.model_name.human(count: 2))
 = inline_search_form_for @q do |f|
   .grid-x
     .cell.medium-4
-      = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
+      - if can? :create, Author
+        = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
     .cell.medium-8
       = f.input :id_author_wildcard,
         placeholder: t( \
@@ -38,10 +39,13 @@ h1 = t('action.index', models: Author.model_name.human(count: 2))
           td = author.middle_name
           td.actions
             = link_to t('button.show'), author, class: 'button tiny'
-            = link_to t('button.edit'), edit_author_path(author), class: 'button warning tiny'
-            = link_to t('button.destroy'), author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+            - if can? :update, author
+              = link_to t('button.edit'), edit_author_path(author), class: 'button warning tiny'
+            - if can? :destroy, author
+              = link_to t('button.destroy'), author, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
-br
 = paginate @authors
-= link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
+
+- if can? :create, Author
+  = link_to t('action.new', model: Author.model_name.human), new_author_path, class: 'button'
 

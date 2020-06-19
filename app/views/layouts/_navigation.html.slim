@@ -9,12 +9,16 @@ nav.top-bar
           li = link_to Author.model_name.human(count: 2), authors_path, tabindex: -1
         - if can? :read, Book
           li = link_to Book.model_name.human(count: 2), books_path, tabindex: -1
-        - if can? :read, Book
-          li = link_to 'Stickers', stickers_path, tabindex: -1
         - if can? :create, Lending::Borrow
           li = link_to Lending::Borrow.model_name.human, new_lending_borrow_path, tabindex: -1
         - if can? :create, Lending::Return
           li = link_to Lending::Return.model_name.human, new_lending_return_path, tabindex: -1
+        - if can? :read, Lender
+          li = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
+        - if can? :read, Loan
+          li = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
+        - if can? :update, Book
+          li = link_to 'Stickers', stickers_path, tabindex: -1
   .top-bar-right
     ul.menu
       - if user_signed_in?

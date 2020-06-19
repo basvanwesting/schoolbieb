@@ -22,6 +22,12 @@ table
         td = book.avi_level
         td.actions
           = link_to t('button.show'), book, class: 'button tiny'
-          = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
-          = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+          - if can? :update, book
+            = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
+          - if can? :destroy, book
+            = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+          - if book.may_borrow? && can?(:create, Lending::Borrow)
+            = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: book.id }), class: 'button warning tiny'
+          - if book.may_return? && can?(:create, Lending::Return)
+            = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: book.id }), class: 'button success tiny'
 

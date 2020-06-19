@@ -1,6 +1,7 @@
 h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
 
-= link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
+- if can? :create, Loan
+  = link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
 
 = inline_search_form_for @q do |f|
   table
@@ -44,10 +45,13 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
           td = loan.return_date
           td.actions
             = link_to t('button.show'), loan, class: 'button tiny'
-            = link_to t('button.edit'), edit_loan_path(loan), class: 'button warning tiny'
-            = link_to t('button.destroy'), loan, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+            - if can? :update, loan
+              = link_to t('button.edit'), edit_loan_path(loan), class: 'button warning tiny'
+            - if can? :destroy, loan
+              = link_to t('button.destroy'), loan, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
 
-br
 = paginate @loans
-= link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
+
+- if can? :create, Loan
+  = link_to t('action.loan.new', model: Loan.model_name.human), new_loan_path, class: 'button'
 

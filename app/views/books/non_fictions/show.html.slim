@@ -34,22 +34,28 @@ table.hover.unstriped.condensed.text-left
       th = Book.human_attribute_name(:sticker_pending)
       td = t(@book.sticker_pending)
 
-- if @book.may_borrow?
-  = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: @book.id }), class: 'button'
-- if @book.may_return?
-  = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: @book.id }), class: 'button'
-br
-= link_to t('button.edit'), edit_polymorphic_path(@book), class: 'button warning'
-= link_to t('button.destroy'), @book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert'
-- if @book.sticker_pending
-  = link_to t('button.unset_sticker_pending'), unset_sticker_pending_book_path(@book), method: :post, class: 'button'
-- else
-  = link_to t('button.set_sticker_pending'), set_sticker_pending_book_path(@book), method: :post, class: 'button'
+- if @book.may_borrow? && can?(:create, Lending::Borrow)
+  = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: @book.id }), class: 'button warning'
+- if @book.may_return? && can?(:create, Lending::Return)
+  = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: @book.id }), class: 'button success'
 
+br
+- if can? :update, @book
+  = link_to t('button.edit'), edit_polymorphic_path(@book), class: 'button warning'
+- if can? :destroy, @book
+  = link_to t('button.destroy'), @book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert'
+- if @book.sticker_pending && can?(:update, @book)
+  = link_to t('button.unset_sticker_pending'), unset_sticker_pending_book_path(@book), method: :post, class: 'button'
+- elsif can? :update, @book
+  = link_to t('button.set_sticker_pending'), set_sticker_pending_book_path(@book), method: :post, class: 'button'
 = link_to t('button.back'), :back, class: 'button secondary'
+
 br
-= link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
-= link_to t('button.add', add_model: Book::NonFiction.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_non_fiction_path(book: @book.attributes.slice(*%w[author_id series reading_level avi_level])), class: 'button'
-= link_to t('button.clone'), new_book_non_fiction_path(book: @book.attributes.slice(*%w[author_id title series part reading_level avi_level])), class: 'button'
+- if can? :create, Book::NonFiction
+  = link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
+  = link_to t('button.add', add_model: Book::NonFiction.model_name.human, to_model: Book.human_attribute_name(:series)), new_book_non_fiction_path(book: @book.attributes.slice(*%w[author_id series reading_level avi_level])), class: 'button'
+  = link_to t('button.clone'), new_book_non_fiction_path(book: @book.attributes.slice(*%w[author_id title series part reading_level avi_level])), class: 'button'
+
 br
-= link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
+- if can? :create, Book::Fiction
+  = link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'

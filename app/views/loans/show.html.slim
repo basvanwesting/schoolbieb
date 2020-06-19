@@ -31,5 +31,6 @@ table.hover.unstriped.condensed.text-left
       th = Loan.human_attribute_name(:return_date)
       td = @loan.return_date
 
-= link_to t('button.edit'), edit_loan_path(@loan), class: 'button warning'
+- if can? :update, @loan
+  = link_to t('button.edit'), edit_loan_path(@loan), class: 'button warning'
 = link_to t('button.back'), :back, class: 'button'

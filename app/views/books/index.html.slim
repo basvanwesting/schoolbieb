@@ -3,8 +3,10 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
 = inline_search_form_for @q do |f|
   .grid-x
     .cell.medium-4
-      = link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
-      = link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
+      - if can? :create, Book::Fiction
+        = link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
+      - if can? :create, Book::NonFiction
+        = link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
       = f.submit class: 'button', style: "display: none;"
       = f.submit 'Download as CSV',
         formaction: books_path(format: 'csv'),
@@ -71,14 +73,18 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
           td = t(book.sticker_pending)
           td.actions
             = link_to t('button.show'), book, class: 'button tiny'
-            = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning warning tiny'
-            = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
-            - if book.may_borrow?
-              = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: book.id }), class: 'button tiny'
-            - if book.may_return?
-              = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: book.id }), class: 'button tiny'
+            - if can? :update, book
+              = link_to t('button.edit'), edit_polymorphic_path(book), class: 'button warning tiny'
+            - if can? :destroy, book
+              = link_to t('button.destroy'), book, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+            - if book.may_borrow? && can?(:create, Lending::Borrow)
+              = link_to Lending::Borrow.model_name.human, new_lending_borrow_path(lending_borrow: { book_id: book.id }), class: 'button warning tiny'
+            - if book.may_return? && can?(:create, Lending::Return)
+              = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: book.id }), class: 'button success tiny'
 
-br
 = paginate @books
-= link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
-= link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
+
+- if can? :create, Book::Fiction
+  = link_to t('action.new', model: Book::Fiction.model_name.human), new_book_fiction_path, class: 'button'
+- if can? :create, Book::NonFiction
+  = link_to t('action.new', model: Book::NonFiction.model_name.human), new_book_non_fiction_path, class: 'button'
