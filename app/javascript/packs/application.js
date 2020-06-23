@@ -13,6 +13,9 @@ import 'regenerator-runtime/runtime'
 require("@rails/ujs").start()
 require("turbolinks").start()
 
+import BrowserTabSessionId from '../src/browser_tab_session_id'
+BrowserTabSessionId.init()
+
 import './vendor'
 import '../stylesheets/application'
 import '../channels/index'

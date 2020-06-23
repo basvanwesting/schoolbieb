@@ -1,6 +1,7 @@
 import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
 import { debounce } from "lodash"
+import BrowserTabSessionId from '../src/browser_tab_session_id'
 
 const RESULT_LIMIT = 25
 export default class LendingBorrowFormController extends Controller {
@@ -20,7 +21,7 @@ export default class LendingBorrowFormController extends Controller {
     const lendingBorrowFormController = this
 
     this.autocompleteChannel = consumer.subscriptions.create(
-      { channel: "AutocompleteChannel", room: 'LendingBorrowForm' },
+      { channel: "AutocompleteChannel", room: BrowserTabSessionId.id },
       {
         connected() {
           // Called when the subscription is ready for use on the server
