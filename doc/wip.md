@@ -1,10 +1,10 @@
+* Book: pending => available
+* Book: => disabled
 * Add exception notification
 * Add feature specs
 * Scope title/series autocomplete to fiction/non_fiction
-* Book: pending => available
-* Book: => disabled
-* Remove series and title controllers as they are unused
 * Add version to GUI
+* Stickers for lenders
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|

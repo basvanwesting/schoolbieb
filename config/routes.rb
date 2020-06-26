@@ -27,9 +27,6 @@ Rails.application.routes.draw do
   devise_for :users
   resource :current_user, only: [:show, :edit, :update]
 
-  resources :titles,   only: :index
-  resources :series,   only: :index
-
   root to: 'books#index'
   get '/test_exception_notifier', controller: 'authors', action: 'test_exception_notifier'
 end
