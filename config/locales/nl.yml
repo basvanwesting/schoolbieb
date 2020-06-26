@@ -77,6 +77,9 @@ nl:
         success: 'Succesvol uitgeleend'
       return:
         success: 'Succesvol geretourneerd'
+    book_use_case:
+      enable:
+        success: 'Succesvol beschikbaar gemaakt'
 
   activerecord:
     models:
@@ -147,6 +150,7 @@ nl:
     models:
       lending/borrow: Uitlenen
       lending/return: Retourneren
+      book_use_case/enable: Beschikbaar Maken
     attributes:
       lending/borrow:
         book_id: Boek
@@ -159,6 +163,10 @@ nl:
         book_description: Boek
     errors:
       models:
+        book_use_case/enable:
+          attributes:
+            book_id:
+              may_not_enable: kan niet beschikbaar gemaakt worden
         lending/borrow:
           attributes:
             book_id:

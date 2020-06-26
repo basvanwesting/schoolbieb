@@ -18,6 +18,7 @@ class Ability
     if user.role?(Role::SeniorCollaborator)
       can :manage, Author
       can :manage, Book
+      can :manage, BookUseCase::Enable
       can :manage, Lending::Borrow
       can :manage, Lending::Return
       can :read, Lender

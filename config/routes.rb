@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :non_fictions
   end
 
+  namespace :book_use_case, as: :book_use_case do
+    resources :enables, only: [:new, :create]
+  end
+
   namespace :lending do
     resources :borrows, only: [:new, :create]
     resources :returns, only: [:new, :create]
