@@ -166,13 +166,10 @@ nl:
         book_description: Boek
     errors:
       models:
-        book_use_case/enable:
+        book_use_case:
           attributes:
             book_id:
               may_not_enable: kan niet beschikbaar gemaakt worden
-        book_use_case/disable:
-          attributes:
-            book_id:
               may_not_disable: kan niet geblokkeerd worden
         lending/borrow:
           attributes:
