@@ -1,4 +1,6 @@
-* Book: pending => available
+	new file:   spec/models/book_use_case/enable_spec.rb
+
+
 * Book: => disabled
 * Add exception notification
 * Add feature specs

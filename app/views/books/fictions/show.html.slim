@@ -37,6 +37,8 @@ table.hover.unstriped.condensed.text-left
   = link_to Lending::Return.model_name.human, new_lending_return_path(lending_return: { book_id: @book.id }), class: 'button success'
 - if @book.may_enable? && can?(:create, BookUseCase::Enable)
   = link_to BookUseCase::Enable.model_name.human, book_use_case_enables_path(book_use_case_enable: { book_id: @book.id }), method: :post, class: 'button success'
+- if @book.may_disable? && can?(:create, BookUseCase::Disable)
+  = link_to BookUseCase::Disable.model_name.human, book_use_case_disables_path(book_use_case_disable: { book_id: @book.id }), method: :post, class: 'button alert'
 
 br
 - if can? :update, @book

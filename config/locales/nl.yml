@@ -80,6 +80,8 @@ nl:
     book_use_case:
       enable:
         success: 'Succesvol beschikbaar gemaakt'
+      disable:
+        success: 'Succesvol geblokkeerd'
 
   activerecord:
     models:
@@ -151,6 +153,7 @@ nl:
       lending/borrow: Uitlenen
       lending/return: Retourneren
       book_use_case/enable: Beschikbaar Maken
+      book_use_case/disable: Blokkeren
     attributes:
       lending/borrow:
         book_id: Boek
@@ -167,6 +170,10 @@ nl:
           attributes:
             book_id:
               may_not_enable: kan niet beschikbaar gemaakt worden
+        book_use_case/disable:
+          attributes:
+            book_id:
+              may_not_disable: kan niet geblokkeerd worden
         lending/borrow:
           attributes:
             book_id:

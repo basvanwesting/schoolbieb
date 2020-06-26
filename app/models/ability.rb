@@ -19,6 +19,7 @@ class Ability
       can :manage, Author
       can :manage, Book
       can :manage, BookUseCase::Enable
+      can :manage, BookUseCase::Disable
       can :manage, Lending::Borrow
       can :manage, Lending::Return
       can :read, Lender
