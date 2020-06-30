@@ -1,21 +1,13 @@
-class BookUseCase::Return
-  include ActiveModel::Model
+class BookUseCase::Return < BookUseCase
 
-  attr_accessor :book_id
-  attr_accessor :book, :loan
-  attr_accessor :book_description
+  attr_accessor :loan
 
-  validates :book_id, presence: true
-
-  validate  :book_found
-  validate  :loan_found
-  validate  :book_may_return
+  validate :loan_found
+  validate :book_may_return
 
   def initialize(*args)
     super
-    self.book               = Book.find_by(id: book_id)
-    self.book_description ||= book&.description
-    self.loan               = Loan.find_by(
+    self.loan = Loan.find_by(
       book_id:     book_id,
       return_date: nil,
     )
@@ -29,19 +21,9 @@ class BookUseCase::Return
     end
   end
 
-  def book_found
-    return unless book_id
-    errors.add(:book_id, :not_found) unless book.present?
-  end
-
   def loan_found
     return unless book.present?
     errors.add(:book_id, :loan_not_found) unless loan.present?
-  end
-
-  def book_may_return
-    return unless book.present?
-    errors.add(:book_id, :may_not_return) unless book.may_return?
   end
 
 end

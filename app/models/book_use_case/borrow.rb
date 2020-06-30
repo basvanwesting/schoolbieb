@@ -1,27 +1,19 @@
-class BookUseCase::Borrow
-  include ActiveModel::Model
-
+class BookUseCase::Borrow < BookUseCase
   DEFAULT_DUE_DATE_INTERVAL = 21.days
 
-  attr_accessor :lender_id, :book_id
+  attr_accessor :lender_id, :lender, :lender_description
   attr_accessor :lending_date, :due_date
-
-  attr_accessor :lender, :book, :loan
-  attr_accessor :book_description, :lender_description
+  attr_accessor :loan
 
   validates :lender_id,    presence: true
-  validates :book_id,      presence: true
   validates :lending_date, presence: true
   validates :due_date,     presence: true
 
-  validate  :book_found
-  validate  :lender_found
-  validate  :book_may_borrow
+  validate :lender_found
+  validate :book_may_borrow
 
   def initialize(*args)
     super
-    self.book                 = Book.find_by(id: book_id)
-    self.book_description   ||= book&.description
     self.lender               = Lender.find_by(id: lender_id)
     self.lender_description ||= lender&.description
     self.lending_date         = Date.today
@@ -41,19 +33,9 @@ class BookUseCase::Borrow
     end
   end
 
-  def book_found
-    return unless book_id
-    errors.add(:book_id, :not_found) unless book.present?
-  end
-
   def lender_found
     return unless lender_id
     errors.add(:lender_id, :not_found) unless lender.present?
-  end
-
-  def book_may_borrow
-    return unless book.present?
-    errors.add(:book_id, :may_not_borrow) unless book.may_borrow?
   end
 
 end
