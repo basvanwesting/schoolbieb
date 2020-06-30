@@ -11,8 +11,8 @@ class Ability
     if user.role?(Role::JuniorCollaborator)
       can :read, Author
       can :read, Book
-      can :manage, Lending::Borrow
-      can :manage, Lending::Return
+      can :manage, BookUseCase::Borrow
+      can :manage, BookUseCase::Return
     end
 
     if user.role?(Role::SeniorCollaborator)
@@ -20,8 +20,8 @@ class Ability
       can :manage, Book
       can :manage, BookUseCase::Enable
       can :manage, BookUseCase::Disable
-      can :manage, Lending::Borrow
-      can :manage, Lending::Return
+      can :manage, BookUseCase::Borrow
+      can :manage, BookUseCase::Return
       can :read, Lender
       can :read, Loan
     end

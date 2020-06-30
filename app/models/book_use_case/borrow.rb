@@ -1,4 +1,4 @@
-class Lending::Borrow
+class BookUseCase::Borrow
   include ActiveModel::Model
 
   DEFAULT_DUE_DATE_INTERVAL = 21.days

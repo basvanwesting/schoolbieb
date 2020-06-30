@@ -1,4 +1,4 @@
-class Lending::Return
+class BookUseCase::Return
   include ActiveModel::Model
 
   attr_accessor :book_id

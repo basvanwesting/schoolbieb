@@ -4,7 +4,7 @@ import { debounce } from "lodash"
 import BrowserTabSessionId from '../src/browser_tab_session_id'
 
 const RESULT_LIMIT = 25
-export default class LendingReturnFormController extends Controller {
+export default class BookUseCaseReturnFormController extends Controller {
 
   static get targets() {
     return [
@@ -15,27 +15,27 @@ export default class LendingReturnFormController extends Controller {
   }
 
   connect() {
-    const lendingReturnFormController = this
+    const bookUseCaseReturnFormController = this
 
     this.autocompleteChannel = consumer.subscriptions.create(
       { channel: "AutocompleteChannel", room: BrowserTabSessionId.id },
       {
         connected() {
           // Called when the subscription is ready for use on the server
-          console.log("AutocompleteChannel:LendingReturnForm connected")
+          console.log("AutocompleteChannel:BookUseCaseReturnForm connected")
         },
         disconnected() {
           // Called when the subscription has been terminated by the server
-          console.log("AutocompleteChannel:LendingReturnForm disconnected")
+          console.log("AutocompleteChannel:BookUseCaseReturnForm disconnected")
         },
         received(data) {
-          console.log('AutocompleteChannel:LendingReturnForm received', data)
+          console.log('AutocompleteChannel:BookUseCaseReturnForm received', data)
           switch(data.action) {
             case 'search_book':
-              lendingReturnFormController.setBookOptions(data.books)
+              bookUseCaseReturnFormController.setBookOptions(data.books)
               break
             default:
-              console.log('Unknown action for AutocompleteChannel:LendingReturnForm#received', data)
+              console.log('Unknown action for AutocompleteChannel:BookUseCaseReturnForm#received', data)
           }
         },
         search_book(filter) {

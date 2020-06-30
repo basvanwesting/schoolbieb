@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Lending::Borrow, type: :model do
+RSpec.describe BookUseCase::Borrow, type: :model do
   let!(:book)   { FactoryBot.create(:book)   }
   let!(:lender) { FactoryBot.create(:lender) }
 
   context 'valid' do
     subject { described_class.new(book_id: book.id, lender_id: lender.id) }
 
-    it 'transactions the lending' do
+    it 'transactions the book_use_case' do
       expect {
         subject.save
       }.to change { Loan.count }.by(1)

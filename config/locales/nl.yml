@@ -72,7 +72,7 @@ nl:
         success: 'Uitlening is succesvol bijgewerkt'
       destroy:
         success: 'Uitlening is succesvol verwijderd'
-    lending:
+    book_use_case:
       borrow:
         success: 'Succesvol uitgeleend'
       return:
@@ -150,18 +150,18 @@ nl:
 
   activemodel:
     models:
-      lending/borrow: Uitlenen
-      lending/return: Retourneren
+      book_use_case/borrow: Uitlenen
+      book_use_case/return: Retourneren
       book_use_case/enable: Beschikbaar Maken
       book_use_case/disable: Blokkeren
     attributes:
-      lending/borrow:
+      book_use_case/borrow:
         book_id: Boek
         book_description: Boek
         lender_id: Kind
         lender_description: Kind
         due_date: Retourdatum
-      lending/return:
+      book_use_case/return:
         book_id: Boek
         book_description: Boek
     errors:
@@ -171,11 +171,11 @@ nl:
             book_id:
               may_not_enable: kan niet beschikbaar gemaakt worden
               may_not_disable: kan niet geblokkeerd worden
-        lending/borrow:
+        book_use_case/borrow:
           attributes:
             book_id:
               may_not_borrow: kan niet uitgeleend worden
-        lending/return:
+        book_use_case/return:
           attributes:
             book_id:
               may_not_return: kan niet geretourneerd worden

@@ -4,7 +4,7 @@ import { debounce } from "lodash"
 import BrowserTabSessionId from '../src/browser_tab_session_id'
 
 const RESULT_LIMIT = 25
-export default class LendingBorrowFormController extends Controller {
+export default class BookUseCaseBorrowFormController extends Controller {
 
   static get targets() {
     return [
@@ -18,30 +18,30 @@ export default class LendingBorrowFormController extends Controller {
   }
 
   connect() {
-    const lendingBorrowFormController = this
+    const bookUseCaseBorrowFormController = this
 
     this.autocompleteChannel = consumer.subscriptions.create(
       { channel: "AutocompleteChannel", room: BrowserTabSessionId.id },
       {
         connected() {
           // Called when the subscription is ready for use on the server
-          console.log("AutocompleteChannel:LendingBorrowForm connected")
+          console.log("AutocompleteChannel:BookUseCaseBorrowForm connected")
         },
         disconnected() {
           // Called when the subscription has been terminated by the server
-          console.log("AutocompleteChannel:LendingBorrowForm disconnected")
+          console.log("AutocompleteChannel:BookUseCaseBorrowForm disconnected")
         },
         received(data) {
-          console.log('AutocompleteChannel:LendingBorrowForm received', data)
+          console.log('AutocompleteChannel:BookUseCaseBorrowForm received', data)
           switch(data.action) {
             case 'search_book':
-              lendingBorrowFormController.setBookOptions(data.books)
+              bookUseCaseBorrowFormController.setBookOptions(data.books)
               break
             case 'search_lender':
-              lendingBorrowFormController.setLenderOptions(data.lenders)
+              bookUseCaseBorrowFormController.setLenderOptions(data.lenders)
               break
             default:
-              console.log('Unknown action for AutocompleteChannel:LendingBorrowForm#received', data)
+              console.log('Unknown action for AutocompleteChannel:BookUseCaseBorrowForm#received', data)
           }
         },
         search_book(filter) {

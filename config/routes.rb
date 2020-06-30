@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :disables, only: [:new, :create]
   end
 
-  namespace :lending do
+  namespace :book_use_case do
     resources :borrows, only: [:new, :create]
     resources :returns, only: [:new, :create]
   end
