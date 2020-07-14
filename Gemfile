@@ -38,9 +38,9 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
   gem 'capybara'
-  gem 'poltergeist'
   gem 'capybara-screenshot'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
