@@ -38,6 +38,7 @@ group :development do
 end
 
 group :test do
+  gem 'action-cable-testing'
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'factory_bot_rails'

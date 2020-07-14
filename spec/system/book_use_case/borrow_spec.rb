@@ -20,12 +20,15 @@ RSpec.describe "Borrow Book", type: :system do
       context 'valid form' do
         it "borrows the book" do
           visit "/"
+          page.execute_script "window.sessionStorage.setItem('btsi','12345');"
           click_link "Uitlenen", match: :first
 
           expect do
             within("form") do
-              fill_in 'Boek', with: "First"
-              sleep 1 #wait for websocket resolve
+              expect {
+                fill_in 'Boek', with: "First"
+                sleep 1 #wait for websocket resolve
+              }.to have_broadcasted_to("#{AutocompleteChannel.broadcasting_for(user)}_12345")
               fill_in 'Kind', with: "John"
               sleep 1 #wait for websocket resolve
               click_on "Opslaan"
