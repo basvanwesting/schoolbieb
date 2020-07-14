@@ -3,8 +3,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :book, label_method: :description, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
-    = f.association :lender, label_method: :description, value_method: :id, include_blank: true, input_html: { class: 'js-select2', data: { 'minimum-input-length': 2 } }
+    = f.association :book, label_method: :description, value_method: :id, include_blank: true
+    = f.association :lender, label_method: :description, value_method: :id, include_blank: true
     = f.input :lending_date, as: :datepicker, value: f.object.lending_date || Date.today
     = f.input :due_date,     as: :datepicker, value: f.object.due_date     || (Date.today + 14)
     = f.input :return_date,  as: :datepicker
