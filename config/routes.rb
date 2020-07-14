@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index] do
     member do
       get :qr
-      post :unset_sticker_pending
-      post :set_sticker_pending
     end
   end
   namespace :books, as: :book do

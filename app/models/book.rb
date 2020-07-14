@@ -12,7 +12,6 @@ class Book < ApplicationRecord
   delegate :first_name, :middle_name, :last_name, to: :author, prefix: true, allow_nil: true
   delegate :human, to: :model_name, prefix: true
 
-  before_save :update_sticker_pending!
   after_initialize :set_author_description #for form
 
   module ReadingLevels
@@ -55,20 +54,6 @@ class Book < ApplicationRecord
 
   def set_author_description
     self.author_description ||= author&.description
-  end
-
-  def update_sticker_pending!
-    return unless (changes.keys & %w[title series part reading_level author_id]).present?
-
-    self.sticker_pending = true
-  end
-
-  def unset_sticker_pending!
-    update(sticker_pending: false)
-  end
-
-  def set_sticker_pending!
-    update(sticker_pending: true)
   end
 
   class << self
@@ -115,7 +100,6 @@ class Book < ApplicationRecord
         category:           Book.human_attribute_name(:category),
         reading_level:      Book.human_attribute_name(:reading_level),
         avi_level:          Book.human_attribute_name(:avi_level),
-        sticker_pending:    Book.human_attribute_name(:sticker_pending),
         author_id:          "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:id)}",
         author_first_name:  "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:first_name)}",
         author_middle_name: "#{Book.human_attribute_name(:author)} #{Author.human_attribute_name(:middle_name)}",

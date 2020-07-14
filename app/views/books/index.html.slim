@@ -39,7 +39,6 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
         th = sort_link(@q, :category,        Book.human_attribute_name(:category))
         th = sort_link(@q, :reading_level,   Book.human_attribute_name(:reading_level))
         th = sort_link(@q, :avi_level,       Book.human_attribute_name(:avi_level))
-        th = sort_link(@q, :sticker_pending, Book.human_attribute_name(:sticker_pending))
         th.actions
           i.fas.fa-search
           = search_result_info(@books)
@@ -54,7 +53,6 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
         th = f.input :category_eq,      collection: Book::NonFiction::Categories::ALL,  include_blank: ' - '
         th = f.input :reading_level_eq, collection: Book::ReadingLevels::ALL,           include_blank: ' - '
         th = f.input :avi_level_eq,     collection: Book::AviLevels::ALL,               include_blank: ' - '
-        th = f.input :sticker_pending_eq, collection: [true,false].map { |v| [t(v), v] }, include_blank: ' - '
         th.actions= f.submit_search_form
 
     tbody
@@ -70,7 +68,6 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
           td = category_with_icon(book.category)
           td = book.reading_level
           td = book.avi_level
-          td = t(book.sticker_pending)
           td.actions
             = link_to t('button.show'), book, class: 'button tiny'
             - if can? :update, book

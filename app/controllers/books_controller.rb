@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:qr, :set_sticker_pending, :unset_sticker_pending]
+  before_action :set_book, only: [:qr]
 
   def index
     authorize! :read, Book
@@ -17,18 +17,6 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
     end
-  end
-
-  def unset_sticker_pending
-    authorize! :update, @book
-    @book.unset_sticker_pending!
-    redirect_back fallback_location: @book
-  end
-
-  def set_sticker_pending
-    authorize! :update, @book
-    @book.set_sticker_pending!
-    redirect_back fallback_location: @book
   end
 
   private

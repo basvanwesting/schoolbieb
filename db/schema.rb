@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_140741) do
+ActiveRecord::Schema.define(version: 2020_07_14_130452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2020_06_19_140741) do
     t.datetime "updated_at", null: false
     t.string "series"
     t.integer "part"
-    t.boolean "sticker_pending", default: true, null: false
     t.string "sti_type"
     t.string "category"
     t.string "tags", default: [], array: true

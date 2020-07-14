@@ -17,7 +17,6 @@
           th = sort_link(@q, :category,        Book.human_attribute_name(:category))
           th = sort_link(@q, :reading_level,   Book.human_attribute_name(:reading_level))
           th = sort_link(@q, :avi_level,       Book.human_attribute_name(:avi_level))
-          th = sort_link(@q, :sticker_pending, Book.human_attribute_name(:sticker_pending))
           th.actions
             i.fas.fa-search
             = search_result_info(@books)
@@ -31,7 +30,6 @@
           th = f.input :category_eq,        collection: Book::NonFiction::Categories::ALL, include_blank: ' - '
           th = f.input :reading_level_eq,   collection: Book::ReadingLevels::ALL,          include_blank: ' - '
           th = f.input :avi_level_eq,       collection: Book::AviLevels::ALL,              include_blank: ' - '
-          th = f.input :sticker_pending_eq, collection: [true, false].map { |v| [t(v), v] }, include_blank: ' - '
           th.actions
             = f.submit_search_form
             = link_to t('buttons.print'), '#', onclick: 'print(); return false', class: 'button small warning'

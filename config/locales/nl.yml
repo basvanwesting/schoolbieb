@@ -44,8 +44,6 @@ nl:
     cancel: Afbreken
     submit: Opslaan
     clone: Dupliceren
-    unset_sticker_pending: Sticker is bijgewerkt
-    set_sticker_pending: Sticker moet worden bijgewerkt
     add: "%{add_model} toevoegen aan %{to_model}"
   placeholder:
     cont: 'bevat'
@@ -127,7 +125,6 @@ nl:
         author_description: Auteur
         category: Categorie
         tags: Labels
-        sticker_pending: Sticker bijwerken?
         state: Status
       book/state:
         pending: Invoeren
