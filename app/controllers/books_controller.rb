@@ -12,19 +12,19 @@ class BooksController < ApplicationController
     end
   end
 
+  def stickers
+    authorize! :update, Book
+    scope = Book
+    scope = scope.where("1 = 0") unless ransack_filter_present?
+    @q = scope.ransack(params[:q])
+    @books = @q.result.includes(:author).order("authors.last_name ASC, title ASC").page(params[:page]).per(60)
+  end
+
   def qr
     authorize! :read, Book
     respond_to do |format|
       format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
     end
-  end
-
-  def stickers
-    authorize! :read, Book
-    scope = Book
-    scope = scope.where("1 = 0") unless ransack_filter_present?
-    @q = scope.ransack(params[:q])
-    @books = @q.result.includes(:author).order("authors.last_name ASC, title ASC").page(params[:page]).per(60)
   end
 
   private

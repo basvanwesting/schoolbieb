@@ -7,6 +7,14 @@ class LendersController < ApplicationController
     @lenders = @q.result.order("last_name ASC, first_name ASC").page(params[:page]).per(100)
   end
 
+  def stickers
+    authorize! :update, Lender
+    scope = Lender
+    scope = scope.where("1 = 0") unless ransack_filter_present?
+    @q = scope.ransack(params[:q])
+    @lenders = @q.result.order("last_name ASC, first_name ASC").page(params[:page]).per(60)
+  end
+
   def show
     authorize! :read, @lender
   end
@@ -49,6 +57,13 @@ class LendersController < ApplicationController
     @lender.destroy
     respond_to do |format|
       format.html { redirect_to lenders_url, notice: t('action.destroy.success', model: Lender.model_name.human) }
+    end
+  end
+
+  def qr
+    authorize! :read, Lender
+    respond_to do |format|
+      format.html { redirect_to @lender, notice: 'Redirected from QR Code of Lender' }
     end
   end
 

@@ -132,6 +132,7 @@ nl:
         borrowed: Uitgeleend
         disabled: Geblokkeerd
       lender:
+        id: ID
         identifier: School ID
         first_name: Voornaam
         last_name: Achternaam

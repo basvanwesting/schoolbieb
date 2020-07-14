@@ -17,8 +17,15 @@ nav.top-bar
           li = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
         - if can? :read, Loan
           li = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
-        - if can? :update, Book
-          li = link_to 'Stickers', stickers_books_path, tabindex: -1
+        - if can?(:update, Book) || can?(:update, Lender)
+          li
+            = link_to 'Stickers', nil, tabindex: -1
+            ul.menu
+              - if can? :update, Book
+                li = link_to Book.model_name.human(count: 2), stickers_books_path, tabindex: -1
+              - if can? :update, Lender
+                li = link_to Lender.model_name.human(count: 2), stickers_lenders_path, tabindex: -1
+
   .top-bar-right
     ul.menu
       - if user_signed_in?

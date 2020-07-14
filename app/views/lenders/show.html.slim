@@ -1,6 +1,9 @@
 table.hover.unstriped.condensed.text-left
   tbody
     tr
+      th = Lender.human_attribute_name(:id)
+      td = @lender.id
+    tr
       th = Lender.human_attribute_name(:identifier)
       td = @lender.identifier
     tr

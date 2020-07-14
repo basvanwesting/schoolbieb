@@ -20,7 +20,14 @@ Rails.application.routes.draw do
   end
 
   resources :authors
-  resources :lenders
+  resources :lenders do
+    collection do
+      get :stickers
+    end
+    member do
+      get :qr
+    end
+  end
   resources :loans
 
   namespace :admin do

@@ -1,0 +1,13 @@
+.grid-x
+  .cell.medium-8 style="font-size: 1.0em;"
+  .cell.medium-4 style="font-size: 1.0em; text-align: right;"
+    = lender.formal_name(with_group_name: false)
+.grid-x
+.grid-x
+  .cell.medium-8 style="font-size: 1.0em;"
+  .cell.medium-4 style="font-size: 1.0em; text-align: right;"
+    = "#{lender.id.to_s.rjust(4, '0')}"
+.grid-x
+  .cell.medium-12 style="font-size: 1.0em; text-align: right;"
+    - qrcode = RQRCode::QRCode.new(qr_lender_url(lender))
+    = qrcode.as_svg(offset: 0, color: '000', shape_rendering: 'crispEdges', module_size: 2).html_safe

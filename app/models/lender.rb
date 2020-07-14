@@ -6,20 +6,20 @@ class Lender < ApplicationRecord
   validates :first_name, presence: true, uniqueness: { scope: %i[last_name middle_name group_name] }
 
   # Needs to be unique, so record can matched based on description
-  def description
+  def description(with_group_name: true)
     [
       first_name,
       middle_name,
       last_name,
-      "(#{group_name})",
+      with_group_name ? "(#{group_name})" : nil,
     ].select(&:present?).join(' ')
   end
 
-  def formal_name
+  def formal_name(with_group_name: true)
     [
       "#{last_name}, #{first_name}",
       middle_name,
-      "(#{group_name})",
+      with_group_name ? "(#{group_name})" : nil,
     ].select(&:present?).join(' ')
   end
 
