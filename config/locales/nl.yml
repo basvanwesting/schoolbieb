@@ -75,7 +75,6 @@ nl:
         success: 'Succesvol uitgeleend'
       return:
         success: 'Succesvol geretourneerd'
-    book_use_case:
       enable:
         success: 'Succesvol beschikbaar gemaakt'
       disable:

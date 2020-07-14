@@ -1,17 +1,17 @@
 h1 = BookUseCase::Borrow.model_name.human
 
-= simple_form_for @book_use_case_borrow, html: { data: { controller: 'book_use_case-borrow-form'  } } do |f|
-  datalist#books data-target="book_use_case-borrow-form.bookList"
-  datalist#lenders data-target="book_use_case-borrow-form.lenderList"
+= simple_form_for @book_use_case_borrow, html: { data: { controller: 'book-use-case-borrow-form'  } } do |f|
+  datalist#books data-target="book-use-case-borrow-form.bookList"
+  datalist#lenders data-target="book-use-case-borrow-form.lenderList"
 
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :book_description, required: true, hint: 'Let op check nummer', input_html: { list: :books, data: { target: 'book_use_case-borrow-form.bookDescription', action: 'input->book_use_case-borrow-form#debouncedRefreshBookOptions' } }
-  = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'book_use_case-borrow-form.bookId' } }
+  = f.input :book_description, required: true, hint: 'Let op check nummer', input_html: { list: :books, data: { target: 'book-use-case-borrow-form.bookDescription', action: 'input->book-use-case-borrow-form#debouncedRefreshBookOptions' } }
+  = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'book-use-case-borrow-form.bookId' } }
 
-  = f.input :lender_description, required: true, input_html: { list: :lenders, data: { target: 'book_use_case-borrow-form.lenderDescription', action: 'input->book_use_case-borrow-form#debouncedRefreshLenderOptions' } }
-  = f.input :lender_id, required: true, as: :hidden, input_html: { data: { target: 'book_use_case-borrow-form.lenderId' } }
+  = f.input :lender_description, required: true, input_html: { list: :lenders, data: { target: 'book-use-case-borrow-form.lenderDescription', action: 'input->book-use-case-borrow-form#debouncedRefreshLenderOptions' } }
+  = f.input :lender_id, required: true, as: :hidden, input_html: { data: { target: 'book-use-case-borrow-form.lenderId' } }
 
   = f.input :due_date
 
