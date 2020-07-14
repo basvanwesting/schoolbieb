@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :books, only: [:index] do
+    collection do
+      get :stickers
+    end
     member do
       get :qr
     end
@@ -19,7 +22,6 @@ Rails.application.routes.draw do
   resources :authors
   resources :lenders
   resources :loans
-  resources :stickers, only: :index
 
   namespace :admin do
     resources :users

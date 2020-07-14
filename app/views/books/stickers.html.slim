@@ -1,8 +1,8 @@
 .no-print
-  h1 = t('action.index', models: 'Stickers')
+  h1 = t('action.index', models: 'Stickers voor Boeken')
   = paginate @books
 
-  = inline_search_form_for @q, url: stickers_path do |f|
+  = inline_search_form_for @q, url: stickers_books_path do |f|
     = f.label :id_eq_any_split_whitespace, Book.human_attribute_name(:id).pluralize
     = f.input :id_eq_any_split_whitespace, placeholder: t('placeholder.eq_any_split_whitespace')
     table

@@ -18,7 +18,7 @@ nav.top-bar
         - if can? :read, Loan
           li = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
         - if can? :update, Book
-          li = link_to 'Stickers', stickers_path, tabindex: -1
+          li = link_to 'Stickers', stickers_books_path, tabindex: -1
   .top-bar-right
     ul.menu
       - if user_signed_in?
