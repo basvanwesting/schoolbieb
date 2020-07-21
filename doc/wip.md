@@ -1,12 +1,7 @@
-	new file:   spec/models/book_use_case/enable_spec.rb
-
-
-* Book: => disabled
 * Add exception notification
-* Add feature specs
+* Add more system specs (book_use_case/return)
 * Scope title/series autocomplete to fiction/non_fiction
 * Add version to GUI
-* Stickers for lenders
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|

@@ -22,7 +22,7 @@ class Ability
       can :manage, BookUseCase::Disable
       can :manage, BookUseCase::Borrow
       can :manage, BookUseCase::Return
-      can :read, Lender
+      can [:read, :update], Lender
       can :read, Loan
     end
   end
