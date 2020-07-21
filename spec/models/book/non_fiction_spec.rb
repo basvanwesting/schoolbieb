@@ -35,7 +35,7 @@ RSpec.describe Book::NonFiction, type: :model do
         FactoryBot.create(:book_non_fiction, id: 5, tags: %w[])
       end
       it 'sorted_existing_tags' do
-        expect(described_class.sorted_existing_tags).to eq ["abc", "def", "ijk", "ghi"]
+        expect(described_class.sorted_existing_tags).to eq ["abc", "def", "ghi", "ijk"]
       end
       it 'filter' do
         expect(described_class.with_tag('ijk').pluck(:id)).to eq [1, 4]

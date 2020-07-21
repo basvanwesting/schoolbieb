@@ -42,7 +42,7 @@ class Book::NonFiction < Book
 
   class << self
     def sorted_existing_tags
-      pluck(Arel.sql("distinct unnest(tags)"))
+      pluck(Arel.sql("distinct unnest(tags)")).sort
     end
 
     def with_tag(tag)

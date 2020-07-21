@@ -20,17 +20,14 @@ RSpec.describe "Borrow Book", type: :system do
       context 'valid form' do
         it "borrows the book" do
           visit "/"
-          page.execute_script "window.sessionStorage.setItem('btsi','12345');"
           click_link "Uitlenen", match: :first
 
           expect do
             within("form") do
-              expect {
-                fill_in 'Boek', with: "First"
-                sleep 1 #wait for websocket resolve
-              }.to have_broadcasted_to("#{AutocompleteChannel.broadcasting_for(user)}_12345")
+              fill_in 'Boek', with: "First"
+              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
               fill_in 'Kind', with: "John"
-              sleep 1 #wait for websocket resolve
+              expect(page).to have_field('Kind', with: lender.description) #wait for autocomplete
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(1)
@@ -55,7 +52,7 @@ RSpec.describe "Borrow Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
-              sleep 1 #wait for websocket resolve
+              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)
@@ -79,9 +76,8 @@ RSpec.describe "Borrow Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
-              sleep 1 #wait for websocket resolve
               fill_in 'Kind', with: "John"
-              sleep 1 #wait for websocket resolve
+              expect(page).to have_field('Kind', with: lender.description) #wait for autocomplete
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)
