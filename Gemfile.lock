@@ -3,8 +3,6 @@ GEM
   specs:
     aasm (5.0.8)
       concurrent-ruby (~> 1.0)
-    action-cable-testing (0.6.1)
-      actioncable (>= 5.0)
     actioncable (6.0.3.1)
       actionpack (= 6.0.3.1)
       nio4r (~> 2.0)
@@ -270,7 +268,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  action-cable-testing
   bootsnap
   byebug
   cancancan
@@ -299,7 +296,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.5.8p224
 
 BUNDLED WITH
    1.17.3
