@@ -31,6 +31,11 @@ class BookUseCase
     errors.add(:book_id, :may_not_prolong) unless book.may_prolong?
   end
 
+  def book_may_belate
+    return unless book.present?
+    errors.add(:book_id, :may_not_belate) unless book.may_belate?
+  end
+
   def book_may_enable
     return unless book.present?
     errors.add(:book_id, :may_not_enable) unless book.may_enable?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_130452) do
+ActiveRecord::Schema.define(version: 2020_08_27_150558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_130452) do
     t.string "category"
     t.string "tags", default: [], array: true
     t.string "state"
-    t.boolean "overdue", default: false
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["tags"], name: "index_books_on_tags", using: :gin
   end

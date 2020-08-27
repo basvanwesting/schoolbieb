@@ -179,6 +179,7 @@ nl:
             book_id:
               may_not_enable: kan niet beschikbaar gemaakt worden
               may_not_disable: kan niet geblokkeerd worden
+              loan_not_found: uitlening kan niet gevonden worden
         book_use_case/borrow:
           attributes:
             book_id:
@@ -187,10 +188,12 @@ nl:
           attributes:
             book_id:
               may_not_return: kan niet geretourneerd worden
-              loan_not_found: uitlening kan niet gevonden worden
         book_use_case/prolong:
           attributes:
             book_id:
               may_not_prolong: kan niet verlengd worden
-              loan_not_found: uitlening kan niet gevonden worden
+        book_use_case/belate:
+          attributes:
+            book_id:
+              may_not_belate: kan niet aangemerkt worden als laat
 

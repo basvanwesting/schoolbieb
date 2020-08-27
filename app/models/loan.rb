@@ -14,7 +14,7 @@ class Loan < ApplicationRecord
       #where(return_date: nil)
     #end
 
-    #def overdue(date = Date.today)
+    #def belated(date = Date.today)
       #where("due_date >= ?", date)
     #end
 
