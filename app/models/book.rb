@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   attr_accessor :author_description #for form
 
   belongs_to :author, optional: true
-  has_many :loans
+  has_many :loans, -> { order("id desc") }
 
   validates :title, presence: true
 

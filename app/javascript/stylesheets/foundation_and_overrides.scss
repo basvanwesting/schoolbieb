@@ -22,6 +22,11 @@
   }
 }
 
+.dropdown.menu > li.is-active > a {
+  //text-shadow: 0px 0px 1px black
+  text-shadow: -0.06ex 0 black, 0.06ex 0 black;
+}
+
 //nav.top-bar {
   //padding-top: 0;
   //padding-bottom: 0;

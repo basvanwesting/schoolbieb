@@ -1,0 +1,25 @@
+- loan_limit = 10
+table.hover.unstriped.condensed.text-left
+  caption
+    = Loan.model_name.human(count: 2)
+    = " (#{lender.loans.limit(loan_limit).count}/#{lender.loans.count})"
+  thead
+    tr
+      th = Book.model_name.human
+      th = Loan.human_attribute_name(:lending_date)
+      th = Loan.human_attribute_name(:due_date)
+      th = Loan.human_attribute_name(:return_date)
+  tbody
+    - lender.loans.limit(loan_limit).each do |loan|
+      tr
+        td = loan.book_description
+        td = loan.lending_date
+        td = loan.due_date
+        td = loan.return_date
+    - if lender.loans.count > loan_limit
+      tr
+        td ...
+        td ...
+        td ...
+        td ...
+

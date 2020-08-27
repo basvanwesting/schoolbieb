@@ -1,9 +1,9 @@
-h3 = Book.model_name.human(count: 2)
-
 table
+  caption = Book.model_name.human(count: 2)
   thead
     tr
       th = Book.human_attribute_name(:id)
+      th = Book.human_attribute_name(:state)
       th = Book.human_attribute_name(:title)
       th = Book.human_attribute_name(:series)
       th = Book.human_attribute_name(:part)
@@ -15,6 +15,7 @@ table
     - books.each do |book|
       tr
         td = book.formatted_id
+        td = Book.human_attribute_name("state.#{book.state}")
         td = book.title
         td = book.series
         td = book.part

@@ -4,34 +4,45 @@ nav.top-bar
       li.menu-text SchoolBieb NVR
       - if user_signed_in?
         - if can? :manage, User
-          li = link_to User.model_name.human(count: 2), admin_users_path, tabindex: -1
+          li class=active_class("admin/users")
+            = link_to User.model_name.human(count: 2), admin_users_path, tabindex: -1
         - if can? :read, Author
-          li = link_to Author.model_name.human(count: 2), authors_path, tabindex: -1
+          li class=active_class("authors")
+            = link_to Author.model_name.human(count: 2), authors_path, tabindex: -1
         - if can? :read, Book
-          li = link_to Book.model_name.human(count: 2), books_path, tabindex: -1
+          li class=active_class("books", except: "books/stickers")
+            = link_to Book.model_name.human(count: 2), books_path, tabindex: -1
         - if can? :read, Lender
-          li = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
+          li class=active_class("lenders", except: "lenders/stickers")
+            = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
         - if can? :create, BookUseCase::Borrow
-          li = link_to BookUseCase::Borrow.model_name.human, new_book_use_case_borrow_path, tabindex: -1
+          li class=active_class("book_use_case/borrows")
+            = link_to BookUseCase::Borrow.model_name.human, new_book_use_case_borrow_path, tabindex: -1
         - if can? :create, BookUseCase::Return
-          li = link_to BookUseCase::Return.model_name.human, new_book_use_case_return_path, tabindex: -1
+          li class=active_class("book_use_case/returns")
+            = link_to BookUseCase::Return.model_name.human, new_book_use_case_return_path, tabindex: -1
         - if can? :create, BookUseCase::Prolong
-          li = link_to BookUseCase::Prolong.model_name.human, new_book_use_case_prolong_path, tabindex: -1
+          li class=active_class("book_use_case/prolongs")
+            = link_to BookUseCase::Prolong.model_name.human, new_book_use_case_prolong_path, tabindex: -1
         - if can? :read, Loan
-          li = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
+          li class=active_class("loans")
+            = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
         - if can?(:update, Book) || can?(:update, Lender)
-          li
+          li class=active_class("books/stickers", "lenders/stickers")
             = link_to 'Stickers', nil, tabindex: -1
             ul.menu
               - if can? :update, Book
-                li = link_to Book.model_name.human(count: 2), stickers_books_path, tabindex: -1
+                li class=active_class("books/stickers")
+                  = link_to Book.model_name.human(count: 2), stickers_books_path, tabindex: -1
               - if can? :update, Lender
-                li = link_to Lender.model_name.human(count: 2), stickers_lenders_path, tabindex: -1
+                li class=active_class("lenders/stickers")
+                  = link_to Lender.model_name.human(count: 2), stickers_lenders_path, tabindex: -1
 
   .top-bar-right
-    ul.menu
+    ul.menu.dropdown data-dropdown-menu=true
       - if user_signed_in?
-       li= link_to 'Profile', current_user_path
+       li class=active_class("current_users")
+         = link_to 'Profile', current_user_path
        li= link_to t('devise.sessions.destroy.sign_out'), destroy_user_session_path, method: :delete, tabindex: -1
       - else
        li= link_to t('devise.sessions.new.sign_in'), new_user_session_path, tabindex: -1

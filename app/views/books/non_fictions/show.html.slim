@@ -1,35 +1,40 @@
-table.hover.unstriped.condensed.text-left
-  tbody
-    tr
-      th = Book.human_attribute_name(:state)
-      td = Book.human_attribute_name("state.#{@book.state}")
-    tr
-      th = Book.human_attribute_name(:sti_type)
-      td = @book.class.model_name.human
-    tr
-      th = Book.human_attribute_name(:id)
-      td = @book.formatted_id
-    tr
-      th = Book.human_attribute_name(:titel)
-      td = @book.title
-    tr
-      th = Book.human_attribute_name(:series)
-      td = @book.series
-    tr
-      th = Book.human_attribute_name(:part)
-      td = @book.part
-    tr
-      th = Book.human_attribute_name(:category)
-      td = category_with_icon(@book.category)
-    tr
-      th = Book.human_attribute_name(:tags)
-      td = @book.tags.to_sentence
-    tr
-      th = Book.human_attribute_name(:reading_level)
-      td = @book.reading_level
-    tr
-      th = Book.human_attribute_name(:avi_level)
-      td = @book.avi_level
+.grid-x.grid-margin-x
+  .cell.shrink
+    table.hover.unstriped.condensed.text-left
+      caption Details
+      tbody
+        tr
+          th = Book.human_attribute_name(:state)
+          td = Book.human_attribute_name("state.#{@book.state}")
+        tr
+          th = Book.human_attribute_name(:sti_type)
+          td = @book.class.model_name.human
+        tr
+          th = Book.human_attribute_name(:id)
+          td = @book.formatted_id
+        tr
+          th = Book.human_attribute_name(:titel)
+          td = @book.title
+        tr
+          th = Book.human_attribute_name(:series)
+          td = @book.series
+        tr
+          th = Book.human_attribute_name(:part)
+          td = @book.part
+        tr
+          th = Book.human_attribute_name(:category)
+          td = category_with_icon(@book.category)
+        tr
+          th = Book.human_attribute_name(:tags)
+          td = @book.tags.to_sentence
+        tr
+          th = Book.human_attribute_name(:reading_level)
+          td = @book.reading_level
+        tr
+          th = Book.human_attribute_name(:avi_level)
+          td = @book.avi_level
+  .cell.auto
+    = render 'recent_loan_history', book: @book
 
 - if @book.may_borrow? && can?(:create, BookUseCase::Borrow)
   = link_to BookUseCase::Borrow.model_name.human, new_book_use_case_borrow_path(book_use_case_borrow: { book_id: @book.id }), class: 'button warning'

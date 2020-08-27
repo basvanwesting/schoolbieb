@@ -100,7 +100,7 @@ nl:
         other: Kinderen
       loan:
         one: Uitlening
-        other: Uitleningen
+        other: Uitleen Historie
     attributes:
       created_at: Aangemaakt op
       updated_at: Bijgewerkt op
@@ -123,6 +123,7 @@ nl:
         category: Categorie
         tags: Labels
         state: Status
+        loans: Leen Historie
       book/state:
         pending: Invoeren
         available: Beschikbaar
