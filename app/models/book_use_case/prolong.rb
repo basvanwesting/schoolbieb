@@ -1,5 +1,5 @@
 class BookUseCase::Prolong < BookUseCase
-  DEFAULT_DUE_DATE_INTERVAL = 7.days
+  DEFAULT_DUE_DATE_INTERVAL = 21.days
 
   attr_accessor :loan, :due_date
 

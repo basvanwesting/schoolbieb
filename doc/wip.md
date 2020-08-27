@@ -1,7 +1,9 @@
 * Add exception notification
 * Scope title/series autocomplete to fiction/non_fiction
 * Add version to GUI
-* add times_prolonged to loan
+* Add times_prolonged to loan
+* Add vakantie dagen, om due-dates over te slaan.
+* Add datepicker
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|
