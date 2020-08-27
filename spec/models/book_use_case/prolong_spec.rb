@@ -5,7 +5,7 @@ RSpec.describe BookUseCase::Prolong, type: :model do
   let!(:lender) { FactoryBot.create(:lender) }
   let!(:loan) { FactoryBot.create(:loan, book: book, lender: lender, due_date: Date.tomorrow) }
 
-  context 'valid, prolong in time' do
+  context 'valid, prolong in time, default due_date' do
     subject { described_class.new(book_id: book.id) }
 
     it 'transactions the book_use_case' do
@@ -15,6 +15,20 @@ RSpec.describe BookUseCase::Prolong, type: :model do
       expect(book.reload).to be_borrowed
 
       expect(loan.reload.due_date).to eq Date.tomorrow + described_class::DEFAULT_DUE_DATE_INTERVAL
+      expect(loan.reload.return_date).to be_blank
+    end
+  end
+
+  context 'valid, prolong in time, manual due_date' do
+    subject { described_class.new(book_id: book.id, due_date: Date.today + 3) }
+
+    it 'transactions the book_use_case' do
+      expect {
+        subject.save
+      }.to change { Loan.count }.by(0)
+      expect(book.reload).to be_borrowed
+
+      expect(loan.reload.due_date).to eq Date.today + 3
       expect(loan.reload.return_date).to be_blank
     end
   end

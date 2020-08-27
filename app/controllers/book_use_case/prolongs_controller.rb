@@ -22,7 +22,7 @@ class BookUseCase::ProlongsController < ApplicationController
 
     def book_use_case_prolong_params
       if params[:book_use_case_prolong].present?
-        params.require(:book_use_case_prolong).permit(:book_id, :book_description)
+        params.require(:book_use_case_prolong).permit(:book_id, :book_description, :due_date)
       else
         {}
       end

@@ -17,7 +17,7 @@ RSpec.describe "Borrow Book", type: :system do
       let!(:book) { FactoryBot.create(:book, state: 'available') }
       let!(:lender) { FactoryBot.create(:lender) }
 
-      context 'valid form' do
+      context 'valid form, default due_date' do
         it "borrows the book" do
           visit "/"
           click_link "Uitlenen", match: :first
@@ -40,6 +40,34 @@ RSpec.describe "Borrow Book", type: :system do
           expect(loan.lender).to       eq lender
           expect(loan.lending_date).to eq Date.today
           expect(loan.due_date).to     eq Date.today + BookUseCase::Borrow::DEFAULT_DUE_DATE_INTERVAL
+          expect(loan.return_date).to  eq nil
+        end
+      end
+
+      context 'valid form, manual due_date' do
+        it "borrows the book" do
+          visit "/"
+          click_link "Uitlenen", match: :first
+
+          expect do
+            within("form") do
+              fill_in 'Boek', with: "First"
+              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              fill_in 'Kind', with: "John"
+              expect(page).to have_field('Kind', with: lender.description) #wait for autocomplete
+              fill_in 'Retourdatum', with: Date.tomorrow.to_s
+              click_on "Opslaan"
+            end
+          end.to change { Loan.count }.by(1)
+
+          expect(page).to have_text("Succesvol uitgeleend")
+          expect(book.reload).to be_borrowed
+
+          loan = Loan.first
+          expect(loan.book).to         eq book
+          expect(loan.lender).to       eq lender
+          expect(loan.lending_date).to eq Date.today
+          expect(loan.due_date).to     eq Date.tomorrow
           expect(loan.return_date).to  eq nil
         end
       end
