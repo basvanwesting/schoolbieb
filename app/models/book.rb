@@ -49,7 +49,11 @@ class Book < ApplicationRecord
 
   # Needs to be unique, so record can matched based on description
   def description
-    "#{title} (#{id})"
+    "#{title} (#{formatted_id})"
+  end
+
+  def formatted_id
+    id.to_s.rjust(4, '0')
   end
 
   def set_author_description
@@ -66,14 +70,14 @@ class Book < ApplicationRecord
     end
 
     def wildcard_search(v)
-      terms = v.split.map(&:upcase).map { |s| s.gsub(/[()]/,'') }
+      terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
       clause = terms.map do |term|
         if term.in?(Book::ReadingLevels::ALL)
           "books.reading_level = '#{term}'"
         elsif term.in?(Book::AviLevels::ALL)
           "books.avi_level = '#{term}'"
         elsif term[/^\d+$/]
-          "books.id = #{term}"
+          "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'"
         else
           [
             %i[books title],

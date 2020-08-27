@@ -6,7 +6,7 @@
 .grid-x
   .cell.medium-8 style="font-size: 1.0em;"
   .cell.medium-4 style="font-size: 1.0em; text-align: right;"
-    = "#{lender.id.to_s.rjust(4, '0')}"
+    = "#{lender.formatted_id}"
 .grid-x
   .cell.medium-12 style="font-size: 1.0em; text-align: right;"
     - qrcode = RQRCode::QRCode.new(qr_lender_url(lender))

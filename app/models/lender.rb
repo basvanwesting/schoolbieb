@@ -8,33 +8,42 @@ class Lender < ApplicationRecord
   # Needs to be unique, so record can matched based on description
   def description(with_group_name: true)
     [
-      first_name,
-      middle_name,
-      last_name,
-      with_group_name ? "(#{group_name})" : nil,
-    ].select(&:present?).join(' ')
+      [
+        first_name,
+        middle_name,
+        last_name,
+      ].select(&:present?).join(' '),
+      with_group_name ? ", #{group_name}" : nil,
+      " (#{formatted_id})",
+    ].select(&:present?).join('')
   end
 
   def formal_name(with_group_name: true)
     [
-      "#{last_name}, #{first_name}",
-      middle_name,
-      with_group_name ? "(#{group_name})" : nil,
-    ].select(&:present?).join(' ')
+      [
+        "#{last_name}, #{first_name}",
+        middle_name,
+      ].select(&:present?).join(' '),
+      with_group_name ? ", #{group_name}" : nil,
+      " (#{formatted_id})",
+    ].select(&:present?).join('')
+  end
+
+  def formatted_id
+    id.to_s.rjust(4, '0')
   end
 
   class << self
     def wildcard_search(v)
-      terms = v.split.map(&:upcase).map { |s| s.gsub(/[()]/,'') }
+      terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
       clause = terms.map do |term|
         [
-          %i[lenders first_name],
-          %i[lenders middle_name],
-          %i[lenders last_name],
-          %i[lenders group_name],
-        ].map do |table, field|
-          "#{table}.#{field} ilike '%#{term}%'"
-        end.join(" or ")
+          "lenders.first_name ilike '%#{term}%'",
+          "lenders.middle_name ilike '%#{term}%'",
+          "lenders.last_name ilike '%#{term}%'",
+          "lenders.group_name ilike '%#{term}%'",
+          "cast(lenders.id as text) ilike '#{term.sub(/^0*/, '')}%'",
+        ].join(" or ")
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).pluck(:id)
     end

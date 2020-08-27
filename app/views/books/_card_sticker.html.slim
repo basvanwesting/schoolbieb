@@ -12,7 +12,7 @@
   .cell.medium-8 style="font-size: 1.0em;"
     = book.series
   .cell.medium-4 style="font-size: 1.0em; text-align: right;"
-    = "#{book.id.to_s.rjust(4, '0')}, #{book.reading_level}"
+    = "#{book.formatted_id}, #{book.reading_level}"
 .grid-x
   .cell.medium-12 style="font-size: 1.0em; text-align: right;"
     - qrcode = RQRCode::QRCode.new(qr_book_url(book))

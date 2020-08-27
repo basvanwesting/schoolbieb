@@ -20,9 +20,9 @@ RSpec.describe Book, type: :model do
   end
 
   context 'ransack id_book_wildcard' do
-    let!(:book_1) { FactoryBot.create(:book, title: 'Borre en de beer', series: 'Op pad') }
-    let!(:book_2) { FactoryBot.create(:book, title: 'Beer en Kaas',     series: 'Dieren')       }
-    let!(:book_3) { FactoryBot.create(:book, title: 'Borre op de Koe',  series: 'Op pad') }
+    let!(:book_1) { FactoryBot.create(:book, id: 1,  title: 'Borre en de beer', series: 'Op pad') }
+    let!(:book_2) { FactoryBot.create(:book, id: 2,  title: 'Beer en Kaas',     series: 'Dieren') }
+    let!(:book_3) { FactoryBot.create(:book, id: 11, title: 'Borre op de Koe',  series: 'Op pad') }
 
     it 'searches' do
       expect(Book.ransack(id_book_wildcard: 'beer').result).to            match_array [book_1, book_2]
@@ -35,6 +35,13 @@ RSpec.describe Book, type: :model do
       expect(Book.ransack(id_book_wildcard: book_1.description).result).to match_array [book_1]
       expect(Book.ransack(id_book_wildcard: book_2.description).result).to match_array [book_2]
       expect(Book.ransack(id_book_wildcard: book_3.description).result).to match_array [book_3]
+    end
+
+    it 'matches left part of id' do
+      expect(Book.ransack(id_book_wildcard: '1').result).to   match_array [book_1, book_3]
+      expect(Book.ransack(id_book_wildcard: '11').result).to  match_array [book_3]
+      expect(Book.ransack(id_book_wildcard: '2').result).to   match_array [book_2]
+      expect(Book.ransack(id_book_wildcard: '002').result).to match_array [book_2]
     end
   end
 

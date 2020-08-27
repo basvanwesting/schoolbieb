@@ -59,7 +59,7 @@ h1 = t('action.index', models: Book.model_name.human(count: 2))
       - @books.each do |book|
         tr
           td = Book.human_attribute_name("state.#{book.state}")
-          td = book.id.to_s.rjust(4,'0')
+          td = book.formatted_id
           td = book.class.model_name.human
           td = book.title
           td = book.series

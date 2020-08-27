@@ -11,7 +11,7 @@ table.hover.unstriped.condensed.text-left
       td = link_to @book.author.description, @book.author
     tr
       th = Book.human_attribute_name(:id)
-      td = @book.id.to_s.rjust(4,'0')
+      td = @book.formatted_id
     tr
       th = Book.human_attribute_name(:titel)
       td = @book.title
