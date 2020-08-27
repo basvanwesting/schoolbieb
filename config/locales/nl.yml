@@ -64,12 +64,8 @@ nl:
       index: "Uitgeleende Boeken"
       new: "Uitlenen"
       edit: "Uitlening Aanpassen"
-      create:
-        success: 'Succesvol uitgeleend'
       update:
         success: 'Uitlening is succesvol bijgewerkt'
-      destroy:
-        success: 'Uitlening is succesvol verwijderd'
     book_use_case:
       borrow:
         success: 'Succesvol uitgeleend'
@@ -131,6 +127,7 @@ nl:
         pending: Invoeren
         available: Beschikbaar
         borrowed: Uitgeleend
+        belated: Te Laat
         disabled: Geblokkeerd
       lender:
         id: ID

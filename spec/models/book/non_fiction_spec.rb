@@ -38,7 +38,7 @@ RSpec.describe Book::NonFiction, type: :model do
         expect(described_class.sorted_existing_tags).to eq ["abc", "def", "ghi", "ijk"]
       end
       it 'filter' do
-        expect(described_class.with_tag('ijk').pluck(:id)).to eq [1, 4]
+        expect(described_class.with_tag('ijk').pluck(:id)).to match_array [1, 4]
       end
     end
   end
