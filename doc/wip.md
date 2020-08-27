@@ -1,7 +1,7 @@
 * Add exception notification
-* Add more system specs (book_use_case/return)
 * Scope title/series autocomplete to fiction/non_fiction
 * Add version to GUI
+* add times_prolonged to loan
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|
