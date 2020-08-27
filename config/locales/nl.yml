@@ -75,6 +75,8 @@ nl:
         success: 'Succesvol uitgeleend'
       return:
         success: 'Succesvol geretourneerd'
+      prolong:
+        success: 'Succesvol verlengd'
       enable:
         success: 'Succesvol beschikbaar gemaakt'
       disable:
@@ -150,6 +152,7 @@ nl:
   activemodel:
     models:
       book_use_case/borrow: Uitlenen
+      book_use_case/prolong: Verlengen
       book_use_case/return: Retourneren
       book_use_case/enable: Beschikbaar Maken
       book_use_case/disable: Blokkeren
@@ -163,6 +166,12 @@ nl:
       book_use_case/return:
         book_id: Boek
         book_description: Boek
+      book_use_case/prolong:
+        book_id: Boek
+        book_description: Boek
+        lender_id: Kind
+        lender_description: Kind
+        due_date: Retourdatum
     errors:
       models:
         book_use_case:
@@ -178,5 +187,10 @@ nl:
           attributes:
             book_id:
               may_not_return: kan niet geretourneerd worden
+              loan_not_found: uitlening kan niet gevonden worden
+        book_use_case/prolong:
+          attributes:
+            book_id:
+              may_not_prolong: kan niet verlengd worden
               loan_not_found: uitlening kan niet gevonden worden
 

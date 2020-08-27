@@ -9,12 +9,14 @@ nav.top-bar
           li = link_to Author.model_name.human(count: 2), authors_path, tabindex: -1
         - if can? :read, Book
           li = link_to Book.model_name.human(count: 2), books_path, tabindex: -1
+        - if can? :read, Lender
+          li = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
         - if can? :create, BookUseCase::Borrow
           li = link_to BookUseCase::Borrow.model_name.human, new_book_use_case_borrow_path, tabindex: -1
         - if can? :create, BookUseCase::Return
           li = link_to BookUseCase::Return.model_name.human, new_book_use_case_return_path, tabindex: -1
-        - if can? :read, Lender
-          li = link_to Lender.model_name.human(count: 2), lenders_path, tabindex: -1
+        - if can? :create, BookUseCase::Prolong
+          li = link_to BookUseCase::Prolong.model_name.human, new_book_use_case_prolong_path, tabindex: -1
         - if can? :read, Loan
           li = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
         - if can?(:update, Book) || can?(:update, Lender)

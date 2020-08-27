@@ -44,6 +44,7 @@ class Book < ApplicationRecord
     event(:enable)  { transitions from: [:pending,:disabled], to: :available }
     event(:borrow)  { transitions from: :available,           to: :borrowed  }
     event(:return)  { transitions from: :borrowed,            to: :available }
+    event(:prolong) { transitions from: :borrowed,            to: :borrowed  }
     event(:disable) { transitions from: :available,           to: :disabled  }
   end
 

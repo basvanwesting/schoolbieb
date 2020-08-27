@@ -1,0 +1,13 @@
+h1 = BookUseCase::Prolong.model_name.human
+
+= simple_form_for @book_use_case_prolong, html: { data: { controller: 'book-use-case-prolong-form'  } } do |f|
+  datalist#books data-target="book-use-case-prolong-form.bookList"
+
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  = f.input :book_description, required: true, input_html: { list: :books, data: { target: 'book-use-case-prolong-form.bookDescription', action: 'input->book-use-case-prolong-form#debouncedRefreshBookOptions' } }
+  = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'book-use-case-prolong-form.bookId' } }
+
+  = f.submit t('button.submit'), class: 'button'
+  = link_to t('button.cancel'), :back, class: 'button secondary'

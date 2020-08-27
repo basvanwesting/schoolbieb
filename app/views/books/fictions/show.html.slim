@@ -32,6 +32,8 @@ table.hover.unstriped.condensed.text-left
   = link_to BookUseCase::Borrow.model_name.human, new_book_use_case_borrow_path(book_use_case_borrow: { book_id: @book.id }), class: 'button warning'
 - if @book.may_return? && can?(:create, BookUseCase::Return)
   = link_to BookUseCase::Return.model_name.human, new_book_use_case_return_path(book_use_case_return: { book_id: @book.id }), class: 'button success'
+- if @book.may_prolong? && can?(:create, BookUseCase::Prolong)
+  = link_to BookUseCase::Prolong.model_name.human, new_book_use_case_prolong_path(book_use_case_prolong: { book_id: @book.id }), class: 'button warning'
 - if @book.may_enable? && can?(:create, BookUseCase::Enable)
   = link_to BookUseCase::Enable.model_name.human, book_use_case_enables_path(book_use_case_enable: { book_id: @book.id }), method: :post, class: 'button success'
 - if @book.may_disable? && can?(:create, BookUseCase::Disable)

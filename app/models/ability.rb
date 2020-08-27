@@ -13,6 +13,7 @@ class Ability
       can :read, Book
       can :manage, BookUseCase::Borrow
       can :manage, BookUseCase::Return
+      can :manage, BookUseCase::Prolong
     end
 
     if user.role?(Role::SeniorCollaborator)
@@ -22,6 +23,7 @@ class Ability
       can :manage, BookUseCase::Disable
       can :manage, BookUseCase::Borrow
       can :manage, BookUseCase::Return
+      can :manage, BookUseCase::Prolong
       can [:read, :update], Lender
       can :read, Loan
     end

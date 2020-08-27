@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :book_use_case do
     resources :borrows,  only: [:new, :create]
     resources :returns,  only: [:new, :create]
+    resources :prolongs, only: [:new, :create]
     resources :enables,  only: [:new, :create]
     resources :disables, only: [:new, :create]
   end

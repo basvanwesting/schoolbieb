@@ -12,6 +12,11 @@ RSpec.describe BookUseCase::Borrow, type: :model do
         subject.save
       }.to change { Loan.count }.by(1)
       expect(book.reload).to be_borrowed
+
+      loan = Loan.last
+      expect(loan.lending_date).to eq Date.today
+      expect(loan.due_date).to eq Date.today + described_class::DEFAULT_DUE_DATE_INTERVAL
+      expect(loan.return_date).to be_blank
     end
   end
 
