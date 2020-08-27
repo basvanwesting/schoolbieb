@@ -22,6 +22,7 @@ class BooksController < ApplicationController
 
   def qr
     authorize! :read, Book
+    session[:current_qr_book_id] = @book.id
     respond_to do |format|
       format.html { redirect_to @book, notice: 'Redirected from QR Code of Book' }
     end

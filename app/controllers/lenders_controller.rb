@@ -62,6 +62,7 @@ class LendersController < ApplicationController
 
   def qr
     authorize! :read, Lender
+    session[:current_qr_lender_id] = @lender.id
     respond_to do |format|
       format.html { redirect_to @lender, notice: 'Redirected from QR Code of Lender' }
     end
