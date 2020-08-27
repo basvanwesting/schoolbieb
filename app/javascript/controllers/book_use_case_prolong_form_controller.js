@@ -48,7 +48,7 @@ export default class BookUseCaseProlongFormController extends Controller {
   ///////////////////// BOOK //////////////////
 
   refreshBookOptions() {
-    this.autocompleteChannel.search_book({ state_eq: 'borrowed', id_book_wildcard: this.bookDescriptionTarget.value })
+    this.autocompleteChannel.search_book({ state_in: ['borrowed','belated'], id_book_wildcard: this.bookDescriptionTarget.value })
   }
   debouncedRefreshBookOptions = debounce(this.refreshBookOptions, 300)
 

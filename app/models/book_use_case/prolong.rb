@@ -18,7 +18,7 @@ class BookUseCase::Prolong < BookUseCase
     return unless valid?
     ActiveRecord::Base.transaction do
       book.prolong!
-      loan.due_date += DEFAULT_DUE_DATE_INTERVAL
+      loan.due_date = [loan.due_date, Date.today].max + DEFAULT_DUE_DATE_INTERVAL
       loan.save!
     end
   end

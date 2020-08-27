@@ -18,7 +18,7 @@ RSpec.describe "Prolong Book", type: :system do
       let!(:lender) { FactoryBot.create(:lender) }
       let!(:loan) { FactoryBot.create(:loan, book: book, lender: lender, lending_date: Date.yesterday, due_date: Date.tomorrow) }
 
-      context 'valid form' do
+      context 'valid form, in time' do
         it "prolongs the book" do
           visit "/"
           click_link "Verlengen", match: :first
@@ -39,6 +39,36 @@ RSpec.describe "Prolong Book", type: :system do
           expect(loan.lender).to       eq lender
           expect(loan.lending_date).to eq Date.yesterday
           expect(loan.due_date).to     eq Date.tomorrow + BookUseCase::Prolong::DEFAULT_DUE_DATE_INTERVAL
+          expect(loan.return_date).to  eq nil
+        end
+      end
+
+      context 'valid form, from belated' do
+        before do
+          loan.update(due_date: Date.yesterday)
+          book.belate!
+        end
+
+        it "prolongs the book" do
+          visit "/"
+          click_link "Verlengen", match: :first
+
+          expect do
+            within("form") do
+              fill_in 'Boek', with: "First"
+              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              click_on "Opslaan"
+            end
+          end.to change { Loan.count }.by(0)
+
+          expect(page).to have_text("Succesvol verlengd")
+          expect(book.reload).to be_borrowed
+
+          loan = Loan.first
+          expect(loan.book).to         eq book
+          expect(loan.lender).to       eq lender
+          expect(loan.lending_date).to eq Date.yesterday
+          expect(loan.due_date).to     eq Date.today + BookUseCase::Prolong::DEFAULT_DUE_DATE_INTERVAL
           expect(loan.return_date).to  eq nil
         end
       end

@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe BookUseCase::Return, type: :model do
+
   let!(:book) { FactoryBot.create(:book, state: 'borrowed') }
   let!(:lender) { FactoryBot.create(:lender) }
   let!(:loan) { FactoryBot.create(:loan, book: book, lender: lender) }
 
-  context 'valid' do
+  context 'valid, in time' do
     subject { described_class.new(book_id: book.id) }
 
     it 'transactions the book_use_case' do
@@ -13,6 +14,24 @@ RSpec.describe BookUseCase::Return, type: :model do
         subject.save
       }.to change { Loan.count }.by(0)
       expect(book.reload).to be_available
+      expect(loan.reload.return_date).to eq Date.today
+    end
+  end
+
+  context 'valid, from belated' do
+    before do
+      loan.update(due_date: Date.yesterday)
+      book.belate!
+    end
+
+    subject { described_class.new(book_id: book.id) }
+
+    it 'transactions the book_use_case' do
+      expect {
+        subject.save
+      }.to change { Loan.count }.by(0)
+      expect(book.reload).to be_available
+      expect(loan.reload.due_date).to eq Date.yesterday
       expect(loan.reload.return_date).to eq Date.today
     end
   end

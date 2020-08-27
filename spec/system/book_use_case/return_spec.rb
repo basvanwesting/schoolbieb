@@ -18,7 +18,7 @@ RSpec.describe "Return Book", type: :system do
       let!(:lender) { FactoryBot.create(:lender) }
       let!(:loan) { FactoryBot.create(:loan, book: book, lender: lender, lending_date: Date.yesterday, due_date: Date.tomorrow) }
 
-      context 'valid form' do
+      context 'valid form, in time' do
         it "returns the book" do
           visit "/"
           click_link "Retourneren", match: :first
@@ -39,6 +39,36 @@ RSpec.describe "Return Book", type: :system do
           expect(loan.lender).to       eq lender
           expect(loan.lending_date).to eq Date.yesterday
           expect(loan.due_date).to     eq Date.tomorrow
+          expect(loan.return_date).to  eq Date.today
+        end
+      end
+
+      context 'valid form, from belated' do
+        before do
+          loan.update(due_date: Date.yesterday)
+          book.belate!
+        end
+
+        it "returns the book" do
+          visit "/"
+          click_link "Retourneren", match: :first
+
+          expect do
+            within("form") do
+              fill_in 'Boek', with: "First"
+              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              click_on "Opslaan"
+            end
+          end.to change { Loan.count }.by(0)
+
+          expect(page).to have_text("Succesvol geretourneerd")
+          expect(book.reload).to be_available
+
+          loan = Loan.first
+          expect(loan.book).to         eq book
+          expect(loan.lender).to       eq lender
+          expect(loan.lending_date).to eq Date.yesterday
+          expect(loan.due_date).to     eq Date.yesterday
           expect(loan.return_date).to  eq Date.today
         end
       end
