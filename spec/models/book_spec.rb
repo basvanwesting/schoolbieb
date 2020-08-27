@@ -17,6 +17,10 @@ RSpec.describe Book, type: :model do
       expect { subject.return! }.to raise_error(AASM::InvalidTransition)
     end
 
+    it 'default state to available' do
+      expect(Book.new).to be_available
+    end
+
   end
 
   context 'ransack id_book_wildcard' do

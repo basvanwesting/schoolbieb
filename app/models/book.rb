@@ -36,8 +36,8 @@ class Book < ApplicationRecord
   end
 
   aasm column: :state do
-    state :pending, initial: true
-    state :available
+    state :pending
+    state :available, initial: true
     state :borrowed
     state :belated
     state :disabled
