@@ -141,6 +141,8 @@ nl:
       loan:
         book_id: Boek
         lender_id: Kind
+        book_description: Boek
+        lender_description: Kind
         lending_date: Uitleendatum
         due_date: Retourdatum
         return_date: Ingeleverd op

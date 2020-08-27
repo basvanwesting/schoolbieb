@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       get :qr
     end
   end
-  resources :loans
+  resources :loans, only: [:index, :show, :edit, :update]
 
   namespace :admin do
     resources :users
