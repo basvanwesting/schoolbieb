@@ -13,14 +13,24 @@ class AutocompleteChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def search_book_title(filter)
-    titles = Book.limit(RESULT_LIMIT).order(:title).ransack(filter).result(distinct: true).pluck(:title)
-    ActionCable.server.broadcast(channel_room_key, action: :search_book_title, titles: titles)
+  def search_book_fiction_title(filter)
+    titles = Book::Fiction.limit(RESULT_LIMIT).order(:title).ransack(filter).result(distinct: true).pluck(:title)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_fiction_title, titles: titles)
   end
 
-  def search_book_series(filter)
-    series = Book.limit(RESULT_LIMIT).order(:series).ransack(filter).result(distinct: true).pluck(:series)
-    ActionCable.server.broadcast(channel_room_key, action: :search_book_series, series: series)
+  def search_book_fiction_series(filter)
+    series = Book::Fiction.limit(RESULT_LIMIT).order(:series).ransack(filter).result(distinct: true).pluck(:series)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_fiction_series, series: series)
+  end
+
+  def search_book_non_fiction_title(filter)
+    titles = Book::NonFiction.limit(RESULT_LIMIT).order(:title).ransack(filter).result(distinct: true).pluck(:title)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_non_fiction_title, titles: titles)
+  end
+
+  def search_book_non_fiction_series(filter)
+    series = Book::NonFiction.limit(RESULT_LIMIT).order(:series).ransack(filter).result(distinct: true).pluck(:series)
+    ActionCable.server.broadcast(channel_room_key, action: :search_book_non_fiction_series, series: series)
   end
 
   def search_author(filter)

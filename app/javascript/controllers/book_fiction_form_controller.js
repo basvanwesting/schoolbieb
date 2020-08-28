@@ -4,7 +4,7 @@ import { debounce } from "lodash"
 import BrowserTabSessionId from '../src/browser_tab_session_id'
 
 const RESULT_LIMIT = 25
-export default class BookFormController extends Controller {
+export default class BookFictionFormController extends Controller {
 
   static get targets() {
     return [
@@ -19,40 +19,40 @@ export default class BookFormController extends Controller {
   }
 
   connect() {
-    const bookFormController = this
+    const bookFictionFormController = this
 
     this.autocompleteChannel = consumer.subscriptions.create(
       { channel: "AutocompleteChannel", room: BrowserTabSessionId.id },
       {
         connected() {
           // Called when the subscription is ready for use on the server
-          console.log("AutocompleteChannel:BookForm connected")
+          console.log("AutocompleteChannel:BookFictionForm connected")
         },
         disconnected() {
           // Called when the subscription has been terminated by the server
-          console.log("AutocompleteChannel:BookForm disconnected")
+          console.log("AutocompleteChannel:BookFictionForm disconnected")
         },
         received(data) {
-          console.log('AutocompleteChannel:BookForm received', data)
+          console.log('AutocompleteChannel:BookFictionForm received', data)
           switch(data.action) {
-            case 'search_book_title':
-              bookFormController.setTitleOptions(data.titles)
+            case 'search_book_fiction_title':
+              bookFictionFormController.setTitleOptions(data.titles)
               break
-            case 'search_book_series':
-              bookFormController.setSeriesOptions(data.series)
+            case 'search_book_fiction_series':
+              bookFictionFormController.setSeriesOptions(data.series)
               break
             case 'search_author':
-              bookFormController.setAuthorOptions(data.authors)
+              bookFictionFormController.setAuthorOptions(data.authors)
               break
             default:
-              console.log('Unknown action for AutocompleteChannel:BookForm#received', data)
+              console.log('Unknown action for AutocompleteChannel:BookFictionForm#received', data)
           }
         },
-        search_book_title(filter) {
-          this.perform("search_book_title", filter)
+        search_book_fiction_title(filter) {
+          this.perform("search_book_fiction_title", filter)
         },
-        search_book_series(filter) {
-          this.perform("search_book_series", filter)
+        search_book_fiction_series(filter) {
+          this.perform("search_book_fiction_series", filter)
         },
         search_author(filter) {
           this.perform("search_author", filter)
@@ -61,10 +61,10 @@ export default class BookFormController extends Controller {
     )
   }
 
-  ///////////////////// Book#title //////////////////
+  ///////////////////// Book::Fiction#title //////////////////
 
   refreshTitleOptions() {
-    this.autocompleteChannel.search_book_title({ title_cont: this.titleTarget.value })
+    this.autocompleteChannel.search_book_fiction_title({ title_cont: this.titleTarget.value })
   }
   debouncedRefreshTitleOptions = debounce(this.refreshTitleOptions, 300)
 
@@ -91,10 +91,10 @@ export default class BookFormController extends Controller {
     }
   }
 
-  ///////////////////// Book#series //////////////////
+  ///////////////////// Book::Fiction#series //////////////////
 
   refreshSeriesOptions() {
-    this.autocompleteChannel.search_book_series({ series_cont: this.seriesTarget.value })
+    this.autocompleteChannel.search_book_fiction_series({ series_cont: this.seriesTarget.value })
   }
   debouncedRefreshSeriesOptions = debounce(this.refreshSeriesOptions, 300)
 

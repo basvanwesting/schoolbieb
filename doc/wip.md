@@ -1,5 +1,4 @@
 * Add exception notification
-* Scope title/series autocomplete to fiction/non_fiction
 * Add version to GUI
 * Add vakantie dagen, om due-dates over te slaan.
 * Add scheduled task to belate books

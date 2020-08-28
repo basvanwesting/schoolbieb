@@ -1,13 +1,13 @@
-= simple_form_for @book, as: :book, html: { data: { controller: 'book-form'  } } do |f|
-  datalist#titles data-target="book-form.titleList"
-  datalist#series data-target="book-form.seriesList"
+= simple_form_for @book, as: :book, html: { data: { controller: 'book-non-fiction-form'  } } do |f|
+  datalist#titles data-target="book-non-fiction-form.titleList"
+  datalist#series data-target="book-non-fiction-form.seriesList"
 
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   = f.input :category, collection: Book::NonFiction::Categories::ALL
-  = f.input :title, input_html: { autocomplete: 'off', list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedRefreshTitleOptions' } }
-  = f.input :series, input_html: { autocomplete: 'off', list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedRefreshSeriesOptions' } }
+  = f.input :title, input_html: { autocomplete: 'off', list: :titles, data: { target: 'book-non-fiction-form.title', action: 'input->book-non-fiction-form#debouncedRefreshTitleOptions' } }
+  = f.input :series, input_html: { autocomplete: 'off', list: :series, data: { target: 'book-non-fiction-form.series', action: 'input->book-non-fiction-form#debouncedRefreshSeriesOptions' } }
   = f.input :part
   = f.input :tags, collection: Book::NonFiction.sorted_existing_tags, input_html: { multiple: true, class: 'js-select2-free-tags' }
   = f.input :reading_level, collection: Book::ReadingLevels::ALL

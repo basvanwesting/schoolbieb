@@ -1,16 +1,16 @@
-= simple_form_for @book, as: :book, html: { data: { controller: 'book-form'  } } do |f|
-  datalist#titles data-target="book-form.titleList"
-  datalist#series data-target="book-form.seriesList"
-  datalist#authors data-target="book-form.authorList"
+= simple_form_for @book, as: :book, html: { data: { controller: 'book-fiction-form'  } } do |f|
+  datalist#titles data-target="book-fiction-form.titleList"
+  datalist#series data-target="book-fiction-form.seriesList"
+  datalist#authors data-target="book-fiction-form.authorList"
 
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :author_description, required: true, input_html: { list: :authors, data: { target: 'book-form.authorDescription', action: 'input->book-form#debouncedRefreshAuthorOptions' } }
-  = f.input :author_id, required: true, as: :hidden, input_html: { data: { target: 'book-form.authorId' } }
+  = f.input :author_description, required: true, input_html: { list: :authors, data: { target: 'book-fiction-form.authorDescription', action: 'input->book-fiction-form#debouncedRefreshAuthorOptions' } }
+  = f.input :author_id, required: true, as: :hidden, input_html: { data: { target: 'book-fiction-form.authorId' } }
 
-  = f.input :title, input_html: { autocomplete: 'off', list: :titles, data: { target: 'book-form.title', action: 'input->book-form#debouncedRefreshTitleOptions' } }
-  = f.input :series, input_html: { autocomplete: 'off', list: :series, data: { target: 'book-form.series', action: 'input->book-form#debouncedRefreshSeriesOptions' } }
+  = f.input :title, input_html: { autocomplete: 'off', list: :titles, data: { target: 'book-fiction-form.title', action: 'input->book-fiction-form#debouncedRefreshTitleOptions' } }
+  = f.input :series, input_html: { autocomplete: 'off', list: :series, data: { target: 'book-fiction-form.series', action: 'input->book-fiction-form#debouncedRefreshSeriesOptions' } }
   = f.input :part
   = f.input :reading_level, collection: Book::ReadingLevels::ALL
   = f.input :avi_level, collection: Book::AviLevels::ALL
