@@ -16,8 +16,8 @@ RSpec.describe Lender, type: :model do
     it 'searches accents' do
       expect(Lender.ransack(id_lender_wildcard: 'stal').result).to match_array [lender_3]
       expect(Lender.ransack(id_lender_wildcard: 'stál').result).to match_array [lender_3]
-      #expect(Lender.ransack(id_lender_wildcard: 'Kees Vée').result).to match_array [lender_1]
-      #expect(Lender.ransack(id_lender_wildcard: 'vée').result).to match_array [lender_1, lender_2, lender_3]
+      expect(Lender.ransack(id_lender_wildcard: 'Kees Vée').result).to match_array [lender_1]
+      expect(Lender.ransack(id_lender_wildcard: 'vée').result).to match_array [lender_1, lender_2, lender_3]
     end
 
     it 'matches description' do

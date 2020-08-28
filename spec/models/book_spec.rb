@@ -38,7 +38,7 @@ RSpec.describe Book, type: :model do
     it 'searches accents' do
       expect(Book.ransack(id_book_wildcard: 'kaas').result).to match_array [book_2]
       expect(Book.ransack(id_book_wildcard: 'Káás').result).to match_array [book_2]
-      #expect(Book.ransack(id_book_wildcard: 'béer').result).to match_array [book_1, book_2]
+      expect(Book.ransack(id_book_wildcard: 'béer').result).to match_array [book_1, book_2]
     end
 
     it 'matches description' do

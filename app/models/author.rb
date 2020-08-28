@@ -30,12 +30,9 @@ class Author < ApplicationRecord
       terms = v.split.map(&:upcase)
       clause = terms.map do |term|
         [
-          "unaccent(authors.first_name) ilike '%#{term}%'",
-          "unaccent(authors.middle_name) ilike '%#{term}%'",
-          "unaccent(authors.last_name) ilike '%#{term}%'",
-          "authors.first_name ilike '%#{term}%'",
-          "authors.middle_name ilike '%#{term}%'",
-          "authors.last_name ilike '%#{term}%'",
+          "unaccent(authors.first_name) ilike unaccent('%#{term}%')",
+          "unaccent(authors.middle_name) ilike unaccent('%#{term}%')",
+          "unaccent(authors.last_name) ilike unaccent('%#{term}%')",
         ].join(" or ")
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).pluck(:id)

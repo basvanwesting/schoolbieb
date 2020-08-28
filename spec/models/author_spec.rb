@@ -15,6 +15,7 @@ RSpec.describe Author, type: :model do
     it 'searches accents' do
       expect(Author.ransack(id_author_wildcard: 'stal').result).to match_array [author_3]
       expect(Author.ransack(id_author_wildcard: 'stál').result).to match_array [author_3]
+      expect(Author.ransack(id_author_wildcard: 'vée').result).to match_array [author_1, author_2, author_3]
     end
 
     it 'matches description' do

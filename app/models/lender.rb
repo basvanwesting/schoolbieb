@@ -38,13 +38,10 @@ class Lender < ApplicationRecord
       terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
       clause = terms.map do |term|
         [
-          "lenders.first_name ilike '%#{term}%'",
-          "lenders.middle_name ilike '%#{term}%'",
-          "lenders.last_name ilike '%#{term}%'",
-          "unaccent(lenders.first_name) ilike '%#{term}%'",
-          "unaccent(lenders.middle_name) ilike '%#{term}%'",
-          "unaccent(lenders.last_name) ilike '%#{term}%'",
-          "lenders.group_name ilike '%#{term}%'",
+          "unaccent(lenders.first_name) ilike unaccent('%#{term}%')",
+          "unaccent(lenders.middle_name) ilike unaccent('%#{term}%')",
+          "unaccent(lenders.last_name) ilike unaccent('%#{term}%')",
+          "unaccent(lenders.group_name) ilike unaccent('%#{term}%')",
           "cast(lenders.id as text) ilike '#{term.sub(/^0*/, '')}%'",
         ].join(" or ")
       end.map { |v| "(#{v})" }.join(" and ")

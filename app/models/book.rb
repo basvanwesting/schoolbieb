@@ -79,20 +79,15 @@ class Book < ApplicationRecord
           "books.reading_level = '#{term}'"
         elsif term.in?(Book::AviLevels::ALL)
           "books.avi_level = '#{term}'"
-        elsif term[/^\d+$/]
-          "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'"
         else
           [
-            "unaccent(books.title) ilike '%#{term}%'",
-            "unaccent(books.series) ilike '%#{term}%'",
-            "unaccent(books.category) ilike '%#{term}%'",
-            "unaccent(authors.first_name) ilike '%#{term}%'",
-            "unaccent(authors.last_name) ilike '%#{term}%'",
-            "books.title ilike '%#{term}%'",
-            "books.series ilike '%#{term}%'",
-            "books.category ilike '%#{term}%'",
-            "authors.first_name ilike '%#{term}%'",
-            "authors.last_name ilike '%#{term}%'",
+            "unaccent(books.title) ilike unaccent('%#{term}%')",
+            "unaccent(books.series) ilike unaccent('%#{term}%')",
+            "unaccent(books.category) ilike unaccent('%#{term}%')",
+            "unaccent(authors.first_name) ilike unaccent('%#{term}%')",
+            "unaccent(authors.last_name) ilike unaccent('%#{term}%')",
+            "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'",
+            "cast(books.part as text) = '#{term}'",
           ].join(" or ")
         end
       end.map { |v| "(#{v})" }.join(" and ")
