@@ -148,6 +148,7 @@ nl:
         due_date: Retourdatum
         times_prolonged: Aantal Verlengingen
         return_date: Ingeleverd op
+        due_today: Vandaag Retour
 
   activemodel:
     models:

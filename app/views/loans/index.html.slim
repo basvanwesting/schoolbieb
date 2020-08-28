@@ -14,6 +14,7 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
         th = sort_link(@q, :due_date,          Loan.human_attribute_name(:due_date))
         th = sort_link(@q, :times_prolonged,   Loan.human_attribute_name(:times_prolonged))
         th = sort_link(@q, :return_date,       Loan.human_attribute_name(:return_date))
+        th = link_to Loan.human_attribute_name(:due_today), '#'
         th.actions
           i.fas.fa-search
           = search_result_info(@loans)
@@ -28,6 +29,7 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
         th= f.input :due_date_eq,     as: :datepicker, placeholder: t('placeholder.eq')
         th= f.input :times_prolonged_gteq, placeholder: t('placeholder.gteq')
         th= f.input :return_date_eq,  as: :datepicker, placeholder: t('placeholder.eq')
+        th = f.input :due_today_eq, as: :boolean, checked_value: "1", unchecked_value: ""
         th.actions= f.submit_search_form
 
     tbody
@@ -43,6 +45,10 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
           td = loan.due_date
           td = loan.times_prolonged
           td = loan.return_date
+          td
+            - if loan.due_today?
+              i.fas.fa-check
+
           td.actions
             = link_to t('button.show'), loan, class: 'button tiny'
             - if can? :update, loan

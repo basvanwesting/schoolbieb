@@ -1,7 +1,6 @@
 * Add exception notification
 * Add version to GUI
 * Add vakantie dagen, om due-dates over te slaan.
-* Add scheduled task to belate books
 * Migrate from us to europe region
 
 # Stickers code snippet

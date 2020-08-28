@@ -43,10 +43,9 @@ RSpec.describe Book, type: :model do
       expect(belated_books).to match_array(book_1)
     end
 
-    specify '.due_today returns chainable scope' do
-      expect(described_class.due_today).to          match_array [book_2]
-      expect(described_class.due_today.borrowed).to match_array [book_2]
-      expect(described_class.borrowed.due_today).to match_array [book_2]
+    specify 'can ransack on loan_due_today' do
+      expect(Book.ransack(loan_due_today_eq: "").result).to match_array [book_1, book_2, book_3]
+      expect(Book.ransack(loan_due_today_eq: "1").result).to match_array [book_2]
     end
 
     specify '#loan returns current loan if present' do

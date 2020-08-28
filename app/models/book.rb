@@ -14,7 +14,7 @@ class Book < ApplicationRecord
 
   delegate :first_name, :middle_name, :last_name, to: :author, prefix: true, allow_nil: true
   delegate :first_name, :middle_name, :last_name, :group_name, to: :lender, prefix: true, allow_nil: true
-  delegate :lending_date, :due_date, to: :loan, prefix: true, allow_nil: true
+  delegate :lending_date, :due_date, :due_today?, to: :loan, prefix: true, allow_nil: true
 
   delegate :human, to: :model_name, prefix: true
 
@@ -84,13 +84,6 @@ class Book < ApplicationRecord
       where(loans: { return_date: nil }).
       where("loans.due_date < ?", date).
       each(&:belate!)
-    end
-
-    def due_today(date = Date.today)
-      joins(:loans).
-      where(state: 'borrowed').
-      where(loans: { return_date: nil }).
-      where("loans.due_date = ?", date)
     end
 
     def wildcard_search(v)
