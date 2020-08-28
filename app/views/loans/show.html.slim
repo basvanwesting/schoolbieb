@@ -28,6 +28,9 @@ table.hover.unstriped.condensed.text-left
       th = Loan.human_attribute_name(:due_date)
       td = @loan.due_date
     tr
+      th = Loan.human_attribute_name(:times_prolonged)
+      td = @loan.times_prolonged
+    tr
       th = Loan.human_attribute_name(:return_date)
       td = @loan.return_date
 

@@ -7,6 +7,7 @@
     = f.input :lender_description, disabled: true
     = f.input :lending_date, as: :datepicker, value: f.object.lending_date || Date.today
     = f.input :due_date,     as: :datepicker, value: f.object.due_date     || (Date.today + 14)
+    = f.input :times_prolonged
     = f.input :return_date,  as: :datepicker
 
   .form-actions

@@ -8,6 +8,7 @@ table.hover.unstriped.condensed.text-left
       th = Book.model_name.human
       th = Loan.human_attribute_name(:lending_date)
       th = Loan.human_attribute_name(:due_date)
+      th = Loan.human_attribute_name(:times_prolonged)
       th = Loan.human_attribute_name(:return_date)
   tbody
     - lender.loans.limit(loan_limit).each do |loan|
@@ -15,9 +16,11 @@ table.hover.unstriped.condensed.text-left
         td = loan.book_description
         td = loan.lending_date
         td = loan.due_date
+        td = loan.times_prolonged
         td = loan.return_date
     - if lender.loans.count > loan_limit
       tr
+        td ...
         td ...
         td ...
         td ...

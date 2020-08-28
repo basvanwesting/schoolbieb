@@ -16,6 +16,7 @@ RSpec.describe BookUseCase::Prolong, type: :model do
 
       expect(loan.reload.due_date).to eq Date.tomorrow + described_class::DEFAULT_DUE_DATE_INTERVAL
       expect(loan.reload.return_date).to be_blank
+      expect(loan.reload.times_prolonged).to eq 1
     end
   end
 
@@ -30,6 +31,7 @@ RSpec.describe BookUseCase::Prolong, type: :model do
 
       expect(loan.reload.due_date).to eq Date.today + 3
       expect(loan.reload.return_date).to be_blank
+      expect(loan.reload.times_prolonged).to eq 1
     end
   end
 
@@ -49,6 +51,7 @@ RSpec.describe BookUseCase::Prolong, type: :model do
 
       expect(loan.reload.due_date).to eq Date.today + described_class::DEFAULT_DUE_DATE_INTERVAL
       expect(loan.reload.return_date).to be_blank
+      expect(loan.reload.times_prolonged).to eq 1
     end
   end
 
@@ -59,6 +62,7 @@ RSpec.describe BookUseCase::Prolong, type: :model do
       it 'set error' do
         subject.save
         expect(book.reload).to be_borrowed
+        expect(loan.reload.times_prolonged).to eq 0
 
         expect(subject.errors[:book_id]).to match_array ["moet opgegeven zijn"]
       end

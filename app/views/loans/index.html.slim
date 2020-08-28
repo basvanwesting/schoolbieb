@@ -12,6 +12,7 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
         th = sort_link(@q, :lender_group_name, Lender.human_attribute_name(:group_name))
         th = sort_link(@q, :lending_date,      Loan.human_attribute_name(:lending_date))
         th = sort_link(@q, :due_date,          Loan.human_attribute_name(:due_date))
+        th = sort_link(@q, :times_prolonged,   Loan.human_attribute_name(:times_prolonged))
         th = sort_link(@q, :return_date,       Loan.human_attribute_name(:return_date))
         th.actions
           i.fas.fa-search
@@ -25,6 +26,7 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
         th= f.input :lender_group_name_cont, placeholder: t('placeholder.cont')
         th= f.input :lending_date_eq, as: :datepicker, placeholder: t('placeholder.eq')
         th= f.input :due_date_eq,     as: :datepicker, placeholder: t('placeholder.eq')
+        th= f.input :times_prolonged_gteq, placeholder: t('placeholder.gteq')
         th= f.input :return_date_eq,  as: :datepicker, placeholder: t('placeholder.eq')
         th.actions= f.submit_search_form
 
@@ -39,6 +41,7 @@ h1 = t('action.loan.index', models: Loan.model_name.human(count: 2))
           td = loan.lender_group_name
           td = loan.lending_date
           td = loan.due_date
+          td = loan.times_prolonged
           td = loan.return_date
           td.actions
             = link_to t('button.show'), loan, class: 'button tiny'

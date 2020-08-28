@@ -22,6 +22,7 @@ class BookUseCase::Prolong < BookUseCase
     ActiveRecord::Base.transaction do
       book.prolong!
       loan.update(due_date: due_date)
+      loan.increment!(:times_prolonged)
     end
   end
 
