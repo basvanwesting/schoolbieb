@@ -32,6 +32,16 @@ Ransack.configure do |config|
     compounds: false,
     wants_array: false,
     type: :string
+
+  config.add_predicate(
+    # produces queries in the form of `WHERE (unaccent (column)) ILIKE unaccent (%foo%bar%)`
+    'cont',
+    arel_predicate: 'ai_imatches', # <- thanks arel_extensions !
+    formatter: proc { |s| ActiveSupport::Inflector.transliterate("%#{s.tr(' ', '%')}%") },
+    validator: proc { |s| s.present? },
+    compounds: true,
+    type: :string
+  )
 end
 
 Ransack::Helpers::FormBuilder.class_eval do

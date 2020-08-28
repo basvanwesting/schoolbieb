@@ -21,11 +21,11 @@
             i.fas.fa-search
             = search_result_info(@books)
         = search_row do
-          th = f.input :id_eq,                 placeholder: t('placeholder.int_eq')
+          th = f.input :id_eq,                 placeholder: t('placeholder.eq')
           th = f.input :sti_type_eq, collection: Book.classes.map { |k| [k.model_name.human, k.name] }, include_blank: ' - '
           th = f.input :title_cont,            placeholder: t('placeholder.cont')
           th = f.input :series_cont,           placeholder: t('placeholder.cont')
-          th = f.input :part_eq,               placeholder: t('placeholder.int_eq')
+          th = f.input :part_eq,               placeholder: t('placeholder.eq')
           th = f.input :author_last_name_cont, placeholder: "#{Author.human_attribute_name(:last_name)} #{t('placeholder.cont')}"
           th = f.input :category_eq,        collection: Book::NonFiction::Categories::ALL, include_blank: ' - '
           th = f.input :reading_level_eq,   collection: Book::ReadingLevels::ALL,          include_blank: ' - '

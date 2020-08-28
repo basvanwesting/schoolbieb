@@ -24,6 +24,7 @@ gem 'exception_notification'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #gem 'request_store'
 gem 'rack-attack'
+gem 'arel_extensions'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -46,13 +46,11 @@ nl:
     clone: Dupliceren
     add: "%{add_model} toevoegen aan %{to_model}"
   placeholder:
-    cont: 'bevat (accent gevoelig)'
-    eq: 'gelijk aan (accent gevoelig)'
-    int_eq: 'gelijk aan'
-    date_eq: 'gelijk aan'
+    cont: 'bevat'
+    eq: 'gelijk aan'
     gteq: 'groter dan of gelijk aan'
     eq_any_split_whitespace: 'lijst gescheiden door spaties'
-    wildcard: 'Snelzoeken op %{attributes} (accent ongevoelig)'
+    wildcard: 'Snelzoeken op %{attributes}'
   action:
     index: "Lijst van %{models}"
     new: "%{model} Aanmaken"
