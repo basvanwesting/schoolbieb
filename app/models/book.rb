@@ -72,6 +72,15 @@ class Book < ApplicationRecord
       ]
     end
 
+    def check_due_dates!(date = Date.today)
+      Book.
+        joins(:loans).
+        where(state: 'borrowed').
+        where(loans: { return_date: nil }).
+        where("loans.due_date < ?", date).
+        each(&:belate!)
+    end
+
     def wildcard_search(v)
       terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
       clause = terms.map do |term|

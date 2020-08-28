@@ -20,8 +20,27 @@ RSpec.describe Book, type: :model do
     it 'default state to available' do
       expect(Book.new).to be_available
     end
-
   end
+
+  context '.check_due_dates!' do
+    let!(:lender) { FactoryBot.create(:lender) }
+    let!(:book_1) { FactoryBot.create(:book, state: 'borrowed') }
+    let!(:book_2) { FactoryBot.create(:book, state: 'borrowed') }
+    let!(:book_3) { FactoryBot.create(:book, state: 'borrowed') }
+    let!(:loan_1) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.yesterday) }
+    let!(:loan_2) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.today)     }
+    let!(:loan_3) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.tomorrow)  }
+
+    it 'transitions if due-date passed' do
+      belated_books = described_class.check_due_dates!
+
+      expect(book_1.reload).to be_belated
+      expect(book_2.reload).to be_borrowed
+      expect(book_3.reload).to be_borrowed
+      expect(belated_books).to match_array(book_1)
+    end
+  end
+
 
   context 'ransack id_book_wildcard' do
     let!(:book_1) { FactoryBot.create(:book, id: 1,  title: 'Borre en de beer', series: 'Op pad') }
