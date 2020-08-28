@@ -1,6 +1,6 @@
 import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
-import { debounce } from "lodash"
+import { debounce, deburr } from "lodash"
 import BrowserTabSessionId from '../src/browser_tab_session_id'
 
 const RESULT_LIMIT = 25
@@ -72,6 +72,7 @@ export default class BookUseCaseProlongFormController extends Controller {
       const newOptions = books.map(book => {
         const opt = document.createElement("option")
         opt.value = book.description
+        opt.text = deburr(book.description)
         return opt
       })
       $(this.bookListTarget)
