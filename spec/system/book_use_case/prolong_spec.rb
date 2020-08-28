@@ -89,6 +89,7 @@ RSpec.describe "Prolong Book", type: :system do
               fill_in 'Boek', with: "First"
               expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
               fill_in 'Retourdatum', with: Date.tomorrow.to_s
+              first('input.datepicker').send_keys :tab
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)

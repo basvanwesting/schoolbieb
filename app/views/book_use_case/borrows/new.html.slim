@@ -13,7 +13,7 @@ h1 = BookUseCase::Borrow.model_name.human
   = f.input :lender_description, required: true, input_html: { list: :lenders, data: { target: 'book-use-case-borrow-form.lenderDescription', action: 'input->book-use-case-borrow-form#debouncedRefreshLenderOptions' } }
   = f.input :lender_id, required: true, as: :hidden, input_html: { data: { target: 'book-use-case-borrow-form.lenderId' } }
 
-  = f.input :due_date
+  = f.input :due_date, as: :datepicker
 
   = f.submit t('button.submit'), class: 'button'
   = link_to t('button.cancel'), :back, class: 'button secondary'

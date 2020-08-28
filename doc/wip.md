@@ -3,7 +3,9 @@
 * Add version to GUI
 * Add times_prolonged to loan
 * Add vakantie dagen, om due-dates over te slaan.
-* Add datepicker
+* Add rack-attach WAF
+* Migrate from us to europe region
+* Add scheduled task to belate books
 
 # Stickers code snippet
 - @books.each_slice(1) do |books_for_page|

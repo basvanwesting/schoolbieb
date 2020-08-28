@@ -56,6 +56,7 @@ RSpec.describe "Borrow Book", type: :system do
               fill_in 'Kind', with: "John"
               expect(page).to have_field('Kind', with: lender.description) #wait for autocomplete
               fill_in 'Retourdatum', with: Date.tomorrow.to_s
+              first('input.datepicker').send_keys :tab
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(1)
