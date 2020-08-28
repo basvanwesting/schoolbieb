@@ -70,7 +70,7 @@ export default class BookUseCaseBorrowFormController extends Controller {
       $(this.bookListTarget)
         .empty()
         .append(opt)
-    } else if (books.length === 1) {
+    } else if (books.length === 1 && books[0].description == this.bookDescriptionTarget.value) {
       //console.log(`set book_id to ${books[0].id}`)
       this.bookIdTarget.value = books[0].id
       this.bookDescriptionTarget.value = books[0].description
@@ -113,7 +113,7 @@ export default class BookUseCaseBorrowFormController extends Controller {
       $(this.lenderListTarget)
         .empty()
         .append(opt)
-    } else if (lenders.length === 1) {
+    } else if (lenders.length === 1 && lenders[0].description == this.lenderDescriptionTarget.value) {
       //console.log(`set lender_id to ${lenders[0].id}`)
       this.lenderIdTarget.value = lenders[0].id
       this.lenderDescriptionTarget.value = lenders[0].description

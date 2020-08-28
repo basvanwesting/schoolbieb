@@ -27,7 +27,10 @@ RSpec.describe "Prolong Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
-              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              find("datalist#books option[value='#{book.description}']", visible: :all)
+              select(book.description, from: 'Boek')
+              find("input#book_use_case_prolong_book_id[value='#{book.id}']", visible: false)
+
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)
@@ -57,7 +60,10 @@ RSpec.describe "Prolong Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
-              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              find("datalist#books option[value='#{book.description}']", visible: :all)
+              select(book.description, from: 'Boek')
+              find("input#book_use_case_prolong_book_id[value='#{book.id}']", visible: false)
+
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)
@@ -87,7 +93,10 @@ RSpec.describe "Prolong Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
-              expect(page).to have_field('Boek', with: book.description) #wait for autocomplete
+              find("datalist#books option[value='#{book.description}']", visible: :all)
+              select(book.description, from: 'Boek')
+              find("input#book_use_case_prolong_book_id[value='#{book.id}']", visible: false)
+
               fill_in 'Retourdatum', with: Date.tomorrow.to_s
               first('input.datepicker').send_keys :tab
               click_on "Opslaan"
@@ -137,6 +146,10 @@ RSpec.describe "Prolong Book", type: :system do
           expect do
             within("form") do
               fill_in 'Boek', with: "First"
+              expect {
+                find("datalist#books option[value='#{book.description}']", visible: :all)
+              }.to raise_error(Capybara::ElementNotFound)
+
               click_on "Opslaan"
             end
           end.to change { Loan.count }.by(0)

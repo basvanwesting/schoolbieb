@@ -61,7 +61,7 @@ export default class BookUseCaseReturnFormController extends Controller {
       $(this.bookListTarget)
         .empty()
         .append(opt)
-    } else if (books.length === 1) {
+    } else if (books.length === 1 && books[0].description == this.bookDescriptionTarget.value) {
       //console.log(`set book_id to ${books[0].id}`)
       this.bookIdTarget.value = books[0].id
       this.bookDescriptionTarget.value = books[0].description
