@@ -25,7 +25,7 @@ RSpec.describe Book, type: :model do
 
   context 'ransack id_book_wildcard' do
     let!(:book_1) { FactoryBot.create(:book, id: 1,  title: 'Borre en de beer', series: 'Op pad') }
-    let!(:book_2) { FactoryBot.create(:book, id: 2,  title: 'Beer en Kaas',     series: 'Dieren') }
+    let!(:book_2) { FactoryBot.create(:book, id: 2,  title: 'Beer en Káás',     series: 'Dieren') }
     let!(:book_3) { FactoryBot.create(:book, id: 11, title: 'Borre op de Koe',  series: 'Op pad') }
 
     it 'searches' do
@@ -33,6 +33,12 @@ RSpec.describe Book, type: :model do
       expect(Book.ransack(id_book_wildcard: 'borre').result).to           match_array [book_1, book_3]
       expect(Book.ransack(id_book_wildcard: 'pad').result).to             match_array [book_1, book_3]
       expect(Book.ransack(id_book_wildcard: 'Borre op de Koe').result).to match_array [book_3]
+    end
+
+    it 'searches accents' do
+      expect(Book.ransack(id_book_wildcard: 'kaas').result).to match_array [book_2]
+      expect(Book.ransack(id_book_wildcard: 'Káás').result).to match_array [book_2]
+      #expect(Book.ransack(id_book_wildcard: 'béer').result).to match_array [book_1, book_2]
     end
 
     it 'matches description' do

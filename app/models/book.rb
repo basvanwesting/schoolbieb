@@ -83,14 +83,17 @@ class Book < ApplicationRecord
           "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'"
         else
           [
-            %i[books title],
-            %i[books series],
-            %i[books category],
-            %i[authors first_name],
-            %i[authors last_name],
-          ].map do |table, field|
-            "#{table}.#{field} ilike '%#{term}%'"
-          end.join(" or ")
+            "unaccent(books.title) ilike '%#{term}%'",
+            "unaccent(books.series) ilike '%#{term}%'",
+            "unaccent(books.category) ilike '%#{term}%'",
+            "unaccent(authors.first_name) ilike '%#{term}%'",
+            "unaccent(authors.last_name) ilike '%#{term}%'",
+            "books.title ilike '%#{term}%'",
+            "books.series ilike '%#{term}%'",
+            "books.category ilike '%#{term}%'",
+            "authors.first_name ilike '%#{term}%'",
+            "authors.last_name ilike '%#{term}%'",
+          ].join(" or ")
         end
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).left_joins(:author).pluck(:id)

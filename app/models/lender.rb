@@ -41,6 +41,9 @@ class Lender < ApplicationRecord
           "lenders.first_name ilike '%#{term}%'",
           "lenders.middle_name ilike '%#{term}%'",
           "lenders.last_name ilike '%#{term}%'",
+          "unaccent(lenders.first_name) ilike '%#{term}%'",
+          "unaccent(lenders.middle_name) ilike '%#{term}%'",
+          "unaccent(lenders.last_name) ilike '%#{term}%'",
           "lenders.group_name ilike '%#{term}%'",
           "cast(lenders.id as text) ilike '#{term.sub(/^0*/, '')}%'",
         ].join(" or ")

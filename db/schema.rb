@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_100945) do
+ActiveRecord::Schema.define(version: 2020_08_28_103447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
