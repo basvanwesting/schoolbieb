@@ -1,5 +1,5 @@
 Rack::Attack.blocklist("block all access by default") do |request|
-  true
+  false
 end
 
 ENV['SAFELIST_IPS'].to_s.split(',').each do |safelist_ip|
