@@ -1,0 +1,17 @@
+table.hover.unstriped.condensed.text-left
+  caption Versions
+  tr
+    th Date
+    th Event
+    th Data
+  - versions.each do |version|
+    tr
+      td= version.created_at
+      td= version.event
+      td
+        pre
+          - case version.event
+          - when 'create'
+            = YAML.dump(version.changeset.map { |k,(_v,v)| [k,v] }.to_h)
+          - else
+            = YAML.dump(version.changeset.map { |k,(v_old,v_new)| [k, "#{v_old} => #{v_new}"] }.to_h)

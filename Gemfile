@@ -25,6 +25,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #gem 'request_store'
 gem 'rack-attack'
 gem 'arel_extensions'
+gem 'paper_trail'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -47,4 +48,5 @@ group :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'timecop'
 end

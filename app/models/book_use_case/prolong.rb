@@ -18,8 +18,8 @@ class BookUseCase::Prolong < BookUseCase
     return unless valid?
     ActiveRecord::Base.transaction do
       book.prolong!
+      loan.increment(:times_prolonged)
       loan.update(due_date: due_date)
-      loan.increment!(:times_prolonged)
     end
   end
 

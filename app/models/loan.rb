@@ -1,4 +1,6 @@
 class Loan < ApplicationRecord
+  has_paper_trail only: %i[lending_date due_date return_date times_prolonged]
+
   belongs_to :book,   optional: false
   belongs_to :lender, optional: false
 
