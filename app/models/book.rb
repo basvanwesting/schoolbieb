@@ -7,9 +7,15 @@ class Book < ApplicationRecord
   belongs_to :author, optional: true
   has_many :loans, -> { order("id desc") }
 
+  has_one :loan, -> { where(return_date: nil) }
+  has_one :lender, through: :loan
+
   validates :title, presence: true
 
   delegate :first_name, :middle_name, :last_name, to: :author, prefix: true, allow_nil: true
+  delegate :first_name, :middle_name, :last_name, :group_name, to: :lender, prefix: true, allow_nil: true
+  delegate :lending_date, :due_date, to: :loan, prefix: true, allow_nil: true
+
   delegate :human, to: :model_name, prefix: true
 
   after_initialize :set_author_description #for form
@@ -73,12 +79,18 @@ class Book < ApplicationRecord
     end
 
     def check_due_dates!(date = Date.today)
-      Book.
-        joins(:loans).
-        where(state: 'borrowed').
-        where(loans: { return_date: nil }).
-        where("loans.due_date < ?", date).
-        each(&:belate!)
+      joins(:loans).
+      where(state: 'borrowed').
+      where(loans: { return_date: nil }).
+      where("loans.due_date < ?", date).
+      each(&:belate!)
+    end
+
+    def due_today(date = Date.today)
+      joins(:loans).
+      where(state: 'borrowed').
+      where(loans: { return_date: nil }).
+      where("loans.due_date = ?", date)
     end
 
     def wildcard_search(v)

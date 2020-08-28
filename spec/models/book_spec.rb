@@ -22,22 +22,53 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  context '.check_due_dates!' do
-    let!(:lender) { FactoryBot.create(:lender) }
+  context 'due dates' do
+    let!(:lender_1) { FactoryBot.create(:lender, last_name: 'A') }
+    let!(:lender_2) { FactoryBot.create(:lender, last_name: 'B') }
+    let!(:lender_3) { FactoryBot.create(:lender, last_name: 'C') }
     let!(:book_1) { FactoryBot.create(:book, state: 'borrowed') }
     let!(:book_2) { FactoryBot.create(:book, state: 'borrowed') }
     let!(:book_3) { FactoryBot.create(:book, state: 'borrowed') }
-    let!(:loan_1) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.yesterday) }
-    let!(:loan_2) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.today)     }
-    let!(:loan_3) { FactoryBot.create(:loan, book: book_1, lender: lender, due_date: Date.tomorrow)  }
+    let!(:loan_1) { FactoryBot.create(:loan, book: book_1, lender: lender_1, due_date: Date.yesterday) }
+    let!(:loan_2) { FactoryBot.create(:loan, book: book_2, lender: lender_2, due_date: Date.today)     }
+    let!(:loan_3_old) { FactoryBot.create(:loan, book: book_3, lender: lender_1, due_date: Date.yesterday, return_date: Date.today) }
+    let!(:loan_3) { FactoryBot.create(:loan, book: book_3, lender: lender_3, due_date: Date.tomorrow)  }
 
-    it 'transitions if due-date passed' do
+    specify '.check_due_dates!' do
       belated_books = described_class.check_due_dates!
 
       expect(book_1.reload).to be_belated
       expect(book_2.reload).to be_borrowed
       expect(book_3.reload).to be_borrowed
       expect(belated_books).to match_array(book_1)
+    end
+
+    specify '.due_today returns chainable scope' do
+      expect(described_class.due_today).to          match_array [book_2]
+      expect(described_class.due_today.borrowed).to match_array [book_2]
+      expect(described_class.borrowed.due_today).to match_array [book_2]
+    end
+
+    specify '#loan returns current loan if present' do
+      BookUseCase::Return.new(book_id: book_1.id).save
+
+      expect(book_1.loan).to eq nil
+      expect(book_2.loan).to eq loan_2
+      expect(book_3.loan).to eq loan_3
+
+      expect(book_1.loan_due_date).to eq nil
+      expect(book_2.loan_due_date).to eq Date.today
+      expect(book_3.loan_due_date).to eq Date.tomorrow
+    end
+
+    specify '#lender returns current lender if present' do
+      BookUseCase::Return.new(book_id: book_1.id).save
+
+      expect(book_1.lender).to eq nil
+      expect(book_2.lender).to eq lender_2
+      expect(book_3.lender).to eq lender_3
+
+      expect(Book.includes(loan: :lender).map(&:lender)).to match_array [nil, lender_2, lender_3]
     end
   end
 

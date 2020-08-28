@@ -6,10 +6,7 @@ class BookUseCase::Belate < BookUseCase
 
   def initialize(*args)
     super
-    self.loan = Loan.find_by(
-      book_id:     book_id,
-      return_date: nil,
-    )
+    self.loan = book&.loan
   end
 
   def save

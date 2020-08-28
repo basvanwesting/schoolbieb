@@ -10,10 +10,7 @@ class BookUseCase::Prolong < BookUseCase
 
   def initialize(*args)
     super
-    self.loan = Loan.find_by(
-      book_id:     book_id,
-      return_date: nil,
-    )
+    self.loan = book&.loan
     self.due_date ||= [loan&.due_date, Date.today].compact.max + DEFAULT_DUE_DATE_INTERVAL
   end
 
