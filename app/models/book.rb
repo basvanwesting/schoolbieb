@@ -87,23 +87,19 @@ class Book < ApplicationRecord
     end
 
     def wildcard_search(v)
-      terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
+      terms = v.gsub(/[(),']/,' ').split.map(&:upcase)
       clause = terms.map do |term|
-        #if term.in?(Book::ReadingLevels::ALL)
-          #"books.reading_level = '#{term}'"
-        #elsif term.in?(Book::AviLevels::ALL)
-          #"books.avi_level = '#{term}'"
-        #else
-          [
-            "unaccent(books.title) ilike unaccent('%#{term}%')",
-            "unaccent(books.series) ilike unaccent('%#{term}%')",
-            "unaccent(books.category) ilike unaccent('%#{term}%')",
-            "unaccent(authors.first_name) ilike unaccent('%#{term}%')",
-            "unaccent(authors.last_name) ilike unaccent('%#{term}%')",
-            "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'",
-            "cast(books.part as text) = '#{term}'",
-          ].join(" or ")
-        #end
+        [
+          "books.reading_level = '#{term}'",
+          "books.avi_level = '#{term}'",
+          "unaccent(books.title) ilike unaccent('%#{term}%')",
+          "unaccent(books.series) ilike unaccent('%#{term}%')",
+          "unaccent(books.category) ilike unaccent('%#{term}%')",
+          "unaccent(authors.first_name) ilike unaccent('%#{term}%')",
+          "unaccent(authors.last_name) ilike unaccent('%#{term}%')",
+          "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'",
+          "cast(books.part as text) = '#{term}'",
+        ].join(" or ")
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).left_joins(:author).pluck(:id)
     end

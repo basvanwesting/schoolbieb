@@ -104,74 +104,42 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  context 'description mismatch' do
-    it 'works with start in the name' do
-      author = FactoryBot.create(:author, id: 1)
+  context 'wildcard search, description edge cases' do
+    let(:author) { FactoryBot.create(:author) }
+
+    it 'works with start (avi_level) in the name' do
       book = Book::Fiction.create(
         id: 365,
         title: "Fleur gaat van start",
         reading_level: "A",
-        avi_level: "",
-        author_id: 1,
+        avi_level: "PLUS",
+        author: author,
         series: "",
         part: nil,
-        sti_type: "Book::Fiction",
-        category: nil,
-        tags: [],
-        state: "available"
       )
 
       expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
       expect(book.description).to eq "Fleur gaat van start (0365)"
     end
 
-    it 'works normally' do
-      author = FactoryBot.create(:author, id: 1)
-      book = Book::Fiction.create(
-        id: 446,
-        title: "Borre en de ijscoman",
-        reading_level: "A",
-        avi_level: "",
-        author_id: 1,
-        series: "Borre",
-        part: nil,
-        sti_type: "Book::Fiction",
-        category: nil,
-        tags: [],
-        state: "available"
-      )
-
-      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
-      expect(book.description).to eq "Borre en de ijscoman (0446)"
-    end
-
-    it 'works with subset name' do
-      author = FactoryBot.create(:author, id: 1)
+    it 'works with subset name (solved by ID mismatch)' do
       book = Book::Fiction.create(
         id: 1480,
         title: "Heksje Lilly De reis naar Mandolan",
         reading_level: "A",
         avi_level: "",
-        author_id: 1,
+        author: author,
         series: "Heksje Lilly",
         part: nil,
-        sti_type: "Book::Fiction",
-        category: nil,
-        tags: [],
-        state: "available"
       )
       book_alt = Book::Fiction.create(
         id: 21,
         title: "De reis naar Mandolan",
         reading_level: "A",
         avi_level: "",
-        author_id: 1,
+        author: author,
         series: "",
         part: nil,
-        sti_type: "Book::Fiction",
-        category: nil,
-        tags: [],
-        state: "available"
       )
 
       expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
@@ -180,6 +148,64 @@ RSpec.describe Book, type: :model do
       expect(Book.ransack(id_book_wildcard: book_alt.description).result).to match_array [book_alt]
       expect(book_alt.description).to eq "De reis naar Mandolan (0021)"
     end
+
+    it 'works with subset name (not solved by ID mismatch)' do
+      book = Book::Fiction.create(
+        id: 18,
+        title: "Mei",
+        reading_level: "A",
+        avi_level: "",
+        author: author,
+        series: "",
+        part: nil,
+      )
+      book_alt = Book::Fiction.create(
+        id: 1805,
+        title: "Het meisje met de groene ogen",
+        reading_level: "A",
+        avi_level: "",
+        author: author,
+        series: "",
+        part: nil,
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book, book_alt]
+      expect(book.description).to eq "Mei (0018)"
+
+      expect(Book.ransack(id_book_wildcard: book_alt.description).result).to match_array [book_alt]
+      expect(book_alt.description).to eq "Het meisje met de groene ogen (1805)"
+    end
+
+    it 'works with quote' do
+      book = Book::Fiction.create(
+        id: 1047,
+        title: "Niek de Groot flikt het 'm weer",
+        reading_level: "B",
+        avi_level: "",
+        author: author,
+        series: "",
+        part: nil,
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
+      expect(book.description).to eq "Niek de Groot flikt het 'm weer (1047)"
+    end
+
+    it 'works with comma' do
+      book = Book::Fiction.create(
+        id: 444,
+        title: "Mijn gemuts 3,5",
+        reading_level: "B",
+        avi_level: "",
+        author: author,
+        series: "Dagboek van een muts",
+        part: nil,
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
+      expect(book.description).to eq "Mijn gemuts 3,5 (0444)"
+    end
+
   end
 
   describe '.to_csv' do

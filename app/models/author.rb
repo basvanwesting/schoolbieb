@@ -27,7 +27,7 @@ class Author < ApplicationRecord
 
   class << self
     def wildcard_search(v)
-      terms = v.split.map(&:upcase)
+      terms = v.gsub(/[(),']/,' ').split.map(&:upcase)
       clause = terms.map do |term|
         [
           "unaccent(authors.first_name) ilike unaccent('%#{term}%')",

@@ -35,7 +35,7 @@ class Lender < ApplicationRecord
 
   class << self
     def wildcard_search(v)
-      terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
+      terms = v.gsub(/[(),']/,' ').split.map(&:upcase)
       clause = terms.map do |term|
         [
           "unaccent(lenders.first_name) ilike unaccent('%#{term}%')",

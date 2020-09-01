@@ -35,16 +35,22 @@ class AutocompleteChannel < ApplicationCable::Channel
 
   def search_author(filter)
     authors = Author.limit(RESULT_LIMIT).order(:first_name, :middle_name, :last_name).ransack(filter).result(distinct: true).map { |author| { id: author.id, description: author.description } }
+    full_description_match = authors.detect { |author| author[:description] == filter["id_author_wildcard"] }
+    authors = full_description_match ? [full_description_match] : authors
     ActionCable.server.broadcast(channel_room_key, action: :search_author, authors: authors)
   end
 
   def search_book(filter)
     books = Book.limit(RESULT_LIMIT).order(:title, :id).ransack(filter).result(distinct: true).map { |book| { id: book.id, description: book.description } }
+    full_description_match = books.detect { |book| book[:description] == filter["id_book_wildcard"] }
+    books = full_description_match ? [full_description_match] : books
     ActionCable.server.broadcast(channel_room_key, action: :search_book, books: books)
   end
 
   def search_lender(filter)
     lenders = Lender.limit(RESULT_LIMIT).order(:first_name, :middle_name, :last_name, :group_name).ransack(filter).result(distinct: true).map { |lender| { id: lender.id, description: lender.description } }
+    full_description_match = lenders.detect { |lender| lender[:description] == filter["id_lender_wildcard"] }
+    lenders = full_description_match ? [full_description_match] : lenders
     ActionCable.server.broadcast(channel_room_key, action: :search_lender, lenders: lenders)
   end
 end
