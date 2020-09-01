@@ -104,6 +104,84 @@ RSpec.describe Book, type: :model do
     end
   end
 
+  context 'description mismatch' do
+    it 'works with start in the name' do
+      author = FactoryBot.create(:author, id: 1)
+      book = Book::Fiction.create(
+        id: 365,
+        title: "Fleur gaat van start",
+        reading_level: "A",
+        avi_level: "",
+        author_id: 1,
+        series: "",
+        part: nil,
+        sti_type: "Book::Fiction",
+        category: nil,
+        tags: [],
+        state: "available"
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
+      expect(book.description).to eq "Fleur gaat van start (0365)"
+    end
+
+    it 'works normally' do
+      author = FactoryBot.create(:author, id: 1)
+      book = Book::Fiction.create(
+        id: 446,
+        title: "Borre en de ijscoman",
+        reading_level: "A",
+        avi_level: "",
+        author_id: 1,
+        series: "Borre",
+        part: nil,
+        sti_type: "Book::Fiction",
+        category: nil,
+        tags: [],
+        state: "available"
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
+      expect(book.description).to eq "Borre en de ijscoman (0446)"
+    end
+
+    it 'works with subset name' do
+      author = FactoryBot.create(:author, id: 1)
+      book = Book::Fiction.create(
+        id: 1480,
+        title: "Heksje Lilly De reis naar Mandolan",
+        reading_level: "A",
+        avi_level: "",
+        author_id: 1,
+        series: "Heksje Lilly",
+        part: nil,
+        sti_type: "Book::Fiction",
+        category: nil,
+        tags: [],
+        state: "available"
+      )
+      book_alt = Book::Fiction.create(
+        id: 21,
+        title: "De reis naar Mandolan",
+        reading_level: "A",
+        avi_level: "",
+        author_id: 1,
+        series: "",
+        part: nil,
+        sti_type: "Book::Fiction",
+        category: nil,
+        tags: [],
+        state: "available"
+      )
+
+      expect(Book.ransack(id_book_wildcard: book.description).result).to match_array [book]
+      expect(book.description).to eq "Heksje Lilly De reis naar Mandolan (1480)"
+
+      expect(Book.ransack(id_book_wildcard: book_alt.description).result).to match_array [book_alt]
+      expect(book_alt.description).to eq "De reis naar Mandolan (0021)"
+    end
+  end
+
   describe '.to_csv' do
     before do
       FactoryBot.create(:author, id: 1)

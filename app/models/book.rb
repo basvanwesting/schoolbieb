@@ -89,11 +89,11 @@ class Book < ApplicationRecord
     def wildcard_search(v)
       terms = v.split.map(&:upcase).map { |s| s.gsub(/[(),]/,'') }
       clause = terms.map do |term|
-        if term.in?(Book::ReadingLevels::ALL)
-          "books.reading_level = '#{term}'"
-        elsif term.in?(Book::AviLevels::ALL)
-          "books.avi_level = '#{term}'"
-        else
+        #if term.in?(Book::ReadingLevels::ALL)
+          #"books.reading_level = '#{term}'"
+        #elsif term.in?(Book::AviLevels::ALL)
+          #"books.avi_level = '#{term}'"
+        #else
           [
             "unaccent(books.title) ilike unaccent('%#{term}%')",
             "unaccent(books.series) ilike unaccent('%#{term}%')",
@@ -103,7 +103,7 @@ class Book < ApplicationRecord
             "cast(books.id as text) ilike '#{term.sub(/^0*/, '')}%'",
             "cast(books.part as text) = '#{term}'",
           ].join(" or ")
-        end
+        #end
       end.map { |v| "(#{v})" }.join(" and ")
       where(clause).left_joins(:author).pluck(:id)
     end
