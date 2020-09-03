@@ -6,6 +6,7 @@ class Role
       [
         Role::Admin,
         Role::JuniorCollaborator,
+        Role::MediorCollaborator,
         Role::SeniorCollaborator,
       ]
     end

@@ -11,6 +11,10 @@ FactoryBot.define do
       roles { [Role::JuniorCollaborator] }
     end
 
+    trait :medior_collaborator do
+      roles { [Role::MediorCollaborator] }
+    end
+
     trait :senior_collaborator do
       roles { [Role::SeniorCollaborator] }
     end

@@ -16,6 +16,16 @@ class Ability
       can :manage, BookUseCase::Prolong
     end
 
+    if user.role?(Role::MediorCollaborator)
+      can :manage, Author
+      can :manage, Book
+      can :manage, BookUseCase::Enable
+      can :manage, BookUseCase::Disable
+      can :manage, BookUseCase::Borrow
+      can :manage, BookUseCase::Return
+      can :manage, BookUseCase::Prolong
+    end
+
     if user.role?(Role::SeniorCollaborator)
       can :manage, Author
       can :manage, Book
