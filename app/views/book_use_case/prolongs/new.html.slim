@@ -9,7 +9,7 @@ h1 = BookUseCase::Prolong.model_name.human
   = f.input :book_description, required: true, input_html: { list: :books, data: { target: 'book-use-case-prolong-form.bookDescription', action: 'input->book-use-case-prolong-form#debouncedRefreshBookOptions' } }
   = f.input :book_id, required: true, as: :hidden, input_html: { data: { target: 'book-use-case-prolong-form.bookId' } }
 
-  = f.input :due_date, as: :datepicker
+  = f.input :due_date, as: :datepicker, input_html: { class: 'due_date' }
 
   = f.submit t('button.submit'), class: 'button'
   = link_to t('button.cancel'), :back, class: 'button secondary'

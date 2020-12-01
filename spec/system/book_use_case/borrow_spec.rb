@@ -3,8 +3,10 @@ require "rails_helper"
 RSpec.describe "Borrow Book", type: :system do
   before do
     driven_by(:selenium_chrome_headless)
+    Timecop.freeze('2020-12-01T12:00:00Z')
   end
 
+  after { Timecop.return }
 
   context 'authorised' do
     let!(:user) { FactoryBot.create(:user, :junior_collaborator) }
@@ -44,8 +46,49 @@ RSpec.describe "Borrow Book", type: :system do
           loan = Loan.first
           expect(loan.book).to         eq book
           expect(loan.lender).to       eq lender
-          expect(loan.lending_date).to eq Date.today
-          expect(loan.due_date).to     eq Date.today + BookUseCase::Borrow::DEFAULT_DUE_DATE_INTERVAL
+          expect(loan.lending_date).to eq '2020-12-01'.to_date
+          expect(loan.due_date).to     eq '2020-12-01'.to_date + BookUseCase::Borrow::DEFAULT_DUE_DATE_INTERVAL
+          expect(loan.return_date).to  eq nil
+        end
+      end
+
+      context 'valid form, modified due_date by vacation' do
+        before do
+          FactoryBot.create(
+            :vacation,
+            start_date: '2020-12-20',
+            end_date: '2021-01-07',
+            due_date: '2020-12-18',
+          )
+        end
+        it "borrows the book" do
+          visit "/"
+          click_link "Uitlenen", match: :first
+
+          expect do
+            within("form") do
+              fill_in 'Boek', with: "First"
+              find("datalist#books option[value='#{book.description}']", visible: :all)
+              select(book.description, from: 'Boek')
+              find("input#book_use_case_borrow_book_id[value='#{book.id}']", visible: false)
+
+              fill_in 'Kind', with: "John"
+              find("datalist#lenders option[value='#{lender.description}']", visible: :all)
+              select(lender.description, from: 'Kind')
+              find("input#book_use_case_borrow_lender_id[value='#{lender.id}']", visible: false)
+
+              click_on "Opslaan"
+            end
+          end.to change { Loan.count }.by(1)
+
+          expect(page).to have_text("Succesvol uitgeleend")
+          expect(book.reload).to be_borrowed
+
+          loan = Loan.first
+          expect(loan.book).to         eq book
+          expect(loan.lender).to       eq lender
+          expect(loan.lending_date).to eq '2020-12-01'.to_date
+          expect(loan.due_date).to     eq '2020-12-18'.to_date
           expect(loan.return_date).to  eq nil
         end
       end
@@ -67,7 +110,7 @@ RSpec.describe "Borrow Book", type: :system do
               select(lender.description, from: 'Kind')
               find("input#book_use_case_borrow_lender_id[value='#{lender.id}']", visible: false)
 
-              fill_in 'Retourdatum', with: Date.tomorrow.to_s
+              fill_in 'Retourdatum', with: '2020-12-02'
               first('input.datepicker').send_keys :tab
 
               click_on "Opslaan"
@@ -80,8 +123,8 @@ RSpec.describe "Borrow Book", type: :system do
           loan = Loan.first
           expect(loan.book).to         eq book
           expect(loan.lender).to       eq lender
-          expect(loan.lending_date).to eq Date.today
-          expect(loan.due_date).to     eq Date.tomorrow
+          expect(loan.lending_date).to eq '2020-12-01'.to_date
+          expect(loan.due_date).to     eq '2020-12-02'.to_date
           expect(loan.return_date).to  eq nil
         end
       end
@@ -183,8 +226,8 @@ RSpec.describe "Borrow Book", type: :system do
           loan = Loan.first
           expect(loan.book).to         eq book
           expect(loan.lender).to       eq lender
-          expect(loan.lending_date).to eq Date.today
-          expect(loan.due_date).to     eq Date.today + BookUseCase::Borrow::DEFAULT_DUE_DATE_INTERVAL
+          expect(loan.lending_date).to eq '2020-12-01'.to_date
+          expect(loan.due_date).to     eq '2020-12-01'.to_date + BookUseCase::Borrow::DEFAULT_DUE_DATE_INTERVAL
           expect(loan.return_date).to  eq nil
         end
       end

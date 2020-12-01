@@ -5,6 +5,8 @@ class BookUseCase
   validates :book_id, presence: true
   validate  :book_found
 
+  delegate :sanitize_due_date, to: Loan
+
   def initialize(*args)
     super
     self.book               = Book.find_by(id: book_id)

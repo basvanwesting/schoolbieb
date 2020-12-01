@@ -11,7 +11,9 @@ class BookUseCase::Prolong < BookUseCase
   def initialize(*args)
     super
     self.loan = book&.loan
-    self.due_date ||= [loan&.due_date, Date.today].compact.max + DEFAULT_DUE_DATE_INTERVAL
+    self.due_date ||= sanitize_due_date(
+      [loan&.due_date, Date.today].compact.max + DEFAULT_DUE_DATE_INTERVAL
+    )
   end
 
   def save

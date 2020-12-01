@@ -4,6 +4,9 @@ export default class AttachDatepicker {
       const el = $(this)
       // console.log(`init datepicker ${el}`)
       const options = { dateFormat: 'yy-mm-dd' }
+      //if (el.hasClass("due_date")) {
+        //options['beforeShowDay'] = $.datepicker.noWeekends
+      //}
       el.datepicker(options)
     })
   }

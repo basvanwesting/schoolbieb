@@ -17,7 +17,7 @@ class BookUseCase::Borrow < BookUseCase
     self.lender               = Lender.find_by(id: lender_id)
     self.lender_description ||= lender&.description
     self.lending_date         = Date.today
-    self.due_date           ||= lending_date + DEFAULT_DUE_DATE_INTERVAL
+    self.due_date           ||= sanitize_due_date(lending_date + DEFAULT_DUE_DATE_INTERVAL)
   end
 
   def save
