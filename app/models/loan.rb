@@ -14,4 +14,34 @@ class Loan < ApplicationRecord
   def due_today?
     due_date == Date.today
   end
+
+  class << self
+    def sanitize_due_date(due_date)
+      due_date = due_date.to_date
+      due_date = sanitize_due_date_by_vacation(due_date)
+      due_date = sanitize_due_date_by_weekend(due_date)
+    rescue
+      nil
+    end
+
+    def sanitize_due_date_by_vacation(due_date)
+      vacation_match = Vacation.
+        where("start_date <= ?", due_date).
+        where("end_date >= ?", due_date).
+        first
+
+      vacation_match ?  vacation_match.due_date : due_date
+    end
+
+    def sanitize_due_date_by_weekend(due_date)
+      case due_date.cwday
+      when 6
+        due_date + 2
+      when 7,0
+        due_date + 1
+      else
+        due_date
+      end
+    end
+  end
 end

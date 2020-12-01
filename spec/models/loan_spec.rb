@@ -22,4 +22,37 @@ RSpec.describe Loan, type: :model do
     end
   end
 
+  describe ".sanitize_due_date" do
+    before do
+      FactoryBot.create(
+        :vacation,
+        start_date: '2020-03-01',
+        end_date: '2020-03-14',
+        due_date: '2020-02-28',
+      )
+    end
+    it 'leaves unchanged for weekday, no vacation' do
+      expect(described_class.sanitize_due_date('2020-03-16')).to eq '2020-03-16'.to_date
+      expect(described_class.sanitize_due_date('2020-03-17')).to eq '2020-03-17'.to_date
+      expect(described_class.sanitize_due_date('2020-03-18')).to eq '2020-03-18'.to_date
+      expect(described_class.sanitize_due_date('2020-03-19')).to eq '2020-03-19'.to_date
+      expect(described_class.sanitize_due_date('2020-03-20'.to_date)).to eq '2020-03-20'.to_date
+    end
+    it 'changes to next monday on weekend, no vacation' do
+      expect(described_class.sanitize_due_date('2020-03-21')).to         eq '2020-03-23'.to_date
+      expect(described_class.sanitize_due_date('2020-03-22'.to_date)).to eq '2020-03-23'.to_date
+    end
+    it 'changes to new due-date, when in vacation' do
+      expect(described_class.sanitize_due_date('2020-03-01')).to eq '2020-02-28'.to_date
+      expect(described_class.sanitize_due_date('2020-03-10')).to eq '2020-02-28'.to_date
+      expect(described_class.sanitize_due_date('2020-03-14')).to eq '2020-02-28'.to_date
+    end
+    it 'returns nil on invalid date' do
+      expect(described_class.sanitize_due_date('FOO')).to eq nil
+      expect(described_class.sanitize_due_date('')).to    eq nil
+      expect(described_class.sanitize_due_date(nil)).to   eq nil
+    end
+
+  end
+
 end
