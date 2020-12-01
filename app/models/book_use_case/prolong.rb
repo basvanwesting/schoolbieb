@@ -7,6 +7,9 @@ class BookUseCase::Prolong < BookUseCase
 
   validate :loan_found
   validate :book_may_prolong
+  validate :due_date_is_sanitized
+
+  delegate :sanitize_due_date, to: Loan
 
   def initialize(*args)
     super
@@ -28,6 +31,11 @@ class BookUseCase::Prolong < BookUseCase
   def loan_found
     return unless book.present?
     errors.add(:book_id, :loan_not_found) unless loan.present?
+  end
+
+  def due_date_is_sanitized
+    return unless due_date.present?
+    errors.add(:due_date, :not_sanitized) unless Loan.due_date_is_sanitized?(due_date)
   end
 
 end

@@ -11,6 +11,9 @@ class BookUseCase::Borrow < BookUseCase
 
   validate :lender_found
   validate :book_may_borrow
+  validate :due_date_is_sanitized
+
+  delegate :sanitize_due_date, to: Loan
 
   def initialize(*args)
     super
@@ -36,6 +39,11 @@ class BookUseCase::Borrow < BookUseCase
   def lender_found
     return unless lender_id
     errors.add(:lender_id, :not_found) unless lender.present?
+  end
+
+  def due_date_is_sanitized
+    return unless due_date.present?
+    errors.add(:due_date, :not_sanitized) unless Loan.due_date_is_sanitized?(due_date)
   end
 
 end

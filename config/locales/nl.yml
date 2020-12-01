@@ -192,6 +192,8 @@ nl:
           attributes:
             book_id:
               may_not_borrow: kan niet uitgeleend worden
+            due_date:
+              not_sanitized: kan niet in weekend of vakantie liggen
         book_use_case/return:
           attributes:
             book_id:
@@ -200,6 +202,8 @@ nl:
           attributes:
             book_id:
               may_not_prolong: kan niet verlengd worden
+            due_date:
+              not_sanitized: kan niet in weekend of vakantie liggen
         book_use_case/belate:
           attributes:
             book_id:

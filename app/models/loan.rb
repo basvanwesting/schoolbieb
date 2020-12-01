@@ -16,8 +16,15 @@ class Loan < ApplicationRecord
   end
 
   class << self
+    def due_date_is_sanitized?(due_date)
+      sanitize_due_date(due_date) == due_date.to_date
+    rescue
+      false
+    end
+
     def sanitize_due_date(due_date)
       due_date = due_date.to_date
+      due_date = sanitize_due_date_by_weekend(due_date)
       due_date = sanitize_due_date_by_vacation(due_date)
       due_date = sanitize_due_date_by_weekend(due_date)
     rescue
