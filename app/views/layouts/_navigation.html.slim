@@ -27,6 +27,9 @@ nav.top-bar
         - if can? :read, Loan
           li class=active_class("loans")
             = link_to Loan.model_name.human(count: 2), loans_path, tabindex: -1
+        - if can? :read, Vacation
+          li class=active_class("vacations")
+            = link_to Vacation.model_name.human(count: 2), vacations_path, tabindex: -1
         - if can?(:update, Book) || can?(:update, Lender)
           li class=active_class("books/stickers", "lenders/stickers")
             = link_to 'Stickers', nil, tabindex: -1

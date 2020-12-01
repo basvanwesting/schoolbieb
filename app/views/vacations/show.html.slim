@@ -1,0 +1,15 @@
+table.hover.unstriped.condensed.text-left
+  tbody
+    tr
+      th = Vacation.human_attribute_name(:start_date)
+      td = @vacation.start_date
+    tr
+      th = Vacation.human_attribute_name(:end_date)
+      td = @vacation.end_date
+    tr
+      th = Vacation.human_attribute_name(:due_date)
+      td = @vacation.due_date
+
+- if can? :update, @vacation
+  = link_to t('button.edit'), edit_vacation_path(@vacation), class: 'button warning'
+= link_to t('button.back'), :back, class: 'button'

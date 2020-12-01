@@ -102,6 +102,9 @@ nl:
       loan:
         one: Uitlening
         other: Uitleen Historie
+      vacation:
+        one: Vakantie
+        other: Vakanties
     attributes:
       created_at: Aangemaakt op
       updated_at: Bijgewerkt op
@@ -149,6 +152,10 @@ nl:
         times_prolonged: Aantal Verlengingen
         return_date: Ingeleverd op
         due_today: Vandaag Retour
+      vacation:
+        start_date: Startdatum
+        end_date: Einddatum
+        due_date: Vervangende Retourdatum
 
   activemodel:
     models:

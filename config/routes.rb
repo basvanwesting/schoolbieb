@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
   end
   resources :loans, only: [:index, :show, :edit, :update]
+  resources :vacations
 
   namespace :admin do
     resources :users

@@ -36,6 +36,7 @@ class Ability
       can :manage, BookUseCase::Prolong
       can [:read, :update], Lender
       can :read, Loan
+      can :manage, Vacation
     end
   end
 end

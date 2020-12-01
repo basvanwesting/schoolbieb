@@ -1,0 +1,12 @@
+= simple_form_for @vacation do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :start_date, as: :datepicker
+    = f.input :end_date,   as: :datepicker
+    = f.input :due_date,   as: :datepicker
+
+  .form-actions
+    = f.submit t('button.submit'), class: 'button'
+    = link_to t('button.cancel'), :back, class: 'button secondary'

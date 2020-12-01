@@ -1,0 +1,36 @@
+h1 = t('action.vacation.index', models: Vacation.model_name.human(count: 2))
+
+= inline_search_form_for @q do |f|
+  table
+    thead
+      tr
+        th = sort_link(@q, :start_date, Vacation.human_attribute_name(:start_date))
+        th = sort_link(@q, :end_date,   Vacation.human_attribute_name(:end_date))
+        th = sort_link(@q, :due_date,   Vacation.human_attribute_name(:due_date))
+        th.actions
+          i.fas.fa-search
+          = search_result_info(@vacations)
+      = search_row do
+        th= f.input :start_date_eq, as: :datepicker, placeholder: t('placeholder.eq')
+        th= f.input :end_date_eq,   as: :datepicker, placeholder: t('placeholder.eq')
+        th= f.input :due_date_eq,   as: :datepicker, placeholder: t('placeholder.eq')
+        th.actions= f.submit_search_form
+
+    tbody
+      - @vacations.each do |vacation|
+        tr
+          td = vacation.start_date
+          td = vacation.end_date
+          td = vacation.due_date
+
+          td.actions
+            = link_to t('button.show'), vacation, class: 'button tiny'
+            - if can? :update, vacation
+              = link_to t('button.edit'), edit_vacation_path(vacation), class: 'button warning tiny'
+            - if can? :destroy, vacation
+              = link_to t('button.destroy'), vacation, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button alert tiny'
+
+= paginate @vacations
+
+- if can? :create, Vacation
+  = link_to t('action.new', model: Vacation.model_name.human), new_vacation_path, class: 'button'
